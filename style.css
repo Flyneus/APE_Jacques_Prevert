@@ -184,21 +184,30 @@ a {
   align-items: center;
   justify-content: center;
   gap: 0.4rem;
-  background: var(--color-primary);
-  color: #fff !important;
+  background: var(--color-card);
+  color: var(--color-text) !important;
+  border: 1.5px solid var(--color-border);
   text-align: center;
   margin-top: 0.25rem;
-  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+}
+
+.nav-cta .icon-inline {
+  color: var(--color-primary);
 }
 
 .nav-cta:hover {
+  background: var(--color-bg-alt);
   transform: translateY(-1px);
   box-shadow: var(--shadow-soft);
 }
 
 .nav-cta-secondary {
-  background: var(--color-secondary);
   margin-top: 0.5rem;
+}
+
+.nav-cta-secondary .icon-inline {
+  color: var(--color-secondary-dark);
 }
 
 /* ---------- Icon system ---------- */
