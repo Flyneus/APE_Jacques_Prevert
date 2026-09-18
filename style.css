@@ -400,6 +400,10 @@ a {
   margin-top: 1.5rem;
 }
 
+.info-cards {
+  align-items: start;
+}
+
 .helloasso-embed {
   margin-top: 0.75rem;
   text-align: center;
