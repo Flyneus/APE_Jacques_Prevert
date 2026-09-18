@@ -433,7 +433,14 @@ a {
 
 .event-card {
   position: relative;
+  border-top: 4px solid transparent;
 }
+
+.event-card.theme-halloween { border-top-color: var(--color-primary); }
+.event-card.theme-sapin { border-top-color: var(--color-secondary); }
+.event-card.theme-noel { border-top-color: var(--color-accent); }
+.event-card.theme-hiver { border-top-color: var(--color-blue); }
+.event-card.theme-paques { border-top-color: var(--color-pink); }
 
 .event-date {
   display: inline-block;
