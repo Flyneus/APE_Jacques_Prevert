@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>APE École — Association des Parents d'Élèves</title>
+<meta name="description" content="Site de l'Association des Parents d'Élèves : événements, actions pour les enfants, adhésion et contact.">
+<link rel="stylesheet" href="style.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<!-- ============================================= -->
+<!-- EN-TÊTE / NAVIGATION -->
+<!-- ⚠️ Remplacer "École [Nom de l'école]" par le vrai nom de l'école -->
+<!-- ============================================= -->
+<header class="site-header">
+  <div class="header-inner">
+    <a href="#accueil" class="logo">🌻 APE <span>École [Nom de l'école]</span></a>
+    <button class="nav-toggle" id="navToggle" aria-label="Ouvrir le menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <nav class="main-nav" id="mainNav">
+      <a href="#accueil">Accueil</a>
+      <a href="#qui-sommes-nous">Qui sommes-nous</a>
+      <a href="#evenements">Événements</a>
+      <a href="#nos-actions">Nos actions</a>
+      <a href="#documents">Documents</a>
+      <a href="#contact" class="nav-cta">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <!-- ============================================= -->
+  <!-- SECTION ACCUEIL -->
+  <!-- ⚠️ Remplacer le texte de présentation et l'événement mis en avant -->
+  <!-- ============================================= -->
+  <section id="accueil" class="hero">
+    <div class="hero-content">
+      <h1>Bienvenue sur le site de l'APE</h1>
+      <p class="hero-text">
+        <!-- ⚠️ Présentation courte de l'APE (2-3 lignes) -->
+        Notre association réunit les parents d'élèves de l'école [Nom de l'école] autour d'un même objectif :
+        financer des projets, organiser des événements conviviaux et accompagner la vie de l'école
+        pour le bonheur de nos enfants.
+      </p>
+      <div class="hero-highlight">
+        <span class="hero-badge">📅 Prochain événement</span>
+        <!-- ⚠️ Remplacer par le prochain événement réel (nom, date, lieu) -->
+        <p><strong>Kermesse de fin d'année</strong> — Samedi 20 juin 2026, cour de l'école</p>
+      </div>
+      <a href="#contact" class="btn btn-primary">Nous contacter</a>
+    </div>
+  </section>
+
+  <!-- ============================================= -->
+  <!-- SECTION QUI SOMMES-NOUS -->
+  <!-- ⚠️ Remplacer mission, modalités d'adhésion et montant de cotisation -->
+  <!-- ============================================= -->
+  <section id="qui-sommes-nous" class="section section-alt">
+    <div class="section-inner">
+      <h2>Qui sommes-nous</h2>
+      <p>
+        <!-- ⚠️ Mission de l'association -->
+        L'Association des Parents d'Élèves (APE) est une association loi 1901, gérée bénévolement par des parents
+        volontaires. Notre mission est de financer des projets pédagogiques, culturels et sportifs pour les élèves,
+        et de créer du lien entre les familles et l'équipe éducative.
+      </p>
+      <div class="info-cards">
+        <div class="info-card">
+          <h3>🤝 Comment adhérer</h3>
+          <!-- ⚠️ Modalités d'adhésion réelles -->
+          <p>L'adhésion est ouverte à tous les parents d'élèves de l'école. Il suffit de remplir le bulletin
+            d'adhésion distribué en début d'année ou disponible dans la section « Documents utiles ».</p>
+        </div>
+        <div class="info-card">
+          <h3>💶 Cotisation annuelle</h3>
+          <!-- ⚠️ Montant de la cotisation à préciser -->
+          <p>Cotisation : <strong>[montant] € par famille</strong> et par année scolaire.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================= -->
+  <!-- SECTION ÉVÉNEMENTS -->
+  <!-- ⚠️ Remplacer par le calendrier réel des événements de l'année -->
+  <!-- ============================================= -->
+  <section id="evenements" class="section">
+    <div class="section-inner">
+      <h2>Événements de l'année</h2>
+      <div class="cards-grid">
+        <div class="event-card">
+          <span class="event-date">Oct. 2026</span>
+          <h3>🎂 Vente de gâteaux</h3>
+          <p>Vente de gâteaux faits maison à la sortie de l'école au profit des projets pédagogiques.</p>
+        </div>
+        <div class="event-card">
+          <span class="event-date">Déc. 2026</span>
+          <h3>🎰 Loto de l'école</h3>
+          <p>Soirée loto en famille dans la salle des fêtes, avec de nombreux lots à gagner.</p>
+        </div>
+        <div class="event-card">
+          <span class="event-date">Juin 2027</span>
+          <h3>🎡 Kermesse</h3>
+          <p>Fête de fin d'année avec jeux, stands et spectacle préparé par les enfants.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================= -->
+  <!-- SECTION NOS ACTIONS -->
+  <!-- ⚠️ Remplacer par les actions réellement financées par l'APE -->
+  <!-- ============================================= -->
+  <section id="nos-actions" class="section section-alt">
+    <div class="section-inner">
+      <h2>Nos actions pour les enfants</h2>
+      <p>Grâce aux fonds collectés lors de nos événements, l'APE finance chaque année :</p>
+      <div class="cards-grid">
+        <div class="action-card">
+          <h3>🚌 Sorties scolaires</h3>
+          <p>Participation au financement des sorties pédagogiques (musées, fermes, parcs naturels...).</p>
+        </div>
+        <div class="action-card">
+          <h3>🎭 Spectacles</h3>
+          <p>Spectacles de Noël et de fin d'année offerts à toutes les classes.</p>
+        </div>
+        <div class="action-card">
+          <h3>📚 Matériel pédagogique</h3>
+          <p>Achat de matériel pour les classes : jeux éducatifs, livres, équipement sportif.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================= -->
+  <!-- SECTION DOCUMENTS UTILES -->
+  <!-- ⚠️ Ajouter les vrais fichiers PDF dans un dossier /documents et mettre à jour les liens -->
+  <!-- ============================================= -->
+  <section id="documents" class="section">
+    <div class="section-inner">
+      <h2>Documents utiles</h2>
+      <ul class="doc-list">
+        <li>
+          <a href="documents/statuts.pdf">📄 Statuts de l'association</a>
+        </li>
+        <li>
+          <a href="documents/reglement-interieur.pdf">📄 Règlement intérieur</a>
+        </li>
+        <li>
+          <a href="documents/compte-rendu-ag.pdf">📄 Compte-rendu de l'Assemblée Générale</a>
+        </li>
+        <li>
+          <a href="documents/bulletin-adhesion.pdf">📄 Bulletin d'adhésion</a>
+        </li>
+      </ul>
+      <p class="doc-note"><!-- ⚠️ Placeholder : déposer les vrais PDF dans /documents et vérifier les liens ci-dessus --></p>
+    </div>
+  </section>
+
+  <!-- ============================================= -->
+  <!-- SECTION CONTACT -->
+  <!-- ⚠️ Remplacer l'action du formulaire par votre propre endpoint Formspree -->
+  <!-- (créer un compte gratuit sur https://formspree.io, créer un formulaire, -->
+  <!-- copier l'URL de type https://formspree.io/f/XXXXXXX ci-dessous) -->
+  <!-- ⚠️ Remplacer l'adresse email de contact -->
+  <!-- ============================================= -->
+  <section id="contact" class="section section-alt">
+    <div class="section-inner">
+      <h2>Contact</h2>
+      <p>Une question, une idée, envie de rejoindre l'aventure ? Écrivez-nous !</p>
+
+      <div class="contact-grid">
+        <form class="contact-form" action="https://formspree.io/f/VOTRE_ID_FORMSPREE" method="POST">
+          <label for="name">Nom</label>
+          <input type="text" id="name" name="name" required>
+
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" required>
+
+          <label for="message">Message</label>
+          <textarea id="message" name="message" rows="5" required></textarea>
+
+          <button type="submit" class="btn btn-primary">Envoyer le message</button>
+        </form>
+
+        <div class="contact-info">
+          <h3>Nous écrire directement</h3>
+          <!-- ⚠️ Remplacer par la vraie adresse email de contact de l'APE -->
+          <p>📧 <a href="mailto:ape.ecole@exemple.fr">ape.ecole@exemple.fr</a></p>
+          <p class="contact-note">Réponse sous quelques jours. Merci de votre confiance !</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <!-- ⚠️ Remplacer par le nom de l'école et l'année -->
+  <p>© 2026 APE École [Nom de l'école] — Association loi 1901</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
