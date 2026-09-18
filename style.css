@@ -405,13 +405,14 @@ a {
 }
 
 .helloasso-embed {
-  margin-top: 0.75rem;
+  max-width: 340px;
+  margin: 0.75rem auto 0;
   text-align: center;
 }
 
 .helloasso-embed iframe {
   width: 100%;
-  height: 420px;
+  height: 320px;
   border: none;
   border-radius: 12px;
   background: var(--color-card);
