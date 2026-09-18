@@ -780,6 +780,7 @@ a {
     position: static;
     background: none;
     border: none;
+    box-shadow: none;
     padding: 0;
     gap: 0.5rem;
     align-items: center;
