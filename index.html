@@ -11,13 +11,132 @@
 </head>
 <body>
 
+<!-- Sprite d'icônes SVG réutilisées via <use href="#icon-..."> dans toute la page -->
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
+  <symbol id="icon-logo" viewBox="0 0 32 32">
+    <circle cx="16" cy="16" r="4.2" fill="#5c4a1e"/>
+    <circle cx="16" cy="6" r="3.4" fill="#ef8354"/>
+    <circle cx="26" cy="16" r="3.4" fill="#f4c04e"/>
+    <circle cx="16" cy="26" r="3.4" fill="#4fb08a"/>
+    <circle cx="6" cy="16" r="3.4" fill="#ea6f8e"/>
+    <circle cx="23" cy="9" r="2.6" fill="#4f9fd6"/>
+    <circle cx="23" cy="23" r="2.6" fill="#f4c04e"/>
+    <circle cx="9" cy="23" r="2.6" fill="#ef8354"/>
+    <circle cx="9" cy="9" r="2.6" fill="#4fb08a"/>
+  </symbol>
+
+  <symbol id="icon-calendar" viewBox="0 0 24 24">
+    <rect x="3" y="5" width="18" height="15" rx="3"/>
+    <rect x="3" y="5" width="18" height="4.5" rx="2" opacity="0.55"/>
+    <rect x="7" y="2" width="2.2" height="4.5" rx="1.1"/>
+    <rect x="14.8" y="2" width="2.2" height="4.5" rx="1.1"/>
+    <circle cx="8" cy="14.5" r="1.3" opacity="0.55"/>
+    <circle cx="12" cy="14.5" r="1.3" opacity="0.55"/>
+    <circle cx="16" cy="14.5" r="1.3" opacity="0.55"/>
+  </symbol>
+
+  <symbol id="icon-heart" viewBox="0 0 24 24">
+    <path d="M12 21s-7.6-4.6-10-9.4C.4 8.3 2 4.8 5.6 4.8c2.1 0 3.6 1.2 4.6 2.8 1-1.6 2.5-2.8 4.6-2.8 3.6 0 5.2 3.5 3.6 6.8C19.6 16.4 12 21 12 21z"/>
+  </symbol>
+
+  <symbol id="icon-wallet" viewBox="0 0 24 24">
+    <path d="M3 7a2 2 0 0 1 2-2h13a1 1 0 0 1 1 1v2H5a2 2 0 0 0 0 4h14v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7z"/>
+    <circle cx="16.2" cy="13" r="1.4" opacity="0.6"/>
+  </symbol>
+
+  <symbol id="icon-cake" viewBox="0 0 24 24">
+    <path d="M11.1 2c-.9 0-1.5.9-1.1 1.7.2.4.5.7.5 1.1s-.3.7-.5 1c-.4.5-.2 1.2.4 1.2h3.2c.6 0 .8-.7.4-1.1-.2-.3-.5-.6-.5-1s.3-.7.5-1.1C14.4 2.9 13.8 2 12.9 2h-1.8z"/>
+    <rect x="11" y="7.3" width="2" height="3" rx="0.6"/>
+    <path d="M5 11a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v2.2H5V11z"/>
+    <path d="M4 15a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v5.2a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V15z"/>
+    <path d="M4 15.3c1.3-1.2 2.7-1.2 4 0s2.7 1.2 4 0 2.7-1.2 4 0 2.7-1.2 4 0" opacity="0.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+  </symbol>
+
+  <symbol id="icon-ticket" viewBox="0 0 24 24">
+    <path d="M3 8.2A2 2 0 0 1 5 6.2h14a2 2 0 0 1 2 2V10a1.8 1.8 0 0 0 0 3.4v1.8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-1.8A1.8 1.8 0 0 0 3 10V8.2z"/>
+    <circle cx="12" cy="9" r="0.9" opacity="0.55"/>
+    <circle cx="12" cy="12" r="0.9" opacity="0.55"/>
+    <circle cx="12" cy="15" r="0.9" opacity="0.55"/>
+  </symbol>
+
+  <symbol id="icon-balloon" viewBox="0 0 24 24">
+    <path d="M12 2a6.5 6.5 0 0 1 6.5 6.5c0 4.3-3.2 7.6-5.4 9.3a1.3 1.3 0 0 1-1.6 0C9.2 16.1 6 12.8 6 8.5A6.5 6.5 0 0 1 12 2z"/>
+    <ellipse cx="9.7" cy="6.3" rx="1.3" ry="2" opacity="0.35" transform="rotate(-25 9.7 6.3)"/>
+    <path d="M11 19.2c-.3.4-.5.8-.5 1.1 0 .8.6 1.4 1.5 1.4s1.5-.6 1.5-1.4c0-.3-.2-.7-.5-1.1"/>
+  </symbol>
+
+  <symbol id="icon-bus" viewBox="0 0 24 24">
+    <path d="M3 14V8a3 3 0 0 1 3-3h12a3 3 0 0 1 3 3v6H3z"/>
+    <rect x="5" y="7" width="14" height="4" rx="1" opacity="0.45"/>
+    <rect x="3" y="14" width="18" height="2.2" rx="1.1"/>
+    <circle cx="7.5" cy="18" r="2"/>
+    <circle cx="16.5" cy="18" r="2"/>
+  </symbol>
+
+  <symbol id="icon-star" viewBox="0 0 24 24">
+    <path d="M12 2l2.9 6.3 6.9.6-5.2 4.6 1.6 6.8L12 16.9 5.8 20.3l1.6-6.8-5.2-4.6 6.9-.6L12 2z"/>
+  </symbol>
+
+  <symbol id="icon-book" viewBox="0 0 24 24">
+    <path d="M4 4.5A2.5 2.5 0 0 1 6.5 2H12v20H6.5A2.5 2.5 0 0 1 4 19.5v-15z"/>
+    <path d="M20 2h-5.5a2.5 2.5 0 0 0-2.5 2.5v15A2.5 2.5 0 0 1 14.5 22H20V2z" opacity="0.55"/>
+  </symbol>
+
+  <symbol id="icon-document" viewBox="0 0 24 24">
+    <path d="M6 2h8l6 6v13a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1z"/>
+    <path d="M14 2v5a1 1 0 0 0 1 1h5" opacity="0.5"/>
+    <rect x="7.5" y="12.2" width="9" height="1.6" rx="0.8" opacity="0.5"/>
+    <rect x="7.5" y="16.2" width="9" height="1.6" rx="0.8" opacity="0.5"/>
+  </symbol>
+
+  <symbol id="icon-mail" viewBox="0 0 24 24">
+    <path d="M3 6a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v.4l-9 6.2-9-6.2V6z"/>
+    <path d="M3 8.4v9.6a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.4l-9 6.2-9-6.2z" opacity="0.55"/>
+  </symbol>
+
+  <symbol id="icon-phone" viewBox="0 0 24 24">
+    <path d="M4.5 3.5h3.6l1.7 4.2-2.3 2.3a12.3 12.3 0 0 0 6.5 6.5l2.3-2.3 4.2 1.7v3.6a1.5 1.5 0 0 1-1.6 1.5C10.3 20.6 3.4 13.7 3 5.1a1.5 1.5 0 0 1 1.5-1.6z"/>
+  </symbol>
+
+  <symbol id="icon-pin" viewBox="0 0 24 24">
+    <path d="M12 22s7-6.5 7-12.5A7 7 0 1 0 5 9.5C5 15.5 12 22 12 22z"/>
+    <circle cx="12" cy="9.5" r="2.6" opacity="0.55"/>
+  </symbol>
+
+  <symbol id="icon-users" viewBox="0 0 24 24">
+    <circle cx="9" cy="8" r="3.4"/>
+    <path d="M2.3 20c0-3.9 3-6.5 6.7-6.5S15.7 16.1 15.7 20H2.3z"/>
+    <circle cx="17.2" cy="9" r="2.6" opacity="0.6"/>
+    <path d="M15 13.9c2.7.6 4.7 3 4.7 6.1H17" opacity="0.6"/>
+  </symbol>
+
+  <symbol id="icon-lock" viewBox="0 0 24 24">
+    <rect x="4" y="11" width="16" height="10" rx="2.5"/>
+    <path d="M8 11V7a4 4 0 0 1 8 0v4h-2.1V7a1.9 1.9 0 0 0-3.8 0v4H8z" opacity="0.6"/>
+    <circle cx="12" cy="16" r="1.5" opacity="0.5"/>
+  </symbol>
+
+  <symbol id="icon-facebook" viewBox="0 0 24 24">
+    <path d="M14 9V6.7c0-.8.4-1.2 1.2-1.2H17V2.2h-2.4C12 2.2 11 3.9 11 6.3V9H8v3h3v9.8h3V12h2.6l.4-3H14z"/>
+  </symbol>
+
+  <symbol id="icon-instagram" viewBox="0 0 24 24">
+    <rect x="2.5" y="2.5" width="19" height="19" rx="5.5"/>
+    <circle cx="12" cy="12" r="4.3" opacity="0.55"/>
+    <circle cx="17.4" cy="6.6" r="1.1" opacity="0.55"/>
+  </symbol>
+</svg>
+
 <!-- ============================================= -->
 <!-- EN-TÊTE / NAVIGATION -->
 <!-- ⚠️ Remplacer "École [Nom de l'école]" par le vrai nom de l'école -->
 <!-- ============================================= -->
 <header class="site-header">
   <div class="header-inner">
-    <a href="#accueil" class="logo">🌻 APE <span>École [Nom de l'école]</span></a>
+    <a href="#accueil" class="logo">
+      <svg class="logo-icon"><use href="#icon-logo"></use></svg>
+      APE <span>École [Nom de l'école]</span>
+    </a>
     <button class="nav-toggle" id="navToggle" aria-label="Ouvrir le menu" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
@@ -27,8 +146,8 @@
       <a href="#evenements">Événements</a>
       <a href="#nos-actions">Nos actions</a>
       <a href="#documents">Documents</a>
-      <a href="benevoles.html" class="nav-cta nav-cta-secondary">👥 Bénévoles</a>
-      <a href="#contact" class="nav-cta">✉️ Contact</a>
+      <a href="benevoles.html" class="nav-cta nav-cta-secondary"><svg class="icon-inline"><use href="#icon-users"></use></svg>Bénévoles</a>
+      <a href="#contact" class="nav-cta"><svg class="icon-inline"><use href="#icon-mail"></use></svg>Contact</a>
     </nav>
   </div>
 </header>
@@ -40,6 +159,9 @@
   <!-- ⚠️ Remplacer le texte de présentation et l'événement mis en avant -->
   <!-- ============================================= -->
   <section id="accueil" class="hero">
+    <span class="hero-blob hero-blob-1" aria-hidden="true"></span>
+    <span class="hero-blob hero-blob-2" aria-hidden="true"></span>
+    <span class="hero-blob hero-blob-3" aria-hidden="true"></span>
     <div class="hero-content">
       <h1>Bienvenue sur le site de l'APE</h1>
       <p class="hero-text">
@@ -49,13 +171,16 @@
         pour le bonheur de nos enfants.
       </p>
       <div class="hero-highlight">
-        <span class="hero-badge">📅 Prochain événement</span>
+        <span class="hero-badge"><svg class="icon-inline"><use href="#icon-calendar"></use></svg>Prochain événement</span>
         <!-- ⚠️ Remplacer par le prochain événement réel (nom, date, lieu) -->
         <p><strong>Kermesse de fin d'année</strong> — Samedi 20 juin 2026, cour de l'école</p>
       </div>
       <a href="#contact" class="btn btn-primary">Nous contacter</a>
     </div>
   </section>
+  <svg class="wave-divider" viewBox="0 0 1440 60" preserveAspectRatio="none" aria-hidden="true">
+    <path d="M0,20 C240,55 480,0 720,18 C960,36 1200,55 1440,15 L1440,60 L0,60 Z" fill="var(--color-bg-alt)"/>
+  </svg>
 
   <!-- ============================================= -->
   <!-- SECTION QUI SOMMES-NOUS -->
@@ -72,13 +197,19 @@
       </p>
       <div class="info-cards">
         <div class="info-card">
-          <h3>🤝 Comment adhérer</h3>
+          <div class="card-header">
+            <span class="icon-badge badge-pink"><svg class="icon"><use href="#icon-heart"></use></svg></span>
+            <h3>Comment adhérer</h3>
+          </div>
           <!-- ⚠️ Modalités d'adhésion réelles -->
           <p>L'adhésion est ouverte à tous les parents d'élèves de l'école. Il suffit de remplir le bulletin
             d'adhésion distribué en début d'année ou disponible dans la section « Documents utiles ».</p>
         </div>
         <div class="info-card">
-          <h3>💶 Cotisation annuelle</h3>
+          <div class="card-header">
+            <span class="icon-badge badge-accent"><svg class="icon"><use href="#icon-wallet"></use></svg></span>
+            <h3>Cotisation annuelle</h3>
+          </div>
           <!-- ⚠️ Montant de la cotisation à préciser -->
           <p>Cotisation : <strong>[montant] € par famille</strong> et par année scolaire.</p>
         </div>
@@ -95,18 +226,21 @@
       <h2>Événements de l'année</h2>
       <div class="cards-grid">
         <div class="event-card">
+          <span class="icon-badge badge-primary"><svg class="icon"><use href="#icon-cake"></use></svg></span>
           <span class="event-date">Oct. 2026</span>
-          <h3>🎂 Vente de gâteaux</h3>
+          <h3>Vente de gâteaux</h3>
           <p>Vente de gâteaux faits maison à la sortie de l'école au profit des projets pédagogiques.</p>
         </div>
         <div class="event-card">
+          <span class="icon-badge badge-blue"><svg class="icon"><use href="#icon-ticket"></use></svg></span>
           <span class="event-date">Déc. 2026</span>
-          <h3>🎰 Loto de l'école</h3>
+          <h3>Loto de l'école</h3>
           <p>Soirée loto en famille dans la salle des fêtes, avec de nombreux lots à gagner.</p>
         </div>
         <div class="event-card">
+          <span class="icon-badge badge-pink"><svg class="icon"><use href="#icon-balloon"></use></svg></span>
           <span class="event-date">Juin 2027</span>
-          <h3>🎡 Kermesse</h3>
+          <h3>Kermesse</h3>
           <p>Fête de fin d'année avec jeux, stands et spectacle préparé par les enfants.</p>
         </div>
       </div>
@@ -123,15 +257,24 @@
       <p>Grâce aux fonds collectés lors de nos événements, l'APE finance chaque année :</p>
       <div class="cards-grid">
         <div class="action-card">
-          <h3>🚌 Sorties scolaires</h3>
+          <div class="card-header">
+            <span class="icon-badge badge-secondary"><svg class="icon"><use href="#icon-bus"></use></svg></span>
+            <h3>Sorties scolaires</h3>
+          </div>
           <p>Participation au financement des sorties pédagogiques (musées, fermes, parcs naturels...).</p>
         </div>
         <div class="action-card">
-          <h3>🎭 Spectacles</h3>
+          <div class="card-header">
+            <span class="icon-badge badge-accent"><svg class="icon"><use href="#icon-star"></use></svg></span>
+            <h3>Spectacles</h3>
+          </div>
           <p>Spectacles de Noël et de fin d'année offerts à toutes les classes.</p>
         </div>
         <div class="action-card">
-          <h3>📚 Matériel pédagogique</h3>
+          <div class="card-header">
+            <span class="icon-badge badge-blue"><svg class="icon"><use href="#icon-book"></use></svg></span>
+            <h3>Matériel pédagogique</h3>
+          </div>
           <p>Achat de matériel pour les classes : jeux éducatifs, livres, équipement sportif.</p>
         </div>
       </div>
@@ -147,16 +290,16 @@
       <h2>Documents utiles</h2>
       <ul class="doc-list">
         <li>
-          <a href="documents/statuts.pdf">📄 Statuts de l'association</a>
+          <a href="documents/statuts.pdf"><svg class="icon-inline"><use href="#icon-document"></use></svg>Statuts de l'association</a>
         </li>
         <li>
-          <a href="documents/reglement-interieur.pdf">📄 Règlement intérieur</a>
+          <a href="documents/reglement-interieur.pdf"><svg class="icon-inline"><use href="#icon-document"></use></svg>Règlement intérieur</a>
         </li>
         <li>
-          <a href="documents/compte-rendu-ag.pdf">📄 Compte-rendu de l'Assemblée Générale</a>
+          <a href="documents/compte-rendu-ag.pdf"><svg class="icon-inline"><use href="#icon-document"></use></svg>Compte-rendu de l'Assemblée Générale</a>
         </li>
         <li>
-          <a href="documents/bulletin-adhesion.pdf">📄 Bulletin d'adhésion</a>
+          <a href="documents/bulletin-adhesion.pdf"><svg class="icon-inline"><use href="#icon-document"></use></svg>Bulletin d'adhésion</a>
         </li>
       </ul>
       <p class="doc-note"><!-- ⚠️ Placeholder : déposer les vrais PDF dans /documents et vérifier les liens ci-dessus --></p>
@@ -202,22 +345,22 @@
           <h3>Nous joindre directement</h3>
           <ul class="contact-details">
             <!-- ⚠️ Remplacer par la vraie adresse email de contact -->
-            <li>📧 <a href="mailto:ape.ecole@exemple.fr">ape.ecole@exemple.fr</a></li>
+            <li><svg class="icon-inline"><use href="#icon-mail"></use></svg><a href="mailto:ape.ecole@exemple.fr">ape.ecole@exemple.fr</a></li>
             <!-- ⚠️ Remplacer par le vrai numéro, ou supprimer cette ligne si non souhaité -->
-            <li>📞 <a href="tel:+33000000000">00 00 00 00 00</a></li>
+            <li><svg class="icon-inline"><use href="#icon-phone"></use></svg><a href="tel:+33000000000">00 00 00 00 00</a></li>
             <!-- ⚠️ Remplacer par l'adresse réelle de l'école -->
-            <li>📍 École [Nom de l'école], [Adresse, Code postal, Ville]</li>
+            <li><svg class="icon-inline"><use href="#icon-pin"></use></svg>École [Nom de l'école], [Adresse, Code postal, Ville]</li>
           </ul>
           <p class="contact-note">Réponse sous quelques jours. Merci de votre confiance !</p>
 
           <div class="social-links">
             <!-- ⚠️ Remplacer par les vrais liens, ou supprimer les lignes non utilisées -->
-            <a href="https://facebook.com" target="_blank" rel="noopener">Facebook</a>
-            <a href="https://instagram.com" target="_blank" rel="noopener">Instagram</a>
+            <a href="https://facebook.com" target="_blank" rel="noopener"><svg class="icon-inline"><use href="#icon-facebook"></use></svg>Facebook</a>
+            <a href="https://instagram.com" target="_blank" rel="noopener"><svg class="icon-inline"><use href="#icon-instagram"></use></svg>Instagram</a>
           </div>
 
           <div class="volunteer-callout">
-            <h4>👥 Envie de nous aider ?</h4>
+            <h4><svg class="icon-inline"><use href="#icon-users"></use></svg>Envie de nous aider ?</h4>
             <p>Rejoignez l'équipe de bénévoles pour préparer les événements et accéder au planning des permanences.</p>
             <a href="benevoles.html" class="btn btn-secondary">Espace bénévoles</a>
           </div>

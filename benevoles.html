@@ -12,9 +12,47 @@
 </head>
 <body>
 
+<!-- Sprite d'icônes SVG réutilisées via <use href="#icon-..."> dans toute la page -->
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
+  <symbol id="icon-logo" viewBox="0 0 32 32">
+    <circle cx="16" cy="16" r="4.2" fill="#5c4a1e"/>
+    <circle cx="16" cy="6" r="3.4" fill="#ef8354"/>
+    <circle cx="26" cy="16" r="3.4" fill="#f4c04e"/>
+    <circle cx="16" cy="26" r="3.4" fill="#4fb08a"/>
+    <circle cx="6" cy="16" r="3.4" fill="#ea6f8e"/>
+    <circle cx="23" cy="9" r="2.6" fill="#4f9fd6"/>
+    <circle cx="23" cy="23" r="2.6" fill="#f4c04e"/>
+    <circle cx="9" cy="23" r="2.6" fill="#ef8354"/>
+    <circle cx="9" cy="9" r="2.6" fill="#4fb08a"/>
+  </symbol>
+
+  <symbol id="icon-document" viewBox="0 0 24 24">
+    <path d="M6 2h8l6 6v13a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1z"/>
+    <path d="M14 2v5a1 1 0 0 0 1 1h5" opacity="0.5"/>
+    <rect x="7.5" y="12.2" width="9" height="1.6" rx="0.8" opacity="0.5"/>
+    <rect x="7.5" y="16.2" width="9" height="1.6" rx="0.8" opacity="0.5"/>
+  </symbol>
+
+  <symbol id="icon-lock" viewBox="0 0 24 24">
+    <rect x="4" y="11" width="16" height="10" rx="2.5"/>
+    <path d="M8 11V7a4 4 0 0 1 8 0v4h-2.1V7a1.9 1.9 0 0 0-3.8 0v4H8z" opacity="0.6"/>
+    <circle cx="12" cy="16" r="1.5" opacity="0.5"/>
+  </symbol>
+
+  <symbol id="icon-users" viewBox="0 0 24 24">
+    <circle cx="9" cy="8" r="3.4"/>
+    <path d="M2.3 20c0-3.9 3-6.5 6.7-6.5S15.7 16.1 15.7 20H2.3z"/>
+    <circle cx="17.2" cy="9" r="2.6" opacity="0.6"/>
+    <path d="M15 13.9c2.7.6 4.7 3 4.7 6.1H17" opacity="0.6"/>
+  </symbol>
+</svg>
+
 <header class="site-header">
   <div class="header-inner">
-    <a href="index.html" class="logo">🌻 APE <span>École [Nom de l'école]</span></a>
+    <a href="index.html" class="logo">
+      <svg class="logo-icon"><use href="#icon-logo"></use></svg>
+      APE <span>École [Nom de l'école]</span>
+    </a>
     <nav class="main-nav" style="display:flex; position:static; background:none; border:none; padding:0;">
       <a href="index.html">← Retour au site</a>
     </nav>
@@ -32,7 +70,8 @@
   <!-- ============================================= -->
   <section class="section gate-section" id="gate">
     <div class="gate-box">
-      <h1>🔒 Espace bénévoles</h1>
+      <span class="icon-badge badge-secondary gate-icon"><svg class="icon"><use href="#icon-lock"></use></svg></span>
+      <h1>Espace bénévoles</h1>
       <p>Cette page est réservée aux bénévoles de l'APE. Merci de saisir le code d'accès communiqué par le bureau.</p>
       <form id="gateForm" class="gate-form">
         <label for="accessCode">Code d'accès</label>
@@ -82,8 +121,8 @@
         <h2>Comptes-rendus de réunions</h2>
         <!-- ⚠️ Ajouter les vrais PDF dans /documents et mettre à jour les liens -->
         <ul class="doc-list">
-          <li><a href="documents/cr-reunion-bureau-sept-2026.pdf">📄 Réunion de bureau — Septembre 2026</a></li>
-          <li><a href="documents/cr-ag-2026.pdf">📄 Assemblée Générale — 2026</a></li>
+          <li><a href="documents/cr-reunion-bureau-sept-2026.pdf"><svg class="icon-inline"><use href="#icon-document"></use></svg>Réunion de bureau — Septembre 2026</a></li>
+          <li><a href="documents/cr-ag-2026.pdf"><svg class="icon-inline"><use href="#icon-document"></use></svg>Assemblée Générale — 2026</a></li>
         </ul>
       </div>
     </section>
@@ -94,15 +133,24 @@
         <!-- ⚠️ Remplacer par les vrais membres du bureau -->
         <div class="cards-grid">
           <div class="info-card">
-            <h3>Présidence</h3>
+            <div class="card-header">
+              <span class="icon-badge badge-primary"><svg class="icon"><use href="#icon-users"></use></svg></span>
+              <h3>Présidence</h3>
+            </div>
             <p>Nom Prénom<br><a href="mailto:presidence@exemple.fr">presidence@exemple.fr</a></p>
           </div>
           <div class="info-card">
-            <h3>Trésorerie</h3>
+            <div class="card-header">
+              <span class="icon-badge badge-secondary"><svg class="icon"><use href="#icon-users"></use></svg></span>
+              <h3>Trésorerie</h3>
+            </div>
             <p>Nom Prénom<br><a href="mailto:tresorerie@exemple.fr">tresorerie@exemple.fr</a></p>
           </div>
           <div class="info-card">
-            <h3>Secrétariat</h3>
+            <div class="card-header">
+              <span class="icon-badge badge-blue"><svg class="icon"><use href="#icon-users"></use></svg></span>
+              <h3>Secrétariat</h3>
+            </div>
             <p>Nom Prénom<br><a href="mailto:secretariat@exemple.fr">secretariat@exemple.fr</a></p>
           </div>
         </div>
@@ -114,8 +162,8 @@
         <h2>Documents de préparation</h2>
         <!-- ⚠️ Ajouter les vrais PDF/liens dans /documents -->
         <ul class="doc-list">
-          <li><a href="documents/checklist-kermesse.pdf">📄 Checklist organisation kermesse</a></li>
-          <li><a href="documents/liste-materiel.pdf">📄 Liste du matériel disponible</a></li>
+          <li><a href="documents/checklist-kermesse.pdf"><svg class="icon-inline"><use href="#icon-document"></use></svg>Checklist organisation kermesse</a></li>
+          <li><a href="documents/liste-materiel.pdf"><svg class="icon-inline"><use href="#icon-document"></use></svg>Liste du matériel disponible</a></li>
         </ul>
       </div>
     </section>

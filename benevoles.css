@@ -22,6 +22,17 @@
   text-align: center;
 }
 
+.gate-icon {
+  width: 56px;
+  height: 56px;
+  margin: 0 auto 1rem;
+}
+
+.gate-icon .icon {
+  width: 28px;
+  height: 28px;
+}
+
 .gate-box h1 {
   font-size: 1.5rem;
   margin-bottom: 0.75rem;
