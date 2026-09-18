@@ -74,10 +74,8 @@ dans `benevoles.js` (constante `CODE_HASH`). Pour le changer :
 2. Copiez le résultat (64 caractères) dans `benevoles.js`, à la place de la valeur de `CODE_HASH`.
    Ou plus simple : redemandez à Claude de le faire pour vous.
 
-Une fois le bon code saisi, l'accès est mémorisé dans le navigateur (`localStorage`) pendant
-**6 mois** : le bénévole n'a pas à le ressaisir à chaque visite depuis le même appareil, mais
-devra le retaper passé ce délai (durée réglable via la constante `UNLOCK_MONTHS` dans
-`benevoles.js`).
+Une fois le bon code saisi, l'accès est mémorisé dans le navigateur (`localStorage`) : le
+bénévole n'a pas à le ressaisir à chaque visite depuis le même appareil.
 
 ## Formulaire de contact
 

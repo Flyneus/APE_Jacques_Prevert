@@ -15,8 +15,7 @@
 //   Ou plus simple : redemandez à Claude de le faire pour vous.
 
 const CODE_HASH = 'e0155488e5793b95a27673074b677875224027ab6e2e124d3ac94454a4528290'; // code par défaut : BENEVOLE2026
-const STORAGE_KEY = 'ape-benevoles-unlocked-until';
-const UNLOCK_MONTHS = 6; // durée de mémorisation du code avant de le redemander
+const STORAGE_KEY = 'ape-benevoles-unlocked';
 
 async function sha256Hex(text) {
   const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(text));
@@ -28,35 +27,22 @@ function unlock() {
   document.getElementById('volunteerContent').hidden = false;
 }
 
-function isUnlockStillValid() {
-  const expiry = Number(localStorage.getItem(STORAGE_KEY));
-  return Number.isFinite(expiry) && expiry > 0 && Date.now() < expiry;
-}
-
-function rememberUnlockFor6Months() {
-  const expiry = new Date();
-  expiry.setMonth(expiry.getMonth() + UNLOCK_MONTHS);
-  localStorage.setItem(STORAGE_KEY, String(expiry.getTime()));
-}
-
 document.addEventListener('DOMContentLoaded', function () {
   const gateForm = document.getElementById('gateForm');
   const gateError = document.getElementById('gateError');
   const accessCodeInput = document.getElementById('accessCode');
 
-  if (isUnlockStillValid()) {
+  if (localStorage.getItem(STORAGE_KEY) === 'true') {
     unlock();
     return;
   }
-
-  localStorage.removeItem(STORAGE_KEY);
 
   gateForm.addEventListener('submit', async function (event) {
     event.preventDefault();
     const enteredHash = await sha256Hex(accessCodeInput.value.trim());
 
     if (enteredHash === CODE_HASH) {
-      rememberUnlockFor6Months();
+      localStorage.setItem(STORAGE_KEY, 'true');
       gateError.hidden = true;
       unlock();
     } else {
