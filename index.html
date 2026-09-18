@@ -397,7 +397,7 @@
       <p>Une question, une idée, envie de rejoindre l'aventure ? Écrivez-nous !</p>
 
       <div class="contact-grid">
-        <form class="contact-form" action="https://formspree.io/f/xljddwyk" method="POST">
+        <form class="contact-form" id="contactForm" action="https://formspree.io/f/xljddwyk" method="POST">
           <label for="name">Nom</label>
           <input type="text" id="name" name="name" required>
 
@@ -417,6 +417,14 @@
           <textarea id="message" name="message" rows="5" required></textarea>
 
           <button type="submit" class="btn btn-primary">Envoyer le message</button>
+
+          <p class="form-status form-status-success" id="formStatusSuccess" hidden>
+            ✅ Merci ! Votre message a bien été envoyé, nous vous répondrons rapidement.
+          </p>
+          <p class="form-status form-status-error" id="formStatusError" hidden>
+            ⚠️ Une erreur est survenue. Vous pouvez réessayer, ou nous écrire directement à
+            <a href="mailto:apejacquesprevertquimper@gmail.com">apejacquesprevertquimper@gmail.com</a>.
+          </p>
         </form>
 
         <div class="contact-info">
