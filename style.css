@@ -400,17 +400,16 @@ a {
   margin-top: 1.5rem;
 }
 
-.info-cards {
-  align-items: start;
-}
-
 .helloasso-btn {
-  margin-top: 1rem;
+  margin-top: auto;
+  align-self: flex-start;
 }
 
 .info-card,
 .event-card,
 .action-card {
+  display: flex;
+  flex-direction: column;
   background: var(--color-card);
   border: 1px solid var(--color-border);
   border-radius: var(--radius);
