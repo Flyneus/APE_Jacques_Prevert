@@ -27,8 +27,8 @@
       <a href="#evenements">Événements</a>
       <a href="#nos-actions">Nos actions</a>
       <a href="#documents">Documents</a>
-      <a href="benevoles.html">Espace bénévoles</a>
-      <a href="#contact" class="nav-cta">Contact</a>
+      <a href="benevoles.html" class="nav-cta nav-cta-secondary">👥 Bénévoles</a>
+      <a href="#contact" class="nav-cta">✉️ Contact</a>
     </nav>
   </div>
 </header>
@@ -168,7 +168,7 @@
   <!-- ⚠️ Remplacer l'action du formulaire par votre propre endpoint Formspree -->
   <!-- (créer un compte gratuit sur https://formspree.io, créer un formulaire, -->
   <!-- copier l'URL de type https://formspree.io/f/XXXXXXX ci-dessous) -->
-  <!-- ⚠️ Remplacer l'adresse email de contact -->
+  <!-- ⚠️ Remplacer email, téléphone, adresse et liens réseaux sociaux -->
   <!-- ============================================= -->
   <section id="contact" class="section section-alt">
     <div class="section-inner">
@@ -183,6 +183,15 @@
           <label for="email">Email</label>
           <input type="email" id="email" name="email" required>
 
+          <label for="subject">Sujet</label>
+          <select id="subject" name="subject">
+            <!-- ⚠️ Adapter les sujets proposés si besoin -->
+            <option value="Question générale">Question générale</option>
+            <option value="Adhésion">Adhésion</option>
+            <option value="Proposition / idée d'événement">Proposition / idée d'événement</option>
+            <option value="Devenir bénévole">Devenir bénévole</option>
+          </select>
+
           <label for="message">Message</label>
           <textarea id="message" name="message" rows="5" required></textarea>
 
@@ -190,10 +199,28 @@
         </form>
 
         <div class="contact-info">
-          <h3>Nous écrire directement</h3>
-          <!-- ⚠️ Remplacer par la vraie adresse email de contact de l'APE -->
-          <p>📧 <a href="mailto:ape.ecole@exemple.fr">ape.ecole@exemple.fr</a></p>
+          <h3>Nous joindre directement</h3>
+          <ul class="contact-details">
+            <!-- ⚠️ Remplacer par la vraie adresse email de contact -->
+            <li>📧 <a href="mailto:ape.ecole@exemple.fr">ape.ecole@exemple.fr</a></li>
+            <!-- ⚠️ Remplacer par le vrai numéro, ou supprimer cette ligne si non souhaité -->
+            <li>📞 <a href="tel:+33000000000">00 00 00 00 00</a></li>
+            <!-- ⚠️ Remplacer par l'adresse réelle de l'école -->
+            <li>📍 École [Nom de l'école], [Adresse, Code postal, Ville]</li>
+          </ul>
           <p class="contact-note">Réponse sous quelques jours. Merci de votre confiance !</p>
+
+          <div class="social-links">
+            <!-- ⚠️ Remplacer par les vrais liens, ou supprimer les lignes non utilisées -->
+            <a href="https://facebook.com" target="_blank" rel="noopener">Facebook</a>
+            <a href="https://instagram.com" target="_blank" rel="noopener">Instagram</a>
+          </div>
+
+          <div class="volunteer-callout">
+            <h4>👥 Envie de nous aider ?</h4>
+            <p>Rejoignez l'équipe de bénévoles pour préparer les événements et accéder au planning des permanences.</p>
+            <a href="benevoles.html" class="btn btn-secondary">Espace bénévoles</a>
+          </div>
         </div>
       </div>
     </div>
