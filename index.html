@@ -59,6 +59,11 @@
     <circle cx="12" cy="15" r="0.9" opacity="0.55"/>
   </symbol>
 
+  <symbol id="icon-camera" viewBox="0 0 24 24">
+    <path d="M4 8a2 2 0 0 1 2-2h1.2l.9-1.5A2 2 0 0 1 9.8 3.5h4.4a2 2 0 0 1 1.7 1L17 6h1a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8z"/>
+    <circle cx="12" cy="13" r="4" opacity="0.55"/>
+  </symbol>
+
   <symbol id="icon-balloon" viewBox="0 0 24 24">
     <path d="M12 2a6.5 6.5 0 0 1 6.5 6.5c0 4.3-3.2 7.6-5.4 9.3a1.3 1.3 0 0 1-1.6 0C9.2 16.1 6 12.8 6 8.5A6.5 6.5 0 0 1 12 2z"/>
     <ellipse cx="9.7" cy="6.3" rx="1.3" ry="2" opacity="0.35" transform="rotate(-25 9.7 6.3)"/>
@@ -199,31 +204,28 @@
             <span class="icon-badge badge-accent"><svg class="icon"><use href="#icon-wallet"></use></svg></span>
             <h3>Cotisation annuelle</h3>
           </div>
-          <p>Le montant de la cotisation est indiqué lors de l'adhésion en ligne, juste ci-dessous.</p>
+          <!-- ============================================= -->
+          <!-- WIDGET D'ADHÉSION HELLOASSO -->
+          <!-- ⚠️ Si vous changez de campagne HelloAsso, mettez à jour les deux URL ci-dessous -->
+          <!-- ============================================= -->
+          <div class="helloasso-embed">
+            <iframe
+              src="https://www.helloasso.com/associations/ape-jacques-prevert-quimper/adhesions/adhesion-2026-2027/widget-vignette"
+              title="Adhésion à l'APE Jacques Prévert sur HelloAsso"
+              loading="lazy">
+            </iframe>
+            <p class="helloasso-fallback">
+              Le formulaire ne s'affiche pas ?
+              <a href="https://www.helloasso.com/associations/ape-jacques-prevert-quimper/adhesions/adhesion-2026-2027" target="_blank" rel="noopener">Adhérer directement sur HelloAsso</a>
+            </p>
+          </div>
         </div>
-      </div>
-
-      <!-- ============================================= -->
-      <!-- WIDGET D'ADHÉSION HELLOASSO -->
-      <!-- ⚠️ Si vous changez de campagne HelloAsso, mettez à jour les deux URL ci-dessous -->
-      <!-- ============================================= -->
-      <div class="helloasso-embed">
-        <iframe
-          src="https://www.helloasso.com/associations/ape-jacques-prevert-quimper/adhesions/adhesion-2026-2027/widget-vignette"
-          title="Adhésion à l'APE Jacques Prévert sur HelloAsso"
-          loading="lazy">
-        </iframe>
-        <p class="helloasso-fallback">
-          Le formulaire ne s'affiche pas ?
-          <a href="https://www.helloasso.com/associations/ape-jacques-prevert-quimper/adhesions/adhesion-2026-2027" target="_blank" rel="noopener">Adhérer directement sur HelloAsso</a>
-        </p>
       </div>
     </div>
   </section>
 
   <!-- ============================================= -->
   <!-- SECTION ÉVÉNEMENTS -->
-  <!-- ⚠️ Remplacer par le calendrier réel des événements de l'année -->
   <!-- ============================================= -->
   <section id="evenements" class="section">
     <div class="section-inner">
@@ -231,21 +233,40 @@
       <div class="cards-grid">
         <div class="event-card">
           <span class="icon-badge badge-primary"><svg class="icon"><use href="#icon-cake"></use></svg></span>
-          <span class="event-date">Oct. 2026</span>
-          <h3>Vente de gâteaux</h3>
+          <span class="event-date">9 octobre 2026</span>
+          <h3>Vente de gâteaux — Halloween</h3>
           <p>Vente de gâteaux faits maison à la sortie de l'école au profit des projets pédagogiques.</p>
         </div>
         <div class="event-card">
-          <span class="icon-badge badge-blue"><svg class="icon"><use href="#icon-ticket"></use></svg></span>
-          <span class="event-date">Déc. 2026</span>
-          <h3>Loto de l'école</h3>
-          <p>Soirée loto en famille dans la salle des fêtes, avec de nombreux lots à gagner.</p>
+          <span class="icon-badge badge-secondary"><svg class="icon"><use href="#icon-cake"></use></svg></span>
+          <span class="event-date">11 décembre 2026</span>
+          <h3>Vente de gâteaux — Noël</h3>
+          <p>Vente de gâteaux faits maison à la sortie de l'école au profit des projets pédagogiques.</p>
         </div>
         <div class="event-card">
-          <span class="icon-badge badge-pink"><svg class="icon"><use href="#icon-balloon"></use></svg></span>
-          <span class="event-date">Juin 2027</span>
+          <span class="icon-badge badge-blue"><svg class="icon"><use href="#icon-cake"></use></svg></span>
+          <span class="event-date">12 février 2027</span>
+          <h3>Vente de gâteaux — Hiver</h3>
+          <p>Vente de gâteaux faits maison à la sortie de l'école au profit des projets pédagogiques.</p>
+        </div>
+        <div class="event-card">
+          <span class="icon-badge badge-accent"><svg class="icon"><use href="#icon-camera"></use></svg></span>
+          <span class="event-date">Début février 2027</span>
+          <h3>Photo de classe</h3>
+          <p>Séance de photo individuelle et de classe pour tous les élèves.</p>
+        </div>
+        <div class="event-card">
+          <span class="icon-badge badge-pink"><svg class="icon"><use href="#icon-cake"></use></svg></span>
+          <span class="event-date">8 avril 2027</span>
+          <h3>Vente de gâteaux — Printemps</h3>
+          <p>Vente de gâteaux faits maison à la sortie de l'école au profit des projets pédagogiques.</p>
+        </div>
+        <div class="event-card">
+          <span class="icon-badge badge-primary"><svg class="icon"><use href="#icon-balloon"></use></svg></span>
+          <!-- ⚠️ Date à confirmer par la mairie : 18 ou 26 juin 2027 -->
+          <span class="event-date">18 ou 26 juin 2027*</span>
           <h3>Kermesse</h3>
-          <p>Fête de fin d'année avec jeux, stands et spectacle préparé par les enfants.</p>
+          <p>Fête de fin d'année avec jeux, stands et spectacle préparé par les enfants. *Date à confirmer par la mairie.</p>
         </div>
       </div>
     </div>
