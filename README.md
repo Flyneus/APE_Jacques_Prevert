@@ -80,5 +80,6 @@ bénévole n'a pas à le ressaisir à chaque visite depuis le même appareil.
 ## Formulaire de contact
 
 Le formulaire utilise [Formspree](https://formspree.io) (gratuit jusqu'à 50 soumissions/mois) pour recevoir les messages
-sans backend. Créez un compte, créez un formulaire, puis remplacez `VOTRE_ID_FORMSPREE` dans `index.html`
-(attribut `action` du `<form>`) par l'URL fournie par Formspree.
+sans backend, déjà configuré (`action="https://formspree.io/f/xljddwyk"` dans `index.html`) pour envoyer les
+messages vers l'adresse email liée au compte Formspree. Si vous changez de compte Formspree, mettez à jour
+cette URL.
