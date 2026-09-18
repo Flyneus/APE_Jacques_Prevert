@@ -514,6 +514,22 @@ a {
   box-shadow: var(--shadow-soft);
 }
 
+.btn-chip-disabled {
+  color: var(--color-text-light);
+  cursor: default;
+  opacity: 0.75;
+}
+
+.btn-chip-disabled .icon-inline {
+  color: var(--color-text-light);
+}
+
+.btn-chip-disabled:hover {
+  background: var(--color-bg);
+  transform: none;
+  box-shadow: none;
+}
+
 .card-header {
   display: flex;
   align-items: center;
