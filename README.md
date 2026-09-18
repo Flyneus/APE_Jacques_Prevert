@@ -5,11 +5,14 @@ Site vitrine statique (HTML/CSS/JS vanilla, sans framework ni dépendance) pour 
 ## Structure
 
 ```
-index.html    → page unique avec sections ancrées (Accueil, Qui sommes-nous, Événements, Nos actions, Documents, Contact)
-style.css     → styles (palette douce, mobile-first)
-script.js     → menu mobile (ouverture/fermeture)
-CNAME         → domaine personnalisé (vide par défaut, à remplir si besoin)
-documents/    → dossier à créer, pour y déposer les PDF (statuts, règlement intérieur, comptes-rendus d'AG...)
+index.html      → page unique avec sections ancrées (Accueil, Qui sommes-nous, Événements, Nos actions, Documents, Contact)
+style.css       → styles (palette douce, mobile-first)
+script.js       → menu mobile (ouverture/fermeture)
+benevoles.html  → espace bénévoles protégé par code d'accès
+benevoles.css   → styles de l'espace bénévoles
+benevoles.js    → logique du filtre par code d'accès
+CNAME           → domaine personnalisé (vide par défaut, à remplir si besoin)
+documents/      → dossier à créer, pour y déposer les PDF (statuts, règlement intérieur, comptes-rendus d'AG...)
 ```
 
 ## Avant publication : à personnaliser
@@ -50,6 +53,29 @@ Cherchez les commentaires `<!-- ⚠️ ... -->` dans `index.html` — ils indiqu
      ```
 3. Dans **Settings → Pages** du dépôt GitHub, renseignez le même domaine dans le champ **Custom domain**, puis cochez
    **Enforce HTTPS** une fois le certificat généré (peut prendre jusqu'à 24h).
+
+## Espace bénévoles (`benevoles.html`)
+
+Page réservée aux bénévoles, protégée par un code d'accès (par défaut : `BENEVOLE2026`).
+
+⚠️ **Ce n'est pas une vraie sécurité.** Le contenu complet de la page est téléchargé par le
+navigateur dès le chargement ; le code ne fait que le masquer visuellement tant qu'il n'a pas été
+saisi. N'importe qui d'un peu technique peut le contourner via les outils développeur. N'y mettez
+donc que des informations non sensibles (planning, comptes-rendus, contacts internes) — jamais de
+données personnelles ou financières sensibles.
+
+**Changer le code d'accès** : le code n'est pas stocké en clair mais sous forme de hash SHA-256
+dans `benevoles.js` (constante `CODE_HASH`). Pour le changer :
+1. Ouvrez la console JavaScript de votre navigateur (F12) et exécutez :
+   ```js
+   await crypto.subtle.digest('SHA-256', new TextEncoder().encode('VOTRE_NOUVEAU_CODE'))
+     .then(buf => [...new Uint8Array(buf)].map(b => b.toString(16).padStart(2,'0')).join(''))
+   ```
+2. Copiez le résultat (64 caractères) dans `benevoles.js`, à la place de la valeur de `CODE_HASH`.
+   Ou plus simple : redemandez à Claude de le faire pour vous.
+
+Une fois le bon code saisi, l'accès est mémorisé dans le navigateur (`localStorage`) : le
+bénévole n'a pas à le ressaisir à chaque visite depuis le même appareil.
 
 ## Formulaire de contact
 

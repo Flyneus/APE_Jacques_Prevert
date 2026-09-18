@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Espace bénévoles — APE École [Nom de l'école]</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="benevoles.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-inner">
+    <a href="index.html" class="logo">🌻 APE <span>École [Nom de l'école]</span></a>
+    <nav class="main-nav" style="display:flex; position:static; background:none; border:none; padding:0;">
+      <a href="index.html">← Retour au site</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <!-- ============================================= -->
+  <!-- ÉCRAN DE CODE D'ACCÈS -->
+  <!-- ⚠️ Ce code n'est PAS une vraie sécurité : il filtre les visiteurs -->
+  <!-- occasionnels mais n'importe qui d'un peu technique peut le contourner. -->
+  <!-- Ne mettez ici que des informations non-sensibles. -->
+  <!-- ⚠️ Pour changer le code, voir la note dans benevoles.js -->
+  <!-- ============================================= -->
+  <section class="section gate-section" id="gate">
+    <div class="gate-box">
+      <h1>🔒 Espace bénévoles</h1>
+      <p>Cette page est réservée aux bénévoles de l'APE. Merci de saisir le code d'accès communiqué par le bureau.</p>
+      <form id="gateForm" class="gate-form">
+        <label for="accessCode">Code d'accès</label>
+        <input type="password" id="accessCode" name="accessCode" autocomplete="off" required>
+        <button type="submit" class="btn btn-primary">Accéder à l'espace</button>
+        <p id="gateError" class="gate-error" hidden>Code incorrect, merci de réessayer.</p>
+      </form>
+      <p class="gate-hint">Vous ne connaissez pas le code ? Contactez le bureau de l'APE via la
+        <a href="index.html#contact">page de contact</a>.</p>
+    </div>
+  </section>
+
+  <!-- ============================================= -->
+  <!-- CONTENU RÉSERVÉ AUX BÉNÉVOLES -->
+  <!-- Masqué tant que le bon code n'a pas été saisi -->
+  <!-- ⚠️ Remplacer tous les placeholders par le contenu réel -->
+  <!-- ============================================= -->
+  <div id="volunteerContent" hidden>
+
+    <section class="section">
+      <div class="section-inner">
+        <h2>Bienvenue dans l'espace bénévoles</h2>
+        <p>Vous retrouverez ici le planning des permanences, les comptes-rendus de réunions,
+          les contacts du bureau et les documents de préparation des événements.</p>
+      </div>
+    </section>
+
+    <section class="section section-alt">
+      <div class="section-inner">
+        <h2>Planning des permanences</h2>
+        <!-- ⚠️ Remplacer par le planning réel -->
+        <table class="planning-table">
+          <thead>
+            <tr><th>Date</th><th>Événement</th><th>Bénévoles inscrits</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>12/10/2026</td><td>Vente de gâteaux</td><td>Marie D., Julien T.</td></tr>
+            <tr><td>14/12/2026</td><td>Loto de l'école</td><td>À compléter</td></tr>
+            <tr><td>20/06/2027</td><td>Kermesse</td><td>À compléter</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-inner">
+        <h2>Comptes-rendus de réunions</h2>
+        <!-- ⚠️ Ajouter les vrais PDF dans /documents et mettre à jour les liens -->
+        <ul class="doc-list">
+          <li><a href="documents/cr-reunion-bureau-sept-2026.pdf">📄 Réunion de bureau — Septembre 2026</a></li>
+          <li><a href="documents/cr-ag-2026.pdf">📄 Assemblée Générale — 2026</a></li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section section-alt">
+      <div class="section-inner">
+        <h2>Contacts du bureau</h2>
+        <!-- ⚠️ Remplacer par les vrais membres du bureau -->
+        <div class="cards-grid">
+          <div class="info-card">
+            <h3>Présidence</h3>
+            <p>Nom Prénom<br><a href="mailto:presidence@exemple.fr">presidence@exemple.fr</a></p>
+          </div>
+          <div class="info-card">
+            <h3>Trésorerie</h3>
+            <p>Nom Prénom<br><a href="mailto:tresorerie@exemple.fr">tresorerie@exemple.fr</a></p>
+          </div>
+          <div class="info-card">
+            <h3>Secrétariat</h3>
+            <p>Nom Prénom<br><a href="mailto:secretariat@exemple.fr">secretariat@exemple.fr</a></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-inner">
+        <h2>Documents de préparation</h2>
+        <!-- ⚠️ Ajouter les vrais PDF/liens dans /documents -->
+        <ul class="doc-list">
+          <li><a href="documents/checklist-kermesse.pdf">📄 Checklist organisation kermesse</a></li>
+          <li><a href="documents/liste-materiel.pdf">📄 Liste du matériel disponible</a></li>
+        </ul>
+      </div>
+    </section>
+
+  </div>
+
+</main>
+
+<footer class="site-footer">
+  <p>© 2026 APE École [Nom de l'école] — Association loi 1901</p>
+</footer>
+
+<script src="script.js"></script>
+<script src="benevoles.js"></script>
+</body>
+</html>

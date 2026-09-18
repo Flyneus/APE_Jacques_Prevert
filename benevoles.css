@@ -1,0 +1,105 @@
+/* Styles spécifiques à l'espace bénévoles */
+
+.gate-section {
+  min-height: 60vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.gate-section[hidden] {
+  display: none;
+}
+
+.gate-box {
+  max-width: 420px;
+  width: 100%;
+  background: var(--color-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 2rem 1.75rem;
+  box-shadow: var(--shadow-soft);
+  text-align: center;
+}
+
+.gate-box h1 {
+  font-size: 1.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.gate-form {
+  display: flex;
+  flex-direction: column;
+  margin-top: 1.5rem;
+  text-align: left;
+}
+
+.gate-form label {
+  font-weight: 700;
+  margin-bottom: 0.35rem;
+  font-size: 0.9rem;
+}
+
+.gate-form input {
+  font-family: var(--font-body);
+  font-size: 1.1rem;
+  letter-spacing: 0.08em;
+  padding: 0.7rem 0.9rem;
+  border: 1px solid var(--color-border);
+  border-radius: 10px;
+  background: var(--color-bg);
+  color: var(--color-text);
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.gate-form input:focus {
+  outline: 2px solid var(--color-secondary);
+  outline-offset: 1px;
+}
+
+.gate-form .btn {
+  align-self: center;
+}
+
+.gate-error {
+  color: #c0392b;
+  font-weight: 700;
+  text-align: center;
+  margin-top: 1rem;
+  margin-bottom: 0;
+}
+
+.gate-hint {
+  margin-top: 1.5rem;
+  font-size: 0.85rem;
+  color: var(--color-text-light);
+}
+
+.planning-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--color-card);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow-soft);
+  margin-top: 1rem;
+}
+
+.planning-table th,
+.planning-table td {
+  padding: 0.8rem 1rem;
+  text-align: left;
+  border-bottom: 1px solid var(--color-border);
+  font-size: 0.95rem;
+}
+
+.planning-table th {
+  background: var(--color-bg-alt);
+  color: var(--color-primary-dark);
+  font-family: var(--font-heading);
+}
+
+.planning-table tr:last-child td {
+  border-bottom: none;
+}
