@@ -16,6 +16,11 @@
   --color-accent-dark: #5c4a1e;
   --color-pink: #ea6f8e;
   --color-blue: #4f9fd6;
+  --color-primary-light: #f6ab82;
+  --color-secondary-light: #7ecead;
+  --color-accent-light: #f8d685;
+  --color-pink-light: #f2a0b6;
+  --color-blue-light: #83c0e8;
   --color-card: #ffffff;
   --color-border: #f0e2d0;
   --shadow-soft: 0 4px 16px rgba(74, 63, 53, 0.08);
@@ -202,27 +207,33 @@ a {
 }
 
 .icon-badge {
+  position: relative;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 46px;
-  height: 46px;
+  width: 48px;
+  height: 48px;
   border-radius: 50%;
   color: #fff;
   flex-shrink: 0;
-  transition: transform 0.2s ease;
+  box-shadow: 0 5px 12px -3px rgba(74, 63, 53, 0.35), inset 0 1px 1px rgba(255, 255, 255, 0.5);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .icon-badge .icon {
-  width: 22px;
-  height: 22px;
+  width: 23px;
+  height: 23px;
+  filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.12));
 }
 
-.icon-badge.badge-primary { background: var(--color-primary); }
-.icon-badge.badge-secondary { background: var(--color-secondary); }
-.icon-badge.badge-pink { background: var(--color-pink); }
-.icon-badge.badge-blue { background: var(--color-blue); }
-.icon-badge.badge-accent { background: var(--color-accent); color: var(--color-accent-dark); }
+.icon-badge.badge-primary { background: radial-gradient(circle at 32% 28%, var(--color-primary-light), var(--color-primary) 70%); }
+.icon-badge.badge-secondary { background: radial-gradient(circle at 32% 28%, var(--color-secondary-light), var(--color-secondary) 70%); }
+.icon-badge.badge-pink { background: radial-gradient(circle at 32% 28%, var(--color-pink-light), var(--color-pink) 70%); }
+.icon-badge.badge-blue { background: radial-gradient(circle at 32% 28%, var(--color-blue-light), var(--color-blue) 70%); }
+.icon-badge.badge-accent {
+  background: radial-gradient(circle at 32% 28%, var(--color-accent-light), var(--color-accent) 70%);
+  color: var(--color-accent-dark);
+}
 
 /* ---------- Sections ---------- */
 
@@ -433,14 +444,7 @@ a {
 
 .event-card {
   position: relative;
-  border-top: 4px solid transparent;
 }
-
-.event-card.theme-halloween { border-top-color: var(--color-primary); }
-.event-card.theme-sapin { border-top-color: var(--color-secondary); }
-.event-card.theme-noel { border-top-color: var(--color-accent); }
-.event-card.theme-hiver { border-top-color: var(--color-blue); }
-.event-card.theme-paques { border-top-color: var(--color-pink); }
 
 .event-date {
   display: inline-block;
