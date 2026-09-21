@@ -20,7 +20,7 @@
   --color-red-light: #DD5A6C;
   --color-taupe-light: #4B3E36;
 
-  --color-bg: #DDE1E0; /* gris de la charte éclairci pour le fond de page */
+  --color-bg: #EBEEED; /* gris de la charte éclairci pour le fond de page */
   --color-bg-alt: var(--color-green);
   --color-card: #ffffff;
   --color-tint: #EEF0F0;

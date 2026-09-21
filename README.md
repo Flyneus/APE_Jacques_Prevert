@@ -21,7 +21,7 @@ Les couleurs sont définies en tête de `style.css` (variables `--color-*`) :
 
 | Couleur | Code | Usage |
 |---|---|---|
-| Gris | `#C1C7C6` (fond de page éclairci : `#DDE1E0`) | fond de page |
+| Gris | `#C1C7C6` (fond de page éclairci : `#EBEEED`) | fond de page |
 | Vert | `#14B88B` | bandeaux et encarts (texte taupe dessus) |
 | Taupe foncé | `#2A201A` | titres et textes |
 | Orange | `#DE6C1F` | actions : boutons, pastilles de date, icônes |
