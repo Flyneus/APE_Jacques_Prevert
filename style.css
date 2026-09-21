@@ -20,14 +20,14 @@
   --color-red-light: #DD5A6C;
   --color-taupe-light: #4B3E36;
 
-  --color-bg: var(--color-gray);
+  --color-bg: #DDE1E0; /* gris de la charte éclairci pour le fond de page */
   --color-bg-alt: var(--color-green);
   --color-card: #ffffff;
   --color-tint: #EEF0F0;
   --color-tint-strong: #E1E5E4;
   --color-text: var(--color-taupe);
   --color-text-light: #5A4E47;
-  --color-border: #DDE1E0;
+  --color-border: #D0D5D4;
 
   --shadow-soft: 0 4px 16px rgba(42, 32, 26, 0.10);
   --shadow-pop: 0 8px 20px rgba(42, 32, 26, 0.18);
