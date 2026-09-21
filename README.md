@@ -6,7 +6,7 @@ Site vitrine statique (HTML/CSS/JS vanilla, sans framework ni dépendance) pour 
 
 ```
 index.html      → page unique avec sections ancrées (Accueil, Qui sommes-nous, Événements, Nos actions, Documents, Contact)
-style.css       → styles (palette douce, mobile-first)
+style.css       → styles (charte graphique ci-dessous, mobile-first)
 script.js       → menu mobile (ouverture/fermeture)
 benevoles.html  → espace bénévoles protégé par code d'accès
 benevoles.css   → styles de l'espace bénévoles
@@ -14,6 +14,21 @@ benevoles.js    → logique du filtre par code d'accès
 CNAME           → domaine personnalisé (vide par défaut, à remplir si besoin)
 documents/      → dossier à créer, pour y déposer les PDF (statuts, règlement intérieur, comptes-rendus d'AG...)
 ```
+
+## Charte graphique
+
+Les couleurs sont définies en tête de `style.css` (variables `--color-*`) :
+
+| Couleur | Code | Usage |
+|---|---|---|
+| Gris | `#C1C7C6` | fond de page |
+| Vert | `#14B88B` | bandeaux et encarts (texte taupe dessus) |
+| Taupe foncé | `#2A201A` | titres et textes |
+| Orange | `#DE6C1F` | actions : boutons, pastilles de date, icônes |
+| Rouge | `#CC2D42` | accents : survols, liens, mise en avant |
+
+Le header et les cartes restent blancs. Le texte sur fond vert est toujours en taupe (le blanc sur ce vert
+n'est pas assez contrasté pour être lisible).
 
 ## Avant publication : à personnaliser
 
