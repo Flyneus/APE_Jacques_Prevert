@@ -347,6 +347,31 @@ a {
   max-width: 400px;
 }
 
+.hero-gallery {
+  position: relative;
+  z-index: 1;
+  max-width: 1000px;
+  margin: 2.5rem auto 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+.hero-gallery img {
+  display: block;
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-soft);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.hero-gallery img:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-pop);
+}
+
 .wave-divider {
   position: absolute;
   left: 0;
@@ -823,6 +848,10 @@ a {
 
   .hero h1 {
     font-size: 2.6rem;
+  }
+
+  .hero-gallery {
+    grid-template-columns: repeat(3, 1fr);
   }
 
   .hero-content {
