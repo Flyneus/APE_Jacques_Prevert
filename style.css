@@ -93,12 +93,14 @@ a {
 }
 
 .header-inner {
-  max-width: 1100px;
+  max-width: 1300px;
   margin: 0 auto;
   padding: 0.9rem 1.25rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  flex-wrap: wrap;
+  row-gap: 0.5rem;
 }
 
 .logo {
@@ -139,6 +141,16 @@ a {
 .logo span {
   color: var(--color-text);
   font-weight: 600;
+  font-size: 0.7rem;
+  line-height: 1.2;
+  white-space: normal;
+}
+
+@media (min-width: 480px) {
+  .logo span {
+    font-size: 0.9rem;
+    white-space: nowrap;
+  }
 }
 
 .nav-toggle {
