@@ -282,6 +282,17 @@ a {
   background: radial-gradient(circle at 32% 28%, var(--color-green-light), var(--color-green) 70%);
   color: var(--color-taupe);
 }
+.icon-badge.badge-photo {
+  background: none;
+  padding: 0;
+  overflow: hidden;
+}
+.icon-badge.badge-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
 
 /* ---------- Sections ---------- */
 
