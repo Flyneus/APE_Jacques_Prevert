@@ -628,6 +628,13 @@ a {
   margin: 0.5rem 0 0;
 }
 
+.card-subtitle-br {
+  font-style: italic;
+  font-size: 0.85rem;
+  color: var(--color-text-light);
+  margin: 0.15rem 0 0;
+}
+
 /* ---------- Documents ---------- */
 
 .doc-list {
