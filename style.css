@@ -253,6 +253,16 @@ a {
   margin-right: 0.35em;
 }
 
+.icon-flag {
+  width: 1.3em;
+  height: 0.867em;
+  flex-shrink: 0;
+  vertical-align: -0.05em;
+  margin-right: 0.4em;
+  border-radius: 2px;
+  box-shadow: 0 0 0 1px rgba(42, 32, 26, 0.15);
+}
+
 .icon-badge {
   position: relative;
   display: inline-flex;
