@@ -413,7 +413,14 @@ a {
 
 .hero h1 {
   font-size: 2.1rem;
-  margin-bottom: 1rem;
+  margin-bottom: 0.3rem;
+}
+
+.hero-subtitle-br {
+  font-style: italic;
+  font-size: 1.05rem;
+  color: var(--color-taupe-light);
+  margin: 0 0 1rem;
 }
 
 .hero-text {
