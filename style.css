@@ -323,6 +323,7 @@ a {
   position: absolute;
   border-radius: 50%;
   z-index: 0;
+  animation: blob-float 18s ease-in-out infinite;
 }
 
 .hero-blob-1 {
@@ -332,6 +333,7 @@ a {
   opacity: 0.22;
   top: -40px;
   left: -50px;
+  animation-duration: 16s;
 }
 
 .hero-blob-2 {
@@ -341,6 +343,8 @@ a {
   opacity: 0.4;
   bottom: -80px;
   right: -60px;
+  animation-duration: 22s;
+  animation-delay: -7s;
 }
 
 .hero-blob-3 {
@@ -350,6 +354,20 @@ a {
   opacity: 0.3;
   top: 20%;
   right: 8%;
+  animation-duration: 13s;
+  animation-delay: -3s;
+}
+
+@keyframes blob-float {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(18px, -22px) scale(1.06); }
+  66% { transform: translate(-14px, 14px) scale(0.96); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-blob {
+    animation: none;
+  }
 }
 
 .hero-content {
