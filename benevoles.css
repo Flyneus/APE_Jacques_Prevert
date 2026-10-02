@@ -114,3 +114,52 @@
 .planning-table tr:last-child td {
   border-bottom: none;
 }
+
+@media (max-width: 640px) {
+  .planning-table,
+  .planning-table tbody,
+  .planning-table tr,
+  .planning-table td {
+    display: block;
+    width: 100%;
+  }
+
+  .planning-table {
+    background: none;
+    box-shadow: none;
+  }
+
+  .planning-table thead {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+  }
+
+  .planning-table tr {
+    background: var(--color-card);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-soft);
+    margin-bottom: 0.9rem;
+    padding: 0.3rem 0;
+  }
+
+  .planning-table td {
+    display: flex;
+    gap: 0.75rem;
+    justify-content: space-between;
+    padding: 0.45rem 1rem;
+    border-bottom: none;
+    text-align: right;
+  }
+
+  .planning-table td::before {
+    content: attr(data-label);
+    flex: 0 0 38%;
+    text-align: left;
+    font-weight: 700;
+    font-family: var(--font-heading);
+    color: var(--color-taupe-light);
+  }
+}

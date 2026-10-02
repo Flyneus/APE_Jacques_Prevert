@@ -157,12 +157,13 @@ a {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  width: 26px;
-  height: 20px;
+  box-sizing: border-box;
+  width: 44px;
+  height: 44px;
   background: none;
   border: none;
   cursor: pointer;
-  padding: 0;
+  padding: 12px 9px;
 }
 
 .nav-toggle span {
