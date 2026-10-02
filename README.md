@@ -1,23 +1,27 @@
-# Site de l'APE École [Nom de l'école]
+# Site de l'APE École Jacques Prévert (Quimper)
 
-Site vitrine statique (HTML/CSS/JS vanilla, sans framework ni dépendance) pour l'Association des Parents d'Élèves.
+Site vitrine statique (HTML/CSS/JS vanilla, sans framework) de l'Association des Parents d'Élèves de l'école
+Jacques Prévert. En ligne sur **https://ape-jacquesprevert.fr** (hébergé par GitHub Pages).
 
 ## Structure
 
 ```
-index.html      → page unique avec sections ancrées (Accueil, Qui sommes-nous, Événements, Nos actions, Documents, Contact)
-style.css       → styles (charte graphique ci-dessous, mobile-first)
-script.js       → menu mobile (ouverture/fermeture)
-benevoles.html  → espace bénévoles protégé par code d'accès
-benevoles.css   → styles de l'espace bénévoles
-benevoles.js    → logique du filtre par code d'accès
-CNAME           → domaine personnalisé (vide par défaut, à remplir si besoin)
-documents/      → dossier à créer, pour y déposer les PDF (statuts, règlement intérieur, comptes-rendus d'AG...)
+index.html            Page unique : Accueil, Qui sommes-nous, Événements, Nos actions, Documents, Bureau, Contact
+benevoles.html        Espace bénévoles (planning, comptes-rendus, contacts, liste des bénévoles)
+mentions-legales.html Mentions légales et politique de confidentialité
+style.css             Styles du site (charte graphique ci-dessous, mobile-first)
+benevoles.css         Styles propres à l'espace bénévoles
+script.js             Menu mobile + envoi du formulaire de contact
+benevoles.js          Filtre par code d'accès de l'espace bénévoles
+images/               Logo et photos (visages d'enfants floutés)
+documents/            PDF publics (statuts, règlement intérieur)
+CNAME                 Domaine personnalisé (ne pas supprimer)
+sitemap.xml, robots.txt   Référencement
 ```
 
 ## Charte graphique
 
-Les couleurs sont définies en tête de `style.css` (variables `--color-*`) :
+Variables `--color-*` en tête de `style.css` :
 
 | Couleur | Code | Usage |
 |---|---|---|
@@ -27,74 +31,65 @@ Les couleurs sont définies en tête de `style.css` (variables `--color-*`) :
 | Orange | `#DE6C1F` | actions : boutons, pastilles de date, icônes |
 | Rouge | `#CC2D42` | accents : survols, liens, mise en avant |
 
-Le header et les cartes restent blancs. Le texte sur fond vert est toujours en taupe (le blanc sur ce vert
-n'est pas assez contrasté pour être lisible).
+Le texte sur fond vert est toujours en taupe (le blanc n'y est pas assez contrasté).
 
-## Avant publication : à personnaliser
+## Prévisualiser en local
 
-Cherchez les commentaires `<!-- ⚠️ ... -->` dans `index.html` — ils indiquent tous les placeholders à remplacer :
+```
+python -m http.server 8000
+```
 
-- Nom de l'école (logo, titres, footer)
-- Texte de présentation de l'APE et prochain événement (section Accueil)
-- Mission, modalités d'adhésion et montant de la cotisation (section Qui sommes-nous)
-- Calendrier réel des événements (section Événements)
-- Actions réellement financées (section Nos actions)
-- Fichiers PDF réels dans un dossier `documents/` (section Documents utiles)
-- URL Formspree et adresse email de contact (section Contact)
+Puis ouvrir http://localhost:8000. Toute modification poussée sur la branche `main` est publiée
+automatiquement par GitHub Pages en 1 à 2 minutes.
 
-## 1. Activer GitHub Pages
+## Mettre à jour le contenu
 
-1. Poussez ce dossier dans un dépôt GitHub (voir commandes fournies par ailleurs).
-2. Sur GitHub, allez dans **Settings** du dépôt → **Pages** (menu de gauche).
-3. Sous **Build and deployment** → **Source**, choisissez **Deploy from a branch**.
-4. Sous **Branch**, sélectionnez `main` et le dossier `/ (root)`, puis **Save**.
-5. Au bout de 1 à 2 minutes, l'URL du site apparaît en haut de la page Pages
-   (format `https://<votre-compte>.github.io/<nom-du-repo>/`).
+- **Événements** : section « Événements de l'année » de `index.html`. Pour chaque vente de gâteaux, la date
+  apparaît à **quatre endroits à garder cohérents** : la pastille de date, le lien « Ajouter à mon agenda »
+  (`DTSTART`/`DTEND` du fichier .ics intégré), le lien mailto « Disponible pour être bénévole » et le tableau
+  du planning dans `benevoles.html`.
+- **Prochain événement** : encart du bandeau d'accueil (haut de `index.html`).
+- **Textes en breton** : sous-titres italiques `lang="br"` ; à faire relire par un locuteur.
+- **Bureau et photos** : sections « Le bureau de l'APE » (`index.html`) et « Contacts du bureau » (`benevoles.html`).
+- **Documents** : déposer le PDF dans `documents/` et ajouter le lien dans la section « Documents utiles ».
+- **Bon de commande des sapins** : à ajouter quand il est prêt (voir le commentaire dans la carte « Vente de sapins »).
 
-## 2. Configurer un domaine personnalisé (optionnel)
+## Espace bénévoles
 
-1. Ouvrez le fichier `CNAME` à la racine du dépôt et écrivez-y votre domaine, par exemple :
-   ```
-   ape-ecole-xxx.fr
-   ```
-2. Chez votre registrar (OVH, Gandi, etc.), créez un enregistrement DNS :
-   - Pour un sous-domaine (`www.ape-ecole-xxx.fr`) : un enregistrement **CNAME** pointant vers `<votre-compte>.github.io`.
-   - Pour un domaine racine (`ape-ecole-xxx.fr`) : des enregistrements **A** pointant vers les IP GitHub Pages :
-     ```
-     185.199.108.153
-     185.199.109.153
-     185.199.110.153
-     185.199.111.153
-     ```
-3. Dans **Settings → Pages** du dépôt GitHub, renseignez le même domaine dans le champ **Custom domain**, puis cochez
-   **Enforce HTTPS** une fois le certificat généré (peut prendre jusqu'à 24h).
+`benevoles.html` est masqué par un code d'accès vérifié dans le navigateur (`benevoles.js`, constante
+`CODE_HASH`, qui contient l'empreinte SHA-256 du code, jamais le code en clair).
 
-## Espace bénévoles (`benevoles.html`)
+⚠️ **Ce n'est pas une vraie sécurité.** Tout le contenu de la page est téléchargé par le navigateur et le
+dépôt est public : n'y mettez que des informations peu sensibles (prénoms, planning). Les documents
+confidentiels (comptes-rendus avec noms complets, finances, signatures) ne doivent pas être déposés dans
+`documents/`.
 
-Page réservée aux bénévoles, protégée par un code d'accès (par défaut : `BENEVOLE2026`).
+Changer le code : dans la console du navigateur (F12), calculer l'empreinte du nouveau code puis la coller
+dans `CODE_HASH` :
 
-⚠️ **Ce n'est pas une vraie sécurité.** Le contenu complet de la page est téléchargé par le
-navigateur dès le chargement ; le code ne fait que le masquer visuellement tant qu'il n'a pas été
-saisi. N'importe qui d'un peu technique peut le contourner via les outils développeur. N'y mettez
-donc que des informations non sensibles (planning, comptes-rendus, contacts internes) — jamais de
-données personnelles ou financières sensibles.
+```js
+await crypto.subtle.digest('SHA-256', new TextEncoder().encode('NOUVEAU_CODE'))
+  .then(buf => [...new Uint8Array(buf)].map(b => b.toString(16).padStart(2, '0')).join(''))
+```
 
-**Changer le code d'accès** : le code n'est pas stocké en clair mais sous forme de hash SHA-256
-dans `benevoles.js` (constante `CODE_HASH`). Pour le changer :
-1. Ouvrez la console JavaScript de votre navigateur (F12) et exécutez :
-   ```js
-   await crypto.subtle.digest('SHA-256', new TextEncoder().encode('VOTRE_NOUVEAU_CODE'))
-     .then(buf => [...new Uint8Array(buf)].map(b => b.toString(16).padStart(2,'0')).join(''))
-   ```
-2. Copiez le résultat (64 caractères) dans `benevoles.js`, à la place de la valeur de `CODE_HASH`.
-   Ou plus simple : redemandez à Claude de le faire pour vous.
+Puis communiquer le nouveau code aux bénévoles. L'accès est mémorisé dans le navigateur (`localStorage`).
 
-Une fois le bon code saisi, l'accès est mémorisé dans le navigateur (`localStorage`) : le
-bénévole n'a pas à le ressaisir à chaque visite depuis le même appareil.
+## Nom de domaine et HTTPS
+
+- Domaine `ape-jacquesprevert.fr` enregistré chez Infomaniak ; le site reste hébergé sur GitHub Pages.
+- Zone DNS Infomaniak : quatre enregistrements **A** pour le domaine nu (`185.199.108.153`, `185.199.109.153`,
+  `185.199.110.153`, `185.199.111.153`) et un **CNAME** `www` vers `flyneus.github.io`.
+- GitHub : Settings → Pages → Custom domain = `ape-jacquesprevert.fr`, **Enforce HTTPS** coché. Le certificat
+  est gratuit et renouvelé automatiquement.
+- ⚠️ Ne pas supprimer les enregistrements DNS ni le fichier `CNAME` : le certificat ne se renouvellerait plus
+  et le site afficherait une alerte de sécurité.
 
 ## Formulaire de contact
 
-Le formulaire utilise [Formspree](https://formspree.io) (gratuit jusqu'à 50 soumissions/mois) pour recevoir les messages
-sans backend, déjà configuré (`action="https://formspree.io/f/xljddwyk"` dans `index.html`) pour envoyer les
-messages vers l'adresse email liée au compte Formspree. Si vous changez de compte Formspree, mettez à jour
-cette URL.
+Le formulaire envoie les messages via [Formspree](https://formspree.io) (`action="https://formspree.io/f/…"`
+dans `index.html`) vers l'adresse e-mail liée au compte Formspree. Si le compte change, mettre à jour cette URL.
+
+## Confidentialité
+
+Pas de cookie ni de mesure d'audience. Les polices viennent de Google Fonts (voir `mentions-legales.html`).
+Toute nouvelle donnée collectée ou nouveau service tiers doit être ajouté à la page de mentions légales.
