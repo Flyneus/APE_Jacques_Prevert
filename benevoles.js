@@ -1,6 +1,6 @@
 // Espace bénévoles : filtre par code d'accès.
 //
-// ⚠️ CE N'EST PAS UNE VRAIE SÉCURITÉ. Le fichier HTML complet (y compris le
+// ATTENTION : CE N'EST PAS UNE VRAIE SÉCURITÉ. Le fichier HTML complet (y compris le
 // contenu "réservé") est téléchargé par le navigateur dès le chargement de la
 // page ; ce script se contente de le masquer visuellement tant que le bon code
 // n'a pas été saisi. Toute personne un peu technique peut contourner ce filtre
@@ -12,9 +12,8 @@
 //        await crypto.subtle.digest('SHA-256', new TextEncoder().encode('VOTRE_NOUVEAU_CODE'))
 //          .then(buf => [...new Uint8Array(buf)].map(b => b.toString(16).padStart(2,'0')).join(''))
 //   2. Copiez le résultat (64 caractères) dans la constante CODE_HASH ci-dessous.
-//   Ou plus simple : redemandez à Claude de le faire pour vous.
 
-const CODE_HASH = 'e0155488e5793b95a27673074b677875224027ab6e2e124d3ac94454a4528290'; // code par défaut : BENEVOLE2026
+const CODE_HASH = 'e0155488e5793b95a27673074b677875224027ab6e2e124d3ac94454a4528290';
 const STORAGE_KEY = 'ape-benevoles-unlocked';
 
 // SHA-256 en JS pur : crypto.subtle n'existe qu'en HTTPS, ce repli permet de vérifier le code en HTTP.

@@ -14,6 +14,7 @@ benevoles.css         Styles propres à l'espace bénévoles
 script.js             Menu mobile + envoi du formulaire de contact
 benevoles.js          Filtre par code d'accès de l'espace bénévoles
 images/               Logo et photos (visages d'enfants floutés)
+fonts/                Polices Quicksand et Nunito (woff2)
 documents/            PDF publics (statuts, règlement intérieur)
 CNAME                 Domaine personnalisé (ne pas supprimer)
 sitemap.xml, robots.txt   Référencement
@@ -91,5 +92,6 @@ dans `index.html`) vers l'adresse e-mail liée au compte Formspree. Si le compte
 
 ## Confidentialité
 
-Pas de cookie ni de mesure d'audience. Les polices viennent de Google Fonts (voir `mentions-legales.html`).
+Pas de cookie ni de mesure d'audience. Les polices (Quicksand et Nunito, licence SIL OFL) sont hébergées dans
+`fonts/` et déclarées en tête de `style.css` : aucun appel à Google.
 Toute nouvelle donnée collectée ou nouveau service tiers doit être ajouté à la page de mentions légales.
