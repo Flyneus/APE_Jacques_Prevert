@@ -51,6 +51,9 @@ automatiquement par GitHub Pages en 1 à 2 minutes.
   du planning dans `benevoles.html`.
 - **Prochain événement** : encart du bandeau d'accueil (haut de `index.html`).
 - **Textes en breton** : sous-titres italiques `lang="br"` ; à faire relire par un locuteur.
+- **Espace bénévoles** : 4 onglets (`#planning`, `#procedures`, `#documents`, `#kermesse`), chacun un `<div class="tab-panel">` de
+  `benevoles.html`. Une procédure = une fiche `<details class="procedure">` dans l'onglet Procédures. Un lien vers
+  `#id-d-un-élément` ouvre automatiquement le bon onglet.
 - **Bureau et photos** : sections « Le bureau de l'APE » (`index.html`) et « Contacts du bureau » (`benevoles.html`).
 - **Documents** : déposer le PDF dans `documents/` et ajouter le lien dans la section « Documents utiles ».
 - **Bon de commande des sapins** : à ajouter quand il est prêt (voir le commentaire dans la carte « Vente de sapins »).

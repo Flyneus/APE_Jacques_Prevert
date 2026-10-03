@@ -115,6 +115,64 @@
   border-bottom: none;
 }
 
+/* ---------- Onglets ---------- */
+
+.vtabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-top: 1.5rem;
+}
+
+.vtab {
+  flex: 1 1 calc(50% - 0.6rem);
+  padding: 0.7rem 1rem;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--color-taupe);
+  background: var(--color-card);
+  border: 2px solid var(--color-border);
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+
+.vtab:hover {
+  border-color: var(--color-orange);
+}
+
+.vtab[aria-selected="true"] {
+  background: var(--color-orange);
+  border-color: var(--color-orange);
+  color: #fff;
+}
+
+.vtab:focus-visible {
+  outline: 3px solid var(--color-taupe);
+  outline-offset: 2px;
+}
+
+.tab-panel[hidden] {
+  display: none;
+}
+
+.doc-group-title {
+  margin: 1.5rem 0 0;
+  text-align: center;
+  font-size: 1rem;
+  color: var(--color-taupe-light);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+@media (min-width: 700px) {
+  .vtab {
+    flex: 0 1 auto;
+    padding: 0.7rem 1.5rem;
+  }
+}
+
 /* ---------- Procédures ---------- */
 
 .procedures {

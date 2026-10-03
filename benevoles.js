@@ -71,9 +71,12 @@ async function sha256Hex(text) {
   return sha256Fallback(text);
 }
 
+let routeTabs = null;
+
 function unlock() {
   document.getElementById('gate').hidden = true;
   document.getElementById('volunteerContent').hidden = false;
+  if (routeTabs) routeTabs(true);
 }
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -100,4 +103,53 @@ document.addEventListener('DOMContentLoaded', function () {
       accessCodeInput.focus();
     }
   });
+});
+
+// Onglets : #planning, #procedures, #documents, #kermesse ; un lien vers un élément
+// d'un onglet (ex. #procedure-remboursement) ouvre l'onglet puis défile jusqu'à lui.
+document.addEventListener('DOMContentLoaded', function () {
+  const tabs = Array.from(document.querySelectorAll('.vtab'));
+  if (!tabs.length) return;
+  const panels = tabs.map(t => document.getElementById(t.getAttribute('aria-controls')));
+
+  function select(index, focus) {
+    tabs.forEach((tab, i) => {
+      const on = i === index;
+      tab.setAttribute('aria-selected', on ? 'true' : 'false');
+      tab.tabIndex = on ? 0 : -1;
+      panels[i].hidden = !on;
+    });
+    if (focus) tabs[index].focus();
+  }
+
+  routeTabs = function (scroll) {
+    const id = decodeURIComponent(location.hash.replace('#', ''));
+    if (!id) return;
+    const byTab = tabs.findIndex(t => t.id === 'tab-' + id);
+    if (byTab >= 0) { select(byTab, false); return; }
+    const target = document.getElementById(id);
+    const panel = target && target.closest('.tab-panel');
+    if (!panel) return;
+    select(panels.indexOf(panel), false);
+    if (target.tagName === 'DETAILS') target.open = true;
+    if (scroll) target.scrollIntoView();
+  };
+
+  tabs.forEach((tab, i) => {
+    tab.addEventListener('click', () => {
+      select(i, false);
+      history.replaceState(null, '', '#' + tab.id.replace('tab-', ''));
+    });
+    tab.addEventListener('keydown', event => {
+      const last = tabs.length - 1;
+      const next = { ArrowRight: i === last ? 0 : i + 1, ArrowLeft: i === 0 ? last : i - 1, Home: 0, End: last }[event.key];
+      if (next === undefined) return;
+      event.preventDefault();
+      select(next, true);
+      history.replaceState(null, '', '#' + tabs[next].id.replace('tab-', ''));
+    });
+  });
+
+  window.addEventListener('hashchange', () => routeTabs(true));
+  routeTabs(true);
 });
