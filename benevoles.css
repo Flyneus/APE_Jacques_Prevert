@@ -251,7 +251,7 @@
   padding: 0;
 }
 
-.procedure-steps li {
+.procedure-steps > li {
   position: relative;
   counter-increment: step;
   padding: 0.35rem 0 0.35rem 2.4rem;
@@ -285,7 +285,7 @@
   color: var(--color-text-light);
 }
 
-.procedure-steps li::before {
+.procedure-steps > li::before {
   content: counter(step);
   position: absolute;
   left: 0;
