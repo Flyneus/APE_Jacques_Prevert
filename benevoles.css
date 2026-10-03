@@ -200,6 +200,15 @@
   min-height: 1.9rem;
 }
 
+.procedure-checklist {
+  margin: 0;
+  padding-left: 1.3rem;
+}
+
+.procedure-checklist li {
+  padding: 0.2rem 0;
+}
+
 .procedure-notes {
   margin: 0;
   padding: 0.6rem 1rem 0.6rem 2rem;
