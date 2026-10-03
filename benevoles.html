@@ -25,6 +25,11 @@
     <circle cx="9" cy="9" r="2.6" fill="#14B88B"/>
   </symbol>
 
+  <symbol id="icon-wallet" viewBox="0 0 24 24">
+    <path d="M3 7a2 2 0 0 1 2-2h13a1 1 0 0 1 1 1v2H5a2 2 0 0 0 0 4h14v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7z"/>
+    <circle cx="16.2" cy="13" r="1.4" opacity="0.6"/>
+  </symbol>
+
   <symbol id="icon-cake" viewBox="0 0 24 24">
     <path d="M11.1 2c-.9 0-1.5.9-1.1 1.7.2.4.5.7.5 1.1s-.3.7-.5 1c-.4.5-.2 1.2.4 1.2h3.2c.6 0 .8-.7.4-1.1-.2-.3-.5-.6-.5-1s.3-.7.5-1.1C14.4 2.9 13.8 2 12.9 2h-1.8z"/>
     <rect x="11" y="7.3" width="2" height="3" rx="0.6"/>
@@ -155,6 +160,41 @@
               </ol>
             </div>
           </details>
+
+          <details class="procedure" id="procedure-remboursement">
+            <summary>
+              <span class="icon-badge badge-primary"><svg class="icon"><use href="#icon-wallet"></use></svg></span>
+              <span class="procedure-title">Remboursement de frais</span>
+            </summary>
+            <div class="procedure-body">
+              <h3>Avant d'acheter</h3>
+              <ol class="procedure-steps">
+                <li>Demander l'accord du bureau avant tout achat : envoyer un e-mail à un membre du bureau
+                  (<a href="#contacts-bureau">voir les contacts</a>) avec le montant et l'objet de la dépense.</li>
+                <li>Attendre la validation. Le trésorier peut valider seul jusqu'à 200 € ; au-delà,
+                  l'accord d'au moins deux membres du bureau est nécessaire.</li>
+              </ol>
+
+              <h3>Après l'achat</h3>
+              <ol class="procedure-steps">
+                <li>Garder la facture ou le ticket : le remboursement se fait uniquement sur présentation
+                  d'un justificatif.</li>
+                <li>Présenter la facture ou le ticket au bureau pour obtenir le remboursement.</li>
+              </ol>
+
+              <h3>À savoir</h3>
+              <ul class="procedure-notes">
+                <li>Une dépense engagée sans validation préalable du bureau n'engage pas l'association :
+                  elle reste à la charge de la personne qui l'a faite.</li>
+                <li>Si une facture est adressée directement à l'APE pour un achat non validé, l'association
+                  ne la règle pas : le bureau en informe le fournisseur et invite la personne à régulariser.</li>
+                <li>L'APE peut examiner, au cas par cas, une prise en charge exceptionnelle après coup. Ce n'est
+                  jamais un droit acquis.</li>
+              </ul>
+              <p class="procedure-source">Source : article 4 du
+                <a href="documents/reglement-interieur.pdf">règlement intérieur</a>.</p>
+            </div>
+          </details>
         </div>
       </div>
     </section>
@@ -168,7 +208,7 @@
       </div>
     </section>
 
-    <section class="section">
+    <section class="section" id="contacts-bureau">
       <div class="section-inner">
         <h2>Contacts du bureau</h2>
         <div class="cards-grid">
