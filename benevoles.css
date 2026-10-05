@@ -349,3 +349,43 @@
     color: var(--color-taupe-light);
   }
 }
+
+/* ---------- Cartes bénévoles compactes ---------- */
+
+.cards-grid.volunteers-grid {
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 0.75rem;
+  margin-top: 1.25rem;
+}
+
+.volunteer-card {
+  flex-direction: row;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.65rem 0.9rem;
+}
+
+.volunteer-card:hover {
+  transform: none;
+}
+
+.volunteer-card .icon-badge {
+  width: 36px;
+  height: 36px;
+}
+
+.volunteer-card .icon-badge .icon {
+  width: 18px;
+  height: 18px;
+}
+
+.volunteer-card h3 {
+  font-size: 1rem;
+  line-height: 1.25;
+}
+
+.volunteer-card p {
+  margin: 0.1rem 0 0;
+  font-size: 0.85rem;
+  line-height: 1.3;
+}
