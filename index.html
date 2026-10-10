@@ -200,13 +200,17 @@
       <span></span><span></span><span></span>
     </button>
     <nav class="main-nav" id="mainNav">
-      <a href="#accueil">Accueil</a>
-      <a href="#qui-sommes-nous">Qui sommes-nous</a>
+      <div class="nav-group">
+        <button type="button" class="nav-group-toggle" id="navGroupToggle" aria-expanded="false" aria-controls="navAssociation">L'association</button>
+        <div class="nav-submenu" id="navAssociation">
+          <a href="#qui-sommes-nous">Qui sommes-nous</a>
+          <a href="#nos-actions">Nos actions</a>
+          <a href="#bureau">Le bureau</a>
+          <a href="#documents">Documents</a>
+        </div>
+      </div>
       <a href="#evenements">Événements</a>
       <a href="photos.html">Photos</a>
-      <a href="#nos-actions">Nos actions</a>
-      <a href="#documents">Documents</a>
-      <a href="#bureau">Bureau</a>
       <a href="benevoles.html" class="nav-cta nav-cta-secondary"><svg class="icon-inline"><use href="#icon-users"></use></svg>Bénévoles</a>
       <a href="#contact" class="nav-cta"><svg class="icon-inline"><use href="#icon-mail"></use></svg>Contact</a>
     </nav>

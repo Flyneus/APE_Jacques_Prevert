@@ -58,3 +58,31 @@ document.addEventListener('DOMContentLoaded', function () {
       });
   });
 });
+
+// Menu déroulant « L'association »
+document.addEventListener('DOMContentLoaded', function () {
+  var group = document.querySelector('.nav-group');
+  if (!group) return;
+  var toggle = group.querySelector('.nav-group-toggle');
+
+  function setOpen(open) {
+    group.classList.toggle('open', open);
+    toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+  }
+
+  toggle.addEventListener('click', function () {
+    setOpen(!group.classList.contains('open'));
+  });
+  group.querySelectorAll('.nav-submenu a').forEach(function (link) {
+    link.addEventListener('click', function () { setOpen(false); });
+  });
+  document.addEventListener('click', function (event) {
+    if (!group.contains(event.target)) setOpen(false);
+  });
+  document.addEventListener('keydown', function (event) {
+    if (event.key === 'Escape' && group.classList.contains('open')) {
+      setOpen(false);
+      toggle.focus();
+    }
+  });
+});
