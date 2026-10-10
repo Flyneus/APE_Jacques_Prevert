@@ -428,3 +428,157 @@
   margin-left: 0.35rem;
   font-weight: 400;
 }
+
+/* ---------- Onglet Tombola ---------- */
+
+.tombola-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 1rem 0 0.5rem;
+}
+
+.tombola-nav a {
+  padding: 0.4rem 0.9rem;
+  border: 2px solid var(--color-border);
+  border-radius: 999px;
+  background: var(--color-card);
+  color: var(--color-taupe);
+  font-weight: 700;
+  font-size: 0.9rem;
+  text-decoration: none;
+}
+
+.tombola-nav a:hover {
+  border-color: var(--color-orange);
+}
+
+.tombola-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+.tombola-main h3 {
+  margin: 0 0 0.75rem;
+  font-size: 1.15rem;
+}
+
+.lots-tools {
+  display: grid;
+  gap: 0.35rem;
+  padding: 1rem;
+  background: var(--color-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-soft);
+}
+
+.lots-tools label,
+.lots-label {
+  margin: 0.4rem 0 0;
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: var(--color-taupe);
+}
+
+.lots-tools input[type="search"],
+.lots-tools select {
+  width: 100%;
+  padding: 0.6rem 0.8rem;
+  font: inherit;
+  border: 1.5px solid var(--color-border);
+  border-radius: 10px;
+  background: #fff;
+}
+
+.lots-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.lots-chip {
+  padding: 0.35rem 0.8rem;
+  font: inherit;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--color-taupe);
+  background: #fff;
+  border: 1.5px solid var(--color-border);
+  border-radius: 999px;
+  cursor: pointer;
+}
+
+.lots-chip:hover {
+  border-color: var(--color-orange);
+}
+
+.lots-chip[aria-pressed="true"] {
+  background: var(--color-orange);
+  border-color: var(--color-orange);
+  color: #fff;
+}
+
+.lots-status {
+  margin: 0.9rem 0 0.5rem;
+  font-weight: 600;
+  color: var(--color-taupe);
+}
+
+.lots-table {
+  margin-top: 0.5rem;
+}
+
+.lots-refresh {
+  margin-top: 1rem;
+  cursor: pointer;
+}
+
+.tombola-side {
+  order: -1;
+}
+
+.tombola-side .lots-form {
+  background: var(--color-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-soft);
+  padding: 0 1rem 1rem;
+}
+
+.tombola-side .lots-form summary {
+  padding: 0.9rem 0;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: var(--color-taupe);
+  cursor: pointer;
+}
+
+.tombola-side .lots-form p {
+  margin: 0 0 0.75rem;
+}
+
+.tombola-side iframe {
+  display: block;
+  width: 100%;
+  height: 620px;
+  border: 0;
+  border-radius: 10px;
+  background: #fff;
+}
+
+@media (min-width: 960px) {
+  .tombola-layout {
+    grid-template-columns: minmax(0, 1fr) 380px;
+    align-items: start;
+  }
+
+  .tombola-side {
+    order: 0;
+    position: sticky;
+    top: 1rem;
+  }
+}

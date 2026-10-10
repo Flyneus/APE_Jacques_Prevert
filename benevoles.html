@@ -129,6 +129,7 @@
           <button type="button" class="vtab" role="tab" id="tab-procedures" aria-controls="panel-procedures" aria-selected="false" tabindex="-1">Procédures</button>
           <button type="button" class="vtab" role="tab" id="tab-documents" aria-controls="panel-documents" aria-selected="false" tabindex="-1">Documents</button>
           <button type="button" class="vtab" role="tab" id="tab-kermesse" aria-controls="panel-kermesse" aria-selected="false" tabindex="-1">Kermesse</button>
+          <button type="button" class="vtab" role="tab" id="tab-tombola" aria-controls="panel-tombola" aria-selected="false" tabindex="-1">Tombola</button>
         </div>
       </div>
     </section>
@@ -491,6 +492,107 @@
       </section>
     </div>
 
+    <div class="tab-panel" role="tabpanel" id="panel-tombola" aria-labelledby="tab-tombola" hidden>
+
+      <section class="section section-alt" id="tombola-fonctionnement">
+        <div class="section-inner">
+          <h2>Tombola</h2>
+          <nav class="tombola-nav" aria-label="Parties de l'onglet Tombola">
+            <a href="#tombola-fonctionnement">1. Fonctionnement et procédures</a>
+            <a href="#tombola-lots">2. Recherche de lots</a>
+            <a href="#tombola-documents">3. Documents pratiques</a>
+          </nav>
+          <h3 class="doc-group-title">1. Fonctionnement et procédures</h3>
+
+          <div class="procedures">
+            <details class="procedure" id="procedure-recherche-lots">
+              <summary>
+                <span class="icon-badge badge-primary"><svg class="icon"><use href="#icon-heart"></use></svg></span>
+                <span class="procedure-title">Rechercher des lots auprès des commerçants</span>
+              </summary>
+              <div class="procedure-body">
+                <h3>Les étapes</h3>
+                <ol class="procedure-steps">
+                  <li>Consulter la <a href="#tombola-lots">liste des commerçants</a> et vérifier qu'ils n'ont pas déjà été
+                    démarchés par un autre bénévole.</li>
+                  <li>Prévenir les autres en ajoutant les commerçants que vous prenez en charge avec le formulaire
+                    (le prénom de la personne en charge s'affiche dans la liste).</li>
+                  <li>Se présenter avec l'attestation de la direction de l'école (voir
+                    <a href="#tombola-documents">documents pratiques</a>) et demander un lot : entrées, bons cadeaux, objets.</li>
+                  <li>Noter les consignes du commerçant : retrait sur place, envoi par courrier, date de validité du lot.</li>
+                </ol>
+
+                <h3>Bon à savoir (retours de l'édition 2026)</h3>
+                <ul class="procedure-notes">
+                  <li>Faire les demandes dès le début de l'année : les commerçants répondent mieux tôt dans l'année scolaire.</li>
+                  <li>Plusieurs commerçants demandent une enveloppe timbrée à l'adresse de l'école ou de l'association,
+                    ou un courrier sur papier à en-tête.</li>
+                  <li>Certains ne donnent qu'aux écoles de leur commune ou de leur département.</li>
+                  <li>Respecter les consignes de chacun (par exemple répartir les entrées en plusieurs lots quand c'est demandé).</li>
+                  <li>Relever les dates de validité des lots, elles sont souvent limitées.</li>
+                </ul>
+                <p class="procedure-source">Si un commerçant demande un document pour son don, voir la fiche
+                  <a href="#procedure-dons-entreprises">Entreprise qui soutient l'APE</a> dans l'onglet Procédures.</p>
+              </div>
+            </details>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="tombola-lots">
+        <div class="section-inner">
+          <h2>2. Recherche de lots</h2>
+          <p>La liste des commerçants se met à jour toute seule. Cherchez un nom (même mal écrit) ou filtrez par
+            bénévole pour voir qui s'occupe de quoi.</p>
+
+          <div class="tombola-layout">
+            <div class="tombola-main">
+              <h3>Liste des commerçants</h3>
+              <div class="lots-tools">
+                <label for="lotsSearch">Rechercher un commerçant</label>
+                <input type="search" id="lotsSearch" placeholder="Nom du commerçant" autocomplete="off">
+                <p class="lots-label" id="lotsPersonLabel">Personne en charge</p>
+                <div class="lots-chips" id="lotsPersons" role="group" aria-labelledby="lotsPersonLabel"></div>
+                <label for="lotsPlace">Lieu</label>
+                <select id="lotsPlace"><option value="">Tous les lieux</option></select>
+              </div>
+              <p class="lots-status" id="lotsStatus" role="status" aria-live="polite">Chargement de la liste…</p>
+              <table class="planning-table lots-table" id="lotsTable" hidden>
+                <thead>
+                  <tr><th>Commerçant</th><th>Lieu</th><th>Personne en charge</th></tr>
+                </thead>
+                <tbody id="lotsBody"></tbody>
+              </table>
+              <p class="doc-note" id="lotsEmpty" hidden>Aucun commerçant ne correspond. S'il n'est pas dans la liste,
+                ajoutez-le avec le formulaire.</p>
+              <button type="button" class="btn-chip lots-refresh" id="lotsRefresh">Actualiser la liste</button>
+            </div>
+
+            <aside class="tombola-side" aria-label="Ajouter un commerçant">
+              <details class="lots-form" id="lotsFormBox" open>
+                <summary>Ajouter un commerçant</summary>
+                <p>Vous démarchez un nouveau commerçant ? Ajoutez-le ici, il apparaîtra dans la liste.</p>
+                <iframe id="lotsForm" title="Formulaire d'ajout d'un commerçant" hidden></iframe>
+                <p class="doc-note" id="lotsFormFallback">Le formulaire sera disponible prochainement.</p>
+                <a class="btn-chip" id="lotsFormLink" target="_blank" rel="noopener" hidden>Ouvrir le formulaire dans un nouvel onglet</a>
+              </details>
+            </aside>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section-alt" id="tombola-documents">
+        <div class="section-inner">
+          <h2>3. Documents pratiques</h2>
+          <ul class="doc-list">
+            <li class="doc-pending"><span><svg class="icon-inline"><use href="#icon-document"></use></svg>Attestation de recherche de lots <em>(à ajouter)</em></span></li>
+            <li class="doc-pending"><span><svg class="icon-inline"><use href="#icon-document"></use></svg>Courrier de demande de lots, à personnaliser <em>(à ajouter)</em></span></li>
+          </ul>
+        </div>
+      </section>
+
+    </div>
+
   </div>
 
 </main>
@@ -502,5 +604,6 @@
 
 <script src="script.js"></script>
 <script src="benevoles.js"></script>
+<script src="tombola.js"></script>
 </body>
 </html>
