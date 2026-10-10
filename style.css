@@ -637,6 +637,17 @@ a {
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
+/* Événement passé : carte grisée, seul le lien vers les photos reste en couleur */
+.event-card-past > :not(.event-actions) {
+  opacity: 0.65;
+  filter: grayscale(1);
+}
+
+.event-card-past:hover {
+  transform: none;
+  box-shadow: var(--shadow-soft);
+}
+
 .info-card:hover,
 .event-card:hover,
 .action-card:hover {
