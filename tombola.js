@@ -5,7 +5,7 @@
 
   var SHEET_ID = '1xiFy-2lTsnRQfnrv7EjvTDdrHe16Daj_wCWrsT32Sgk';
   var SHEET_NAME = 'Liste';
-  var FORM_URL = '';
+  var FORM_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSckOL9bT3QjDCqbEawJQga2Ok8pxwW4MewS29qDLHThvn5Vzg/viewform';
 
   var data = [];
   var state = { person: '', place: '', query: '' };
