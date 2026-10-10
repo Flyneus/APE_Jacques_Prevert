@@ -1,0 +1,66 @@
+{
+  "albums": [
+    {
+      "id": "halloween-2026",
+      "year": "2026-2027",
+      "title": "Vente de gâteaux - Halloween",
+      "date": "2026-10-09",
+      "date_label": "Vendredi 9 octobre 2026",
+      "cover": "halloween-2026-04.jpg",
+      "photos": [
+        {
+          "file": "halloween-2026-01.jpg",
+          "alt": "Vue d'ensemble de la table de gâteaux de la vente d'Halloween"
+        },
+        {
+          "file": "halloween-2026-02.jpg",
+          "alt": "La table de gâteaux vue de côté, décorée de ballons orange et noirs"
+        },
+        {
+          "file": "halloween-2026-03.jpg",
+          "alt": "Les bénévoles autour des tables à la sortie de l'école"
+        },
+        {
+          "file": "halloween-2026-04.jpg",
+          "alt": "Grande tourte aux pommes entourée de roulés"
+        },
+        {
+          "file": "halloween-2026-05.jpg",
+          "alt": "Tourte et roulés sur un plateau, avec un chat sorcier en décoration"
+        },
+        {
+          "file": "halloween-2026-06.jpg",
+          "alt": "Chat sorcier posé sur des citrouilles, à côté d'une couronne briochée"
+        },
+        {
+          "file": "halloween-2026-07.jpg",
+          "alt": "Chat sorcier sur des citrouilles et petits gâteaux"
+        },
+        {
+          "file": "halloween-2026-08.jpg",
+          "alt": "Gâteau décoré et lutin sorcier sur une nappe de sorcière"
+        },
+        {
+          "file": "halloween-2026-09.jpg",
+          "alt": "Lutin sorcier, gâteau décoré et gâteau au chocolat"
+        },
+        {
+          "file": "halloween-2026-10.jpg",
+          "alt": "Biscuits décorés en araignées sur un plateau en bois"
+        },
+        {
+          "file": "halloween-2026-11.jpg",
+          "alt": "Biscuits araignées et gâteau au chocolat sur la table"
+        },
+        {
+          "file": "halloween-2026-12.jpg",
+          "alt": "Quatre-quart, gâteaux et toiles d'araignée sur la table"
+        },
+        {
+          "file": "halloween-2026-13.jpg",
+          "alt": "Ballon citrouille orange sur la table du stand"
+        }
+      ]
+    }
+  ]
+}

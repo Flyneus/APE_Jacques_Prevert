@@ -9,11 +9,14 @@ Jacques Prévert. En ligne sur **https://ape-jacquesprevert.fr** (hébergé par 
 index.html            Page unique : Accueil, Qui sommes-nous, Événements, Nos actions, Documents, Bureau, Contact
 benevoles.html        Espace bénévoles (planning, comptes-rendus, contacts, liste des bénévoles)
 mentions-legales.html Mentions légales et politique de confidentialité
+photos.html           Albums photos des événements (générée par tools/build_photos.py, ne pas modifier à la main)
 style.css             Styles du site (charte graphique ci-dessous, mobile-first)
 benevoles.css         Styles propres à l'espace bénévoles
 script.js             Menu mobile + envoi du formulaire de contact
 benevoles.js          Filtre par code d'accès de l'espace bénévoles
-images/               Logo et photos (visages d'enfants floutés)
+images/               Logo et photos de la page d'accueil (visages d'enfants floutés)
+photos/               Photos des albums (optimisées, sans métadonnées) et albums.json
+tools/                Script Python pour ajouter un album
 fonts/                Polices Quicksand et Nunito (woff2)
 documents/            PDF publics (statuts, règlement intérieur)
 CNAME                 Domaine personnalisé (ne pas supprimer)
@@ -98,3 +101,9 @@ dans `index.html`) vers l'adresse e-mail liée au compte Formspree. Si le compte
 Pas de cookie ni de mesure d'audience. Les polices (Quicksand et Nunito, licence SIL OFL) sont hébergées dans
 `fonts/` et déclarées en tête de `style.css` : aucun appel à Google.
 Toute nouvelle donnée collectée ou nouveau service tiers doit être ajouté à la page de mentions légales.
+
+## Photos des événements
+
+Page `photos.html`, générée à partir de `photos/albums.json`. Pour ajouter un album : préparer un fichier `meta.json` (id, année scolaire, titre, date, dossier source, photo de couverture, description de chaque photo), puis lancer `python tools/build_photos.py add meta.json`. Les images sont redimensionnées et leurs métadonnées (dont la position GPS) supprimées. `python tools/build_photos.py build` régénère seulement la page.
+
+⚠️ Le site est public : ne publier que des photos sans visage d'enfant identifiable (flouter sinon) et retirer rapidement toute photo sur demande.
