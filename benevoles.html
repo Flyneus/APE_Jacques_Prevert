@@ -572,9 +572,29 @@
               <details class="lots-form" id="lotsFormBox" open>
                 <summary>Ajouter un commerçant</summary>
                 <p>Vous démarchez un nouveau commerçant ? Ajoutez-le ici, il apparaîtra dans la liste.</p>
-                <iframe id="lotsForm" title="Formulaire d'ajout d'un commerçant" hidden></iframe>
-                <p class="doc-note" id="lotsFormFallback">Le formulaire sera disponible prochainement.</p>
-                <a class="btn-chip" id="lotsFormLink" target="_blank" rel="noopener" hidden>Ouvrir le formulaire dans un nouvel onglet</a>
+                <form id="lotsAddForm" class="lots-add-form" novalidate>
+                  <label for="addName">Nom du commerçant <span aria-hidden="true">*</span></label>
+                  <input type="text" id="addName" autocomplete="off" maxlength="120" required>
+                  <p class="lots-dup" id="addDup" role="status" hidden></p>
+              
+                  <label for="addPlace">Lieu</label>
+                  <select id="addPlace">
+                    <option value="">Non précisé</option>
+                    <option>Quimper</option>
+                    <option>Finistère</option>
+                    <option>National</option>
+                  </select>
+              
+                  <label for="addPerson">Personne en charge <span aria-hidden="true">*</span></label>
+                  <input type="text" id="addPerson" list="addPersonList" autocomplete="off" maxlength="60" placeholder="Votre prénom" required>
+                  <datalist id="addPersonList"></datalist>
+              
+                  <input type="text" id="addWebsite" class="lots-hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+              
+                  <button type="submit" class="btn btn-primary" id="addSubmit">Ajouter à la liste</button>
+                  <p class="lots-msg" id="addMsg" role="status" aria-live="polite"></p>
+                </form>
+                <a class="lots-alt-link" id="lotsFormLink" target="_blank" rel="noopener" hidden>Ouvrir le formulaire Google d'origine</a>
               </details>
             </aside>
           </div>

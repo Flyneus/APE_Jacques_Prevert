@@ -6,8 +6,11 @@
   var SHEET_ID = '1xiFy-2lTsnRQfnrv7EjvTDdrHe16Daj_wCWrsT32Sgk';
   var SHEET_NAME = 'Liste';
   var FORM_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSckOL9bT3QjDCqbEawJQga2Ok8pxwW4MewS29qDLHThvn5Vzg/viewform';
+  var FORM_ACTION = FORM_URL.replace('/viewform', '/formResponse');
+  var ENTRY = { name: 'entry.1671062358', place: 'entry.2107192009', person: 'entry.655551247' };
 
   var data = [];
+  var pending = [];
   var state = { person: '', place: '', query: '' };
   var loaded = false;
 
@@ -109,9 +112,16 @@
     empty: document.getElementById('lotsEmpty'),
     refresh: document.getElementById('lotsRefresh'),
     box: document.getElementById('lotsFormBox'),
-    frame: document.getElementById('lotsForm'),
-    fallback: document.getElementById('lotsFormFallback'),
-    link: document.getElementById('lotsFormLink')
+    link: document.getElementById('lotsFormLink'),
+    form: document.getElementById('lotsAddForm'),
+    addName: document.getElementById('addName'),
+    addPlace: document.getElementById('addPlace'),
+    addPerson: document.getElementById('addPerson'),
+    addWebsite: document.getElementById('addWebsite'),
+    addDup: document.getElementById('addDup'),
+    addMsg: document.getElementById('addMsg'),
+    addSubmit: document.getElementById('addSubmit'),
+    personList: document.getElementById('addPersonList')
   };
 
   // Résultat approché : au moins la moitié des mots de la recherche sont reconnus dans le nom.
@@ -148,6 +158,11 @@
         data = rows.filter(function (r) { return (r[0] || '').trim(); }).map(function (r) {
           var name = r[0].trim();
           return { name: name, place: (r[1] || '').trim(), person: (r[2] || '').trim(), key: norm(name) };
+        });
+        var now = Date.now();
+        pending = pending.filter(function (p) { return now - p.at < 15 * 60 * 1000; });
+        pending.forEach(function (p) {
+          if (!data.some(function (d) { return d.key === p.key; })) data.push(p);
         });
         loaded = true;
         buildFilters();
@@ -189,6 +204,13 @@
         b.textContent = g.label + ' (' + g.count + ')';
         els.persons.appendChild(b);
       });
+    els.personList.textContent = '';
+    order.forEach(function (k) {
+      if (k === '__none') return;
+      var o = document.createElement('option');
+      o.value = groups[k].label;
+      els.personList.appendChild(o);
+    });
     var places = {};
     data.forEach(function (d) { if (d.place) places[d.place] = true; });
     var current = els.place.value;
@@ -252,17 +274,71 @@
   // ---------- Formulaire ----------
 
   function setupForm() {
-    if (!FORM_URL) {
-      els.frame.hidden = true;
-      els.link.hidden = true;
-      els.fallback.hidden = false;
-      return;
-    }
-    els.fallback.hidden = true;
+    if (!FORM_URL) { els.link.hidden = true; return; }
     els.link.href = FORM_URL;
     els.link.hidden = false;
-    els.frame.src = FORM_URL + (FORM_URL.indexOf('?') === -1 ? '?' : '&') + 'embedded=true';
-    els.frame.hidden = false;
+  }
+
+  function findSimilar(name) {
+    var q = norm(name);
+    if (q.length < 3) return [];
+    return data.map(function (d) { return { d: d, s: score(d.key, q) }; })
+      .filter(function (r) { return r.s !== Infinity && r.s <= 1; })
+      .sort(function (x, y) { return x.s - y.s; })
+      .slice(0, 3);
+  }
+
+  function showMessage(text, isError) {
+    els.addMsg.textContent = text;
+    els.addMsg.className = 'lots-msg' + (isError ? ' lots-msg-error' : ' lots-msg-ok');
+  }
+
+  function onNameInput() {
+    var similar = findSimilar(els.addName.value);
+    if (!similar.length) { els.addDup.hidden = true; return; }
+    els.addDup.textContent = 'Déjà dans la liste ? ' + similar.map(function (r) {
+      return r.d.name + (r.d.person ? ' (' + r.d.person + ')' : '');
+    }).join(' · ');
+    els.addDup.hidden = false;
+  }
+
+  function onSubmit(e) {
+    e.preventDefault();
+    var name = els.addName.value.replace(/\s+/g, ' ').trim();
+    var person = els.addPerson.value.replace(/\s+/g, ' ').trim();
+    var place = els.addPlace.value;
+    if (!name || !person) {
+      showMessage('Merci d\u2019indiquer le nom du commerçant et la personne en charge.', true);
+      return;
+    }
+    if (els.addWebsite.value) { showMessage('Merci !', false); return; }
+    var exact = data.filter(function (d) { return d.key === norm(name); })[0];
+    if (exact) {
+      showMessage('« ' + exact.name + ' » est déjà dans la liste' +
+        (exact.person ? ' (pris en charge par ' + exact.person + ')' : '') + '.', true);
+      return;
+    }
+    var body = new URLSearchParams();
+    body.set(ENTRY.name, name);
+    if (place) body.set(ENTRY.place, place);
+    body.set(ENTRY.person, person);
+    els.addSubmit.disabled = true;
+    showMessage('Envoi en cours…', false);
+    fetch(FORM_ACTION, { method: 'POST', mode: 'no-cors', body: body })
+      .then(function () {
+        var item = { name: name, place: place, person: person, key: norm(name), at: Date.now() };
+        pending.push(item);
+        data.push(item);
+        buildFilters();
+        render();
+        els.form.reset();
+        els.addDup.hidden = true;
+        showMessage('Merci ! « ' + name + ' » a été ajouté à la liste.', false);
+      })
+      .catch(function () {
+        showMessage('L\u2019envoi a échoué. Réessayez, ou utilisez le formulaire Google d\u2019origine ci-dessous.', true);
+      })
+      .then(function () { els.addSubmit.disabled = false; });
   }
 
   // ---------- Événements ----------
@@ -276,6 +352,8 @@
     render();
   });
   els.refresh.addEventListener('click', load);
+  els.addName.addEventListener('input', onNameInput);
+  els.form.addEventListener('submit', onSubmit);
 
   var wide = window.matchMedia('(min-width: 960px)');
   els.box.open = wide.matches;

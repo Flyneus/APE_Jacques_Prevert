@@ -561,13 +561,70 @@
   margin: 0 0 0.75rem;
 }
 
-.tombola-side iframe {
-  display: block;
+.lots-add-form {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.lots-add-form label {
+  margin-top: 0.4rem;
+  font-weight: 700;
+  font-size: 0.92rem;
+  color: var(--color-taupe);
+}
+
+.lots-add-form input[type="text"],
+.lots-add-form select {
   width: 100%;
-  height: 620px;
-  border: 0;
+  padding: 0.6rem 0.8rem;
+  font: inherit;
+  border: 1.5px solid var(--color-border);
   border-radius: 10px;
   background: #fff;
+}
+
+.lots-add-form button {
+  margin-top: 0.8rem;
+  justify-self: start;
+  cursor: pointer;
+}
+
+.lots-add-form button[disabled] {
+  opacity: 0.6;
+  cursor: wait;
+}
+
+.lots-hp {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+}
+
+.lots-dup {
+  margin: 0;
+  font-size: 0.88rem;
+  color: var(--color-red);
+}
+
+.lots-msg {
+  margin: 0.5rem 0 0;
+  font-weight: 600;
+}
+
+.lots-msg-ok {
+  color: var(--color-taupe);
+}
+
+.lots-msg-error {
+  color: var(--color-red);
+}
+
+.lots-alt-link {
+  display: inline-block;
+  margin-top: 0.8rem;
+  font-size: 0.85rem;
 }
 
 @media (min-width: 960px) {
