@@ -389,3 +389,42 @@
   font-size: 0.85rem;
   line-height: 1.3;
 }
+
+/* ---------- Événement passé et compte rendu à venir ---------- */
+
+.planning-table tr.is-past {
+  opacity: 0.6;
+}
+
+.planning-table tr.is-past td {
+  color: var(--color-text-light);
+}
+
+.doc-list li.doc-pending {
+  background: transparent;
+  border-style: dashed;
+  box-shadow: none;
+}
+
+.doc-list li.doc-pending:hover {
+  transform: none;
+  box-shadow: none;
+}
+
+.doc-pending span {
+  display: block;
+  padding: 0.9rem 1.1rem;
+  font-weight: 600;
+  color: var(--color-text-light);
+}
+
+.doc-pending .icon-inline {
+  width: 1.2em;
+  height: 1.2em;
+  color: var(--color-text-light);
+}
+
+.doc-pending em {
+  margin-left: 0.35rem;
+  font-weight: 400;
+}
