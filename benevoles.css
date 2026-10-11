@@ -533,6 +533,53 @@
   margin-top: 0.5rem;
 }
 
+.lots-more {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  width: 100%;
+  margin-top: 0.6rem;
+  padding: 0.7rem 1rem;
+  font: inherit;
+  font-weight: 700;
+  color: var(--color-taupe);
+  background: var(--color-card);
+  border: 1.5px solid var(--color-border);
+  border-radius: 14px;
+  cursor: pointer;
+}
+
+.lots-more[hidden] {
+  display: none;
+}
+
+.lots-more:hover {
+  border-color: var(--color-orange);
+}
+
+.lots-more:focus-visible {
+  outline: 3px solid var(--color-orange);
+  outline-offset: 2px;
+}
+
+.lots-more::after {
+  content: "";
+  flex: none;
+  width: 0.55rem;
+  height: 0.55rem;
+  margin-top: -0.2rem;
+  border-right: 2px solid var(--color-taupe);
+  border-bottom: 2px solid var(--color-taupe);
+  transform: rotate(45deg);
+  transition: transform 0.2s ease;
+}
+
+.lots-more[aria-expanded="true"]::after {
+  margin-top: 0.2rem;
+  transform: rotate(-135deg);
+}
+
 .lots-refresh {
   margin-top: 1rem;
   cursor: pointer;

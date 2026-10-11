@@ -11,7 +11,8 @@
 
   var data = [];
   var pending = [];
-  var state = { person: '', place: '', query: '' };
+  var PREVIEW = 10; // nombre de commerçants affichés avant « Tout afficher »
+  var state = { person: '', place: '', query: '', expanded: false };
   var loaded = false;
 
   // ---------- Utilitaires ----------
@@ -111,6 +112,7 @@
     body: document.getElementById('lotsBody'),
     empty: document.getElementById('lotsEmpty'),
     refresh: document.getElementById('lotsRefresh'),
+    more: document.getElementById('lotsMore'),
     box: document.getElementById('lotsFormBox'),
     link: document.getElementById('lotsFormLink'),
     form: document.getElementById('lotsAddForm'),
@@ -250,7 +252,8 @@
     }
     rows.sort(function (a, b) { return a.s - b.s || a.d.name.localeCompare(b.d.name, 'fr'); });
     els.body.textContent = '';
-    rows.forEach(function (r) {
+    var hidden = state.expanded ? 0 : Math.max(0, rows.length - PREVIEW);
+    rows.slice(0, rows.length - hidden).forEach(function (r) {
       var tr = document.createElement('tr');
       [['Commerçant', r.d.name], ['Lieu', r.d.place || '-'], ['Personne en charge', r.d.person || '-']].forEach(function (c) {
         var td = document.createElement('td');
@@ -260,6 +263,9 @@
       });
       els.body.appendChild(tr);
     });
+    els.more.hidden = rows.length <= PREVIEW;
+    els.more.setAttribute('aria-expanded', state.expanded ? 'true' : 'false');
+    els.more.firstChild.textContent = state.expanded ? 'Réduire la liste' : 'Afficher les ' + hidden + ' autres commerçants';
     els.empty.hidden = rows.length > 0;
     els.table.hidden = rows.length === 0;
     var n = rows.length;
@@ -343,6 +349,7 @@
 
   // ---------- Événements ----------
 
+  els.more.addEventListener('click', function () { state.expanded = !state.expanded; if (loaded) render(); });
   els.search.addEventListener('input', function () { state.query = els.search.value; if (loaded) render(); });
   els.place.addEventListener('change', function () { state.place = els.place.value; if (loaded) render(); });
   els.persons.addEventListener('click', function (e) {
