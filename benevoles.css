@@ -838,7 +838,9 @@
   .tombola-side {
     order: 0;
     position: sticky;
-    top: 1rem;
+    top: 6rem; /* sous l'en-tête fixe du site */
+    max-height: calc(100vh - 7rem);
+    overflow-y: auto;
   }
 }
 
