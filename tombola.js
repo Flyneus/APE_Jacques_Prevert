@@ -259,6 +259,7 @@
         var td = document.createElement('td');
         td.dataset.label = c[0];
         td.textContent = c[1];
+        if (c[1] === '-') td.className = 'is-empty';
         tr.appendChild(td);
       });
       els.body.appendChild(tr);
