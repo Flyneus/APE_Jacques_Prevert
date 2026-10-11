@@ -4,8 +4,14 @@
   'use strict';
 
   var SIGNATAIRES = {
-    directrice: { titre: "La directrice de l'école,", nom: 'Isabelle Rivière' },
-    president: { titre: "Le président de l'APE,", nom: 'Florian Masseube' }
+    directrice: {
+      titre: "La directrice de l'école,", nom: 'Isabelle Rivière',
+      coordonnees: ["Directrice de l'école primaire Jacques Prévert", '30 rue Henri Dunant', '29000 Quimper', 'ec.0291701S@ac-rennes.fr']
+    },
+    president: {
+      titre: "Le président de l'APE,", nom: 'Florian Masseube',
+      coordonnees: ["Président de l'Association des Parents d'Élèves de l'école Jacques Prévert (APE)", '30 rue Henri Dunant', '29000 Quimper', 'apejacquesprevertquimper@gmail.com']
+    }
   };
   var LIB = 'vendor/jspdf.umd.min.js';
   var LOGO = 'images/logo.png';
@@ -31,30 +37,36 @@
     var left = 25, right = 185, width = right - left;
     var person = clean(data.prenom) + ' ' + clean(data.nom);
 
-    // En-tête : l'APE
-    var textX = left;
+    // En-tête : coordonnées de la directrice (à gauche) et du président de l'APE (à droite)
+    var colW = 72, rightX = right - colW;
     if (logoDataUrl) {
-      try { doc.addImage(logoDataUrl, 'PNG', left, 18, 32, 18.8); textX = left + 38; } catch (e) { textX = left; }
+      try { doc.addImage(logoDataUrl, 'PNG', rightX, 14, 22, 12.9); } catch (e) { /* sans logo */ }
     }
-    doc.setFont('helvetica', 'bold').setFontSize(12).setTextColor(30, 24, 20);
-    doc.text('APE École Jacques Prévert', textX, 23);
-    doc.setFont('helvetica', 'normal').setFontSize(10.5);
-    doc.text("Association des Parents d'Élèves", textX, 29);
-    doc.text('30 rue Henri Dunant - 29000 Quimper', textX, 34.5);
-    doc.text('apejacquesprevertquimper@gmail.com', textX, 40);
+    var headerBottom = 0;
+    [[left, SIGNATAIRES.directrice], [rightX, SIGNATAIRES.president]].forEach(function (c) {
+      var s = c[1], y0 = 33;
+      doc.setFont('helvetica', 'bold').setFontSize(11).setTextColor(30, 24, 20);
+      doc.text(s.nom, c[0], y0);
+      doc.setFont('helvetica', 'normal').setFontSize(10);
+      var lines = [];
+      s.coordonnees.forEach(function (l) { lines = lines.concat(doc.splitTextToSize(l, colW)); });
+      doc.text(lines, c[0], y0 + 5.2, { lineHeightFactor: 1.35 });
+      headerBottom = Math.max(headerBottom, y0 + 5.2 + lines.length * 4.9);
+    });
 
     // Date et objet
+    var dateY = Math.max(headerBottom + 14, 70);
     doc.setFontSize(11.5);
-    doc.text('À Quimper, le ' + longDate(data.date), right, 62, { align: 'right' });
-    doc.setFont('helvetica', 'bold').text('Objet :', left, 82);
-    doc.setFont('helvetica', 'normal').text('Attestation', left + 16, 82);
+    doc.text('À Quimper, le ' + longDate(data.date), right, dateY, { align: 'right' });
+    doc.setFont('helvetica', 'bold').text('Objet :', left, dateY + 18);
+    doc.setFont('helvetica', 'normal').text('Attestation', left + 16, dateY + 18);
 
     // Corps
     doc.setFontSize(12);
     var para1 = "Nous, soussignés, Isabelle Rivière, directrice de l'école Jacques Prévert de Quimper, et Florian Masseube, " +
       "président de l'Association des Parents d'Élèves de l'école Jacques Prévert (APE), attestons que";
     var lines = doc.splitTextToSize(para1, width);
-    var y = 105;
+    var y = dateY + 42;
     doc.text(lines, left, y, { lineHeightFactor: 1.6 });
     y += lines.length * 7.6 + 2;
     doc.setFont('helvetica', 'bold');
@@ -84,10 +96,6 @@
       doc.text('Signature', cols[i], y + 40);
       doc.setTextColor(30, 24, 20);
     });
-
-    // Pied de page
-    doc.setFontSize(8.5).setTextColor(110, 104, 98);
-    doc.text('APE École Jacques Prévert - 30 rue Henri Dunant - 29000 Quimper', 105, 287, { align: 'center' });
     return doc;
   }
 
