@@ -678,10 +678,27 @@
       <section class="section section-alt" id="tombola-documents">
         <div class="section-inner">
           <h2>3. Documents pratiques</h2>
+
+          <div class="attest-card">
+            <h3>Attestation de recherche de lots</h3>
+            <p>À remettre aux commerçants. Indiquez la date et le nom du bénévole, le PDF se télécharge avec les
+              signatures de la directrice et du président à apposer. Rien n'est envoyé : le document est créé
+              sur votre appareil.</p>
+            <form id="attestForm" class="attest-form" novalidate>
+              <label for="attestDate">Date</label>
+              <input type="date" id="attestDate" required>
+              <label for="attestPrenom">Prénom du bénévole</label>
+              <input type="text" id="attestPrenom" autocomplete="off" maxlength="60" required>
+              <label for="attestNom">Nom du bénévole</label>
+              <input type="text" id="attestNom" autocomplete="off" maxlength="60" required>
+              <button type="submit" class="btn btn-primary" id="attestSubmit">Télécharger le PDF</button>
+              <p class="lots-msg" id="attestMsg" role="status" aria-live="polite"></p>
+            </form>
+          </div>
+
           <ul class="doc-list">
             <li><a href="documents/exemple-reglement-tombola.docx" target="_blank" rel="noopener"><svg class="icon-inline"><use href="#icon-document"></use></svg>Exemple de règlement de la tombola (Word, à personnaliser)</a></li>
             <li><a href="https://www.formulaires.service-public.gouv.fr/gf/cerfa_11823.do" target="_blank" rel="noopener"><svg class="icon-inline"><use href="#icon-document"></use></svg>Cerfa 11823 : demande d'autorisation de loterie (formulaire en ligne)</a></li>
-            <li class="doc-pending"><span><svg class="icon-inline"><use href="#icon-document"></use></svg>Attestation de recherche de lots <em>(à ajouter)</em></span></li>
             <li class="doc-pending"><span><svg class="icon-inline"><use href="#icon-document"></use></svg>Courrier de demande de lots, à personnaliser <em>(à ajouter)</em></span></li>
           </ul>
         </div>
@@ -701,5 +718,6 @@
 <script src="script.js"></script>
 <script src="benevoles.js"></script>
 <script src="tombola.js"></script>
+<script src="attestation.js"></script>
 </body>
 </html>

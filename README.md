@@ -111,3 +111,7 @@ Page `photos.html`, générée à partir de `photos/albums.json`. Pour ajouter u
 ## Onglet Tombola
 
 La liste des commerçants est lue à l'ouverture de l'onglet depuis l'onglet « Liste » d'un Google Sheets (identifiants `SHEET_ID` et `SHEET_NAME` en tête de `tombola.js`). Les nouveaux commerçants arrivent par un Google Forms relié à la feuille, dont l'adresse se renseigne dans `FORM_URL`. Le classeur doit être partagé en **lecture** pour toute personne disposant du lien : ne jamais le laisser en édition publique. Aucune donnée personnelle dans la feuille.
+
+### Attestation de recherche de lots
+
+Le mini formulaire de la partie « Documents pratiques » (date, prénom, nom) crée un PDF A4 directement dans le navigateur avec `attestation.js` et la bibliothèque jsPDF 2.5.2 (licence MIT, copie locale dans `vendor/jspdf.umd.min.js`, chargée seulement au clic). Aucune donnée n'est envoyée. Les noms de la directrice et du président sont en tête de `attestation.js` (`SIGNATAIRES`) : à mettre à jour à chaque changement de bureau ou de direction.
