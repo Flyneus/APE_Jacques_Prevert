@@ -35,7 +35,8 @@
   function buildAttestation(jsPDF, data, logoDataUrl) {
     var doc = new jsPDF({ unit: 'mm', format: 'a4', compress: true });
     var left = 25, right = 185, width = right - left;
-    var person = clean(data.prenom) + ' ' + clean(data.nom);
+    var dots = '..............................................';
+    var person = (clean(data.prenom) + ' ' + clean(data.nom)).trim() || dots;
 
     // En-tête : coordonnées de la directrice (à gauche) et du président de l'APE (à droite)
     var colW = 72, rightX = right - colW;
@@ -57,7 +58,7 @@
     // Date et objet
     var dateY = Math.max(headerBottom + 14, 70);
     doc.setFontSize(11.5);
-    doc.text('À Quimper, le ' + longDate(data.date), right, dateY, { align: 'right' });
+    doc.text('À Quimper, le ' + (data.date ? longDate(data.date) : dots.slice(0, 26)), right, dateY, { align: 'right' });
     doc.setFont('helvetica', 'bold').text('Objet :', left, dateY + 18);
     doc.setFont('helvetica', 'normal').text('Attestation', left + 16, dateY + 18);
 
@@ -110,6 +111,7 @@
   var firstInput = document.getElementById('attestPrenom');
   var lastInput = document.getElementById('attestNom');
   var button = document.getElementById('attestSubmit');
+  var blankButton = document.getElementById('attestBlank');
   var message = document.getElementById('attestMsg');
 
   (function setToday() {
@@ -147,6 +149,17 @@
     }).catch(function () { return null; });
   }
 
+  function generate(data, filename, done) {
+    button.disabled = blankButton.disabled = true;
+    say('Création du PDF…', false);
+    Promise.all([loadLib(), loadLogo()]).then(function (r) {
+      buildAttestation(r[0], data, r[1]).save(filename);
+      say(done, false);
+    }).catch(function () {
+      say('Impossible de créer le PDF. Rechargez la page et réessayez.', true);
+    }).then(function () { button.disabled = blankButton.disabled = false; });
+  }
+
   form.addEventListener('submit', function (e) {
     e.preventDefault();
     var data = { date: dateInput.value, prenom: clean(firstInput.value), nom: clean(lastInput.value) };
@@ -154,14 +167,12 @@
       say('Merci d’indiquer la date, le prénom et le nom.', true);
       return;
     }
-    button.disabled = true;
-    say('Création du PDF…', false);
-    Promise.all([loadLib(), loadLogo()]).then(function (r) {
-      var doc = buildAttestation(r[0], data, r[1]);
-      doc.save('attestation-recherche-lots-' + slug(data.nom) + '-' + slug(data.prenom) + '.pdf');
-      say('Le PDF est téléchargé. Pensez à le faire signer par la directrice et le président.', false);
-    }).catch(function () {
-      say('Impossible de créer le PDF. Rechargez la page et réessayez.', true);
-    }).then(function () { button.disabled = false; });
+    generate(data, 'attestation-recherche-lots-' + slug(data.nom) + '-' + slug(data.prenom) + '.pdf',
+      'Le PDF est téléchargé. Pensez à le faire signer par la directrice et le président.');
+  });
+
+  blankButton.addEventListener('click', function () {
+    generate({ date: '', prenom: '', nom: '' }, 'attestation-recherche-lots-vierge.pdf',
+      'La version vierge est téléchargée : date et nom sont à compléter à la main, puis à signer.');
   });
 })();

@@ -691,7 +691,10 @@
               <input type="text" id="attestPrenom" autocomplete="off" maxlength="60" required>
               <label for="attestNom">Nom du bénévole</label>
               <input type="text" id="attestNom" autocomplete="off" maxlength="60" required>
-              <button type="submit" class="btn btn-primary" id="attestSubmit">Télécharger le PDF</button>
+              <div class="attest-actions">
+                <button type="submit" class="btn btn-primary" id="attestSubmit">Télécharger le PDF</button>
+                <button type="button" class="btn-chip" id="attestBlank">Version vierge à compléter à la main</button>
+              </div>
               <p class="lots-msg" id="attestMsg" role="status" aria-live="polite"></p>
             </form>
           </div>
