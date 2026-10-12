@@ -119,3 +119,7 @@ Le mini formulaire de la partie « Documents pratiques » (date, prénom, nom) c
 ## Référencement
 
 Titre, description, balises de partage et fiche « Organisation » (JSON-LD) sont en tête de `index.html` ; la page Photos reprend les balises de partage dans le modèle de `tools/build_photos.py`. L'image de partage (1200 x 630) se régénère avec `python tools/build_og_image.py`. Penser à mettre à jour les dates `lastmod` de `sitemap.xml` quand une page change. L'espace bénévoles reste exclu des moteurs (`noindex`) et n'est pas dans le sitemap.
+
+### Questions fréquentes et llms.txt
+
+La section « Questions fréquentes » de `index.html` est aussi déclarée dans les données structurées du `<head>` (FAQPage) : modifier les deux ensemble, avec le même texte. Elle contient des dates (ventes de gâteaux, kermesse) à mettre à jour à chaque nouvelle année scolaire, ainsi que `llms.txt` à la racine (résumé du site pour les assistants IA).
