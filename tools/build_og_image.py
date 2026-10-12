@@ -26,7 +26,7 @@ def main():
     d = ImageDraw.Draw(img)
 
     # photo à droite, coins arrondis
-    photo = ImageOps.fit(Image.open(ROOT / "images" / "photo-defile-drapeaux.jpg").convert("RGB"),
+    photo = ImageOps.fit(Image.open(ROOT / "images" / "photo-defile-drapeaux.webp").convert("RGB"),
                          (460, 630), Image.LANCZOS, centering=(0.5, 0.45))
     mask = Image.new("L", photo.size, 0)
     ImageDraw.Draw(mask).rounded_rectangle((0, 0, photo.size[0], photo.size[1]), radius=0, fill=255)
