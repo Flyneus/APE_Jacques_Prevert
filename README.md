@@ -104,7 +104,7 @@ Toute nouvelle donnée collectée ou nouveau service tiers doit être ajouté à
 
 ## Photos des événements
 
-Page `photos.html`, générée à partir de `photos/albums.json`. Pour ajouter un album : préparer un fichier `meta.json` (id, année scolaire, titre, date, dossier source, photo de couverture, description de chaque photo), puis lancer `python tools/build_photos.py add meta.json`. Les images sont redimensionnées et leurs métadonnées (dont la position GPS) supprimées. `python tools/build_photos.py build` régénère seulement la page.
+Page `photos.html`, générée à partir de `photos/albums.json`. Pour ajouter un album : préparer un fichier `meta.json` (id, année scolaire, titre, date, dossier source, photo de couverture, description de chaque photo), puis lancer `python tools/build_photos.py add meta.json`. Les images sont redimensionnées et leurs métadonnées (dont la position GPS) supprimées. `python tools/build_photos.py build` régénère seulement la page. Chaque album reçoit aussi automatiquement une archive ZIP de ses photos (bouton « Télécharger les photos »), recréée à chaque génération.
 
 ⚠️ Le site est public : ne publier que des photos sans visage d'enfant identifiable (flouter sinon) et retirer rapidement toute photo sur demande.
 

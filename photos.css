@@ -81,8 +81,12 @@
   border-color: var(--color-orange);
 }
 
+.album-download {
+  margin: 0 0 1.25rem;
+}
+
 .album-meta {
-  margin: 0 0 1rem;
+  margin: 0 0 0.75rem;
   color: var(--color-text-light);
 }
 

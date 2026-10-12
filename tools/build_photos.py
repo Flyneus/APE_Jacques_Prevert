@@ -12,6 +12,7 @@ Les images sont redimensionnées, les métadonnées (EXIF, position GPS) supprim
 import html
 import json
 import sys
+import zipfile
 from pathlib import Path
 
 from PIL import Image, ImageOps
@@ -56,6 +57,21 @@ def path(a, *parts):
     return "/".join(("photos", a["year"], a["id"]) + parts)
 
 
+def make_zip(a):
+    """Archive de toutes les photos de l'album (JPEG déjà compressés : stockage sans recompression)."""
+    folder = ROOT / "photos" / a["year"] / a["id"]
+    name = f"ape-jacques-prevert-{a['id']}.zip"
+    with zipfile.ZipFile(folder / name, "w", zipfile.ZIP_STORED) as z:
+        for p in a["photos"]:
+            z.write(folder / p["file"], p["file"])
+    size = (folder / name).stat().st_size
+    if size >= 1024 * 1024:
+        label = f"{size / 1024 / 1024:.1f}".replace(".", ",") + " Mo"
+    else:
+        label = f"{size // 1024} Ko"
+    return "/".join(("photos", a["year"], a["id"], name)), label
+
+
 def build():
     albums = sorted(load()["albums"], key=lambda a: a["date"], reverse=True)
     years = sorted({a["year"] for a in albums}, reverse=True)
@@ -73,6 +89,7 @@ def build():
         index.append(f'        <h2>Année scolaire {e(y)}</h2>\n        <div class="album-grid">\n' + "\n".join(cards) + "\n        </div>")
     for a in albums:
         n = len(a["photos"])
+        zip_href, zip_size = make_zip(a)
         links = "\n".join(
             f'          <a class="photo-link" href="{path(a, p["file"])}" data-caption="{e(p["alt"])}">'
             f'<img src="{path(a, "thumbs", p["file"])}" alt="{e(p["alt"])}" width="{THUMB}" height="{THUMB}" loading="lazy"></a>'
@@ -82,6 +99,9 @@ def build():
             f'        <a class="album-back" href="#">← Tous les albums</a>\n'
             f'        <h2>{e(a["title"])}</h2>\n'
             f'        <p class="album-meta">{e(a["date_label"])} - {n} photo{"s" if n > 1 else ""}</p>\n'
+            f'        <p class="album-download"><a class="btn btn-secondary" href="{zip_href}" download>'
+            f'<svg class="icon-inline" aria-hidden="true"><use href="#icon-download"></use></svg>'
+            f'Télécharger les {n} photos (ZIP, {zip_size})</a></p>\n'
             f'        <div class="photo-grid">\n{links}\n        </div>\n'
             f'      </article>')
     page = TEMPLATE.replace("@@INDEX@@", "\n".join(index)).replace("@@ALBUMS@@", "\n".join(sections))
@@ -122,6 +142,11 @@ TEMPLATE = """<!DOCTYPE html>
     <path d="M2.3 20c0-3.9 3-6.5 6.7-6.5S15.7 16.1 15.7 20H2.3z"/>
     <circle cx="17.2" cy="9" r="2.6" opacity="0.6"/>
     <path d="M15 13.9c2.7.6 4.7 3 4.7 6.1H17" opacity="0.6"/>
+  </symbol>
+
+  <symbol id="icon-download" viewBox="0 0 24 24">
+    <path d="M12 3a1 1 0 0 1 1 1v8.6l2.8-2.8a1 1 0 1 1 1.4 1.4l-4.5 4.5a1 1 0 0 1-1.4 0l-4.5-4.5a1 1 0 1 1 1.4-1.4l2.8 2.8V4a1 1 0 0 1 1-1z"/>
+    <path d="M4 17a1 1 0 0 1 1 1v1h14v-1a1 1 0 1 1 2 0v1a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-1a1 1 0 0 1 1-1z"/>
   </symbol>
 
   <symbol id="icon-mail" viewBox="0 0 24 24">
