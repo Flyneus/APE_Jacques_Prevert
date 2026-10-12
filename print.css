@@ -1,0 +1,102 @@
+/* Impression : on garde le contenu, on retire le décor, la navigation et les boutons. */
+@media print {
+  @page {
+    margin: 1.5cm;
+  }
+
+  html,
+  body {
+    background: #fff !important;
+    color: #000 !important;
+    font-size: 11pt;
+    line-height: 1.4;
+  }
+
+  /* Navigation, décor et éléments interactifs inutiles sur papier */
+  .site-header,
+  .nav-toggle,
+  .main-nav,
+  .hero-blob,
+  .wave-divider,
+  .hero-gallery,
+  .hero-right .btn,
+  .btn,
+  .btn-chip,
+  .event-actions,
+  .volunteer-callout,
+  .contact-form,
+  .vtabs,
+  .tombola-nav,
+  .tombola-side,
+  .lots-tools,
+  .lots-more,
+  .lots-refresh,
+  .album-back,
+  .album-download,
+  #lightbox,
+  #gate,
+  .skip-link {
+    display: none !important;
+  }
+
+  /* Fonds, ombres et bordures décoratives : économie d'encre */
+  .section,
+  .section-alt,
+  .hero,
+  .info-card,
+  .event-card,
+  .action-card,
+  .procedure,
+  .faq-item,
+  .tombola-card,
+  .tombola-howto,
+  .attest-card {
+    background: #fff !important;
+    box-shadow: none !important;
+  }
+
+  .section {
+    padding: 0.8rem 0 !important;
+  }
+
+  .icon-badge {
+    background: none !important;
+    box-shadow: none !important;
+  }
+
+  h1,
+  h2,
+  h3 {
+    color: #000 !important;
+    break-after: avoid;
+  }
+
+  h2::after {
+    display: none !important;
+  }
+
+  .info-card,
+  .event-card,
+  .action-card,
+  .procedure,
+  .faq-item,
+  tr {
+    break-inside: avoid;
+  }
+
+  img {
+    max-width: 100%;
+  }
+
+  a {
+    color: #000 !important;
+    text-decoration: underline;
+  }
+
+  /* Adresse des liens externes imprimée à la suite du texte */
+  main a[href^="http"]:not(.btn):not(.btn-chip)::after {
+    content: " (" attr(href) ")";
+    font-size: 0.85em;
+    word-break: break-all;
+  }
+}

@@ -133,6 +133,7 @@ TEMPLATE = """<!DOCTYPE html>
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="stylesheet" href="style.css">
 <link rel="stylesheet" href="photos.css">
+<link rel="stylesheet" href="print.css" media="print">
 </head>
 <body>
 

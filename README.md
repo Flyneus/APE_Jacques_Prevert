@@ -123,3 +123,7 @@ Titre, description, balises de partage et fiche « Organisation » (JSON-LD) son
 ### Questions fréquentes et llms.txt
 
 La section « Questions fréquentes » de `index.html` est aussi déclarée dans les données structurées du `<head>` (FAQPage) : modifier les deux ensemble, avec le même texte. Elle contient des dates (ventes de gâteaux, kermesse) à mettre à jour à chaque nouvelle année scolaire, ainsi que `llms.txt` à la racine (résumé du site pour les assistants IA).
+
+## Impression
+
+`print.css` (lié avec `media="print"` sur toutes les pages) masque l'en-tête, les boutons, les formulaires et les décors, et passe les fonds en blanc pour économiser l'encre. Les liens externes y sont imprimés avec leur adresse.
