@@ -115,3 +115,7 @@ La liste des commerçants est lue à l'ouverture de l'onglet depuis l'onglet « 
 ### Attestation de recherche de lots
 
 Le mini formulaire de la partie « Documents pratiques » (date, prénom, nom) crée un PDF A4 directement dans le navigateur avec `attestation.js` et la bibliothèque jsPDF 2.5.2 (licence MIT, copie locale dans `vendor/jspdf.umd.min.js`, chargée seulement au clic). Aucune donnée n'est envoyée. Les noms de la directrice et du président sont en tête de `attestation.js` (`SIGNATAIRES`) : à mettre à jour à chaque changement de bureau ou de direction.
+
+## Référencement
+
+Titre, description, balises de partage et fiche « Organisation » (JSON-LD) sont en tête de `index.html` ; la page Photos reprend les balises de partage dans le modèle de `tools/build_photos.py`. L'image de partage (1200 x 630) se régénère avec `python tools/build_og_image.py`. Penser à mettre à jour les dates `lastmod` de `sitemap.xml` quand une page change. L'espace bénévoles reste exclu des moteurs (`noindex`) et n'est pas dans le sitemap.

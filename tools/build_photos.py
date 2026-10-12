@@ -94,9 +94,22 @@ TEMPLATE = """<!DOCTYPE html>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Photos des événements - APE École Jacques Prévert</title>
+<title>Photos des événements - APE École Jacques Prévert Quimper</title>
 <meta name="description" content="Les photos des événements de l'APE de l'école Jacques Prévert à Quimper : ventes de gâteaux, kermesse et autres moments.">
 <link rel="canonical" href="https://ape-jacquesprevert.fr/photos.html">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:site_name" content="APE École Jacques Prévert">
+<meta property="og:title" content="Photos des événements - APE École Jacques Prévert Quimper">
+<meta property="og:description" content="Les photos des événements de l'APE de l'école Jacques Prévert à Quimper : ventes de gâteaux, kermesse et autres moments.">
+<meta property="og:url" content="https://ape-jacquesprevert.fr/photos.html">
+<meta property="og:image" content="https://ape-jacquesprevert.fr/images/og-image.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="APE École Jacques Prévert, association des parents d'élèves à Quimper">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://ape-jacquesprevert.fr/images/og-image.jpg">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="stylesheet" href="style.css">
 <link rel="stylesheet" href="photos.css">
