@@ -114,7 +114,7 @@ La liste des commerçants est lue à l'ouverture de l'onglet depuis l'onglet « 
 
 ### Attestation de recherche de lots
 
-Le mini formulaire de la partie « Documents pratiques » (date, prénom, nom) crée un PDF A4 directement dans le navigateur avec `attestation.js` et la bibliothèque jsPDF 2.5.2 (licence MIT, copie locale dans `vendor/jspdf.umd.min.js`, chargée seulement au clic). Aucune donnée n'est envoyée. Les noms de la directrice et du président sont en tête de `attestation.js` (`SIGNATAIRES`) : à mettre à jour à chaque changement de bureau ou de direction.
+Le mini formulaire de la partie « Documents pratiques » (date, prénom, nom) crée un PDF A4 directement dans le navigateur avec `attestation.js` et la bibliothèque jsPDF 4.2.1 (licence MIT, copie locale dans `vendor/jspdf.umd.min.js`, chargée seulement au clic). Aucune donnée n'est envoyée. Les noms de la directrice et du président sont en tête de `attestation.js` (`SIGNATAIRES`) : à mettre à jour à chaque changement de bureau ou de direction.
 
 ## Référencement
 
