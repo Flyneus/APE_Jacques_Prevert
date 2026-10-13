@@ -15,7 +15,8 @@
 
 ## Pages
 
-- [Accueil : association, événements, actions, documents, bureau, contact, questions fréquentes](https://ape-jacquesprevert.fr/)
+- [Accueil : association, événements, actions, documents, bureau, contact](https://ape-jacquesprevert.fr/)
+- [Questions fréquentes : adhésion, ventes de gâteaux, kermesse, bénévolat, contact](https://ape-jacquesprevert.fr/faq.html)
 - [Photos des événements](https://ape-jacquesprevert.fr/photos.html)
 - [Mentions légales et confidentialité](https://ape-jacquesprevert.fr/mentions-legales.html)
 

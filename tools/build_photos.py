@@ -173,6 +173,7 @@ TEMPLATE = """<!DOCTYPE html>
           <a href="index.html#nos-actions">Nos actions</a>
           <a href="index.html#bureau">Le bureau</a>
           <a href="index.html#documents">Documents</a>
+          <a href="faq.html">Questions fréquentes</a>
         </div>
       </div>
       <a href="index.html#evenements">Événements</a>
