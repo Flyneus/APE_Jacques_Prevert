@@ -110,7 +110,7 @@ Page `photos.html`, générée à partir de `photos/albums.json`. Pour ajouter u
 
 ## Onglet Tombola
 
-La liste des commerçants est lue à l'ouverture de l'onglet depuis l'onglet « Liste » d'un Google Sheets (identifiants `SHEET_ID` et `SHEET_NAME` en tête de `tombola.js`). Les nouveaux commerçants arrivent par un Google Forms relié à la feuille, dont l'adresse se renseigne dans `FORM_URL`. Le classeur doit être partagé en **lecture** pour toute personne disposant du lien : ne jamais le laisser en édition publique. Aucune donnée personnelle dans la feuille.
+La liste des commerçants est lue à l'ouverture de l'onglet depuis l'onglet « Liste site internet » d'un Google Sheets (identifiants `SHEET_ID` et `SHEET_NAME` en tête de `tombola.js`). Les nouveaux commerçants arrivent par un Google Forms relié à la feuille, dont l'adresse se renseigne dans `FORM_URL`. Le classeur doit être partagé en **lecture** pour toute personne disposant du lien : ne jamais le laisser en édition publique. Aucune donnée personnelle dans la feuille.
 
 ### Attestation de recherche de lots
 

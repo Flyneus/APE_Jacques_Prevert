@@ -553,9 +553,16 @@
   font-size: 0.9rem;
 }
 
-.lots-table th:nth-child(1) { width: 52%; }
-.lots-table th:nth-child(2) { width: 18%; }
-.lots-table th:nth-child(3) { width: 30%; }
+.lots-table th:nth-child(1) { width: 32%; }
+.lots-table th:nth-child(2) { width: 14%; }
+.lots-table th:nth-child(3) { width: 20%; }
+.lots-table th:nth-child(4) { width: 34%; }
+
+.lots-table td[data-label="Notes"] {
+  font-size: 0.92rem;
+  white-space: pre-line;
+  overflow-wrap: anywhere;
+}
 
 .lots-table td {
   font-size: 1rem;
@@ -966,7 +973,16 @@
     margin: 0 0.5rem;
   }
 
-  .lots-table td[data-label="Lieu"].is-empty {
+  .lots-table td[data-label="Lieu"].is-empty,
+  .lots-table td[data-label="Notes"].is-empty {
     display: none;
+  }
+
+  .lots-table td[data-label="Notes"] {
+    flex: 0 0 100%;
+    margin-top: 0.25rem;
+    padding-top: 0.3rem;
+    border-top: 1px dashed var(--color-border);
+    font-style: italic;
   }
 }

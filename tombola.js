@@ -4,7 +4,7 @@
   'use strict';
 
   var SHEET_ID = '1xiFy-2lTsnRQfnrv7EjvTDdrHe16Daj_wCWrsT32Sgk';
-  var SHEET_NAME = 'Liste';
+  var SHEET_NAME = 'Liste site internet';
   var FORM_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSckOL9bT3QjDCqbEawJQga2Ok8pxwW4MewS29qDLHThvn5Vzg/viewform';
   var FORM_ACTION = FORM_URL.replace('/viewform', '/formResponse');
   var ENTRY = { name: 'entry.1671062358', place: 'entry.2107192009', person: 'entry.655551247' };
@@ -159,7 +159,7 @@
         var rows = parseCSV(text).slice(1);
         data = rows.filter(function (r) { return (r[0] || '').trim(); }).map(function (r) {
           var name = r[0].trim();
-          return { name: name, place: (r[1] || '').trim(), person: (r[2] || '').trim(), key: norm(name) };
+          return { name: name, place: (r[1] || '').trim(), person: (r[2] || '').trim(), note: (r[3] || '').trim(), key: norm(name) };
         });
         var now = Date.now();
         pending = pending.filter(function (p) { return now - p.at < 15 * 60 * 1000; });
@@ -255,7 +255,7 @@
     var hidden = state.expanded ? 0 : Math.max(0, rows.length - PREVIEW);
     rows.slice(0, rows.length - hidden).forEach(function (r) {
       var tr = document.createElement('tr');
-      [['Commerçant', r.d.name], ['Lieu', r.d.place || '-'], ['Personne en charge', r.d.person || '-']].forEach(function (c) {
+      [['Commerçant', r.d.name], ['Lieu', r.d.place || '-'], ['Personne en charge', r.d.person || '-'], ['Notes', r.d.note || '-']].forEach(function (c) {
         var td = document.createElement('td');
         td.dataset.label = c[0];
         td.textContent = c[1];
