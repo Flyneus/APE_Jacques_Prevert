@@ -986,3 +986,48 @@
     font-style: italic;
   }
 }
+
+/* Encadré d'avertissement dans une fiche de procédure */
+
+.procedure-alert {
+  margin: 1.5rem 0 0.5rem;
+  padding: 0.9rem 1.1rem 1rem;
+  background: #fdf1f2;
+  border: 2px solid var(--color-red);
+  border-radius: var(--radius);
+}
+
+.procedure-alert-title {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin: 0 0 0.5rem;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: var(--color-red);
+}
+
+.procedure-alert-title::before {
+  content: "!";
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.6rem;
+  height: 1.6rem;
+  border-radius: 50%;
+  background: var(--color-red);
+  color: #fff;
+  font-size: 1rem;
+  line-height: 1;
+}
+
+.procedure-alert ul {
+  margin: 0;
+  padding-left: 1.2rem;
+}
+
+.procedure-alert li {
+  margin: 0.3rem 0;
+}
