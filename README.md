@@ -127,3 +127,7 @@ La page `faq.html` (questions fréquentes) est aussi déclarée dans ses donnée
 ## Impression
 
 `print.css` (lié avec `media="print"` sur toutes les pages) masque l'en-tête, les boutons, les formulaires et les décors, et passe les fonds en blanc pour économiser l'encre. Les liens externes y sont imprimés avec leur adresse.
+
+## Convention d'occupation des locaux
+
+La fiche « Convention d'occupation des locaux de l'école » (onglet Procédures) résume les obligations de l'APE d'après le modèle de la Ville de Quimper (`documents/modele-convention-occupation-locaux-ape.doc`, année scolaire 2026-2027). Le nom de l'auteur d'origine a été retiré des propriétés du fichier. À mettre à jour (fiche et document) à chaque nouvelle convention.
