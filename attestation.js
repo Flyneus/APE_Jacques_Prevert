@@ -15,6 +15,11 @@
   };
   var LIB = 'vendor/jspdf.umd.min.js';
   var LOGO = 'images/logo.png';
+  // Signatures scannées (PNG transparents) et taille d'affichage en mm [largeur, hauteur].
+  var SIGNATURES = {
+    directrice: { src: 'images/signature-directrice.png', size: [39, 24] },
+    president: { src: 'images/signature-president.png', size: [34, 24] }
+  };
 
   function longDate(iso) {
     var p = String(iso).split('-');
@@ -32,7 +37,11 @@
   }
 
   // Construit le document PDF (A4) à partir de { date: 'AAAA-MM-JJ', prenom, nom }.
-  function buildAttestation(jsPDF, data, logoDataUrl) {
+  // assets : { logo, directrice, president } (images en data URL, toutes facultatives).
+  function buildAttestation(jsPDF, data, assets) {
+    if (typeof assets === 'string') assets = { logo: assets };
+    assets = assets || {};
+    var logoDataUrl = assets.logo;
     var doc = new jsPDF({ unit: 'mm', format: 'a4', compress: true });
     var left = 25, right = 185, width = right - left;
     var dots = '..............................................';
@@ -76,7 +85,7 @@
     doc.setFont('helvetica', 'normal');
     y += nameLines.length * 7.6 + 0.4;
     var para2 = "est missionné(e) par l'Association des Parents d'Élèves de l'école Jacques Prévert pour une recherche de lots " +
-      "en vue de la kermesse de l'école.";
+      "en vue de la kermesse de l'école, qui aura lieu le 19 ou le 26 juin 2027, selon l'accord de la mairie.";
     lines = doc.splitTextToSize(para2, width);
     doc.text(lines, left, y, { lineHeightFactor: 1.6 });
     y += lines.length * 7.6 + 6;
@@ -87,10 +96,15 @@
 
     // Deux signatures
     var cols = [left, left + width / 2 + 5];
-    [SIGNATAIRES.directrice, SIGNATAIRES.president].forEach(function (s, i) {
+    ['directrice', 'president'].forEach(function (k, i) {
+      var s = SIGNATAIRES[k];
       doc.setFont('helvetica', 'normal').setFontSize(11.5);
       doc.text(s.titre, cols[i], y);
       doc.setFont('helvetica', 'bold').text(s.nom, cols[i], y + 6);
+      if (assets[k]) {
+        var sz = SIGNATURES[k].size;
+        try { doc.addImage(assets[k], 'PNG', cols[i] + 6, y + 34 - sz[1], sz[0], sz[1]); } catch (e) { /* sans signature */ }
+      }
       doc.setDrawColor(190, 184, 178).setLineWidth(0.3);
       doc.line(cols[i], y + 36, cols[i] + 68, y + 36);
       doc.setFont('helvetica', 'normal').setFontSize(8.5).setTextColor(110, 104, 98);
@@ -137,8 +151,8 @@
     });
   }
 
-  function loadLogo() {
-    return fetch(LOGO).then(function (r) { return r.ok ? r.blob() : null; }).then(function (b) {
+  function loadImage(url) {
+    return fetch(url).then(function (r) { return r.ok ? r.blob() : null; }).then(function (b) {
       if (!b) return null;
       return new Promise(function (resolve) {
         var fr = new FileReader();
@@ -152,8 +166,8 @@
   function generate(data, filename, done) {
     button.disabled = blankButton.disabled = true;
     say('Création du PDF…', false);
-    Promise.all([loadLib(), loadLogo()]).then(function (r) {
-      buildAttestation(r[0], data, r[1]).save(filename);
+    Promise.all([loadLib(), loadImage(LOGO), loadImage(SIGNATURES.directrice.src), loadImage(SIGNATURES.president.src)]).then(function (r) {
+      buildAttestation(r[0], data, { logo: r[1], directrice: r[2], president: r[3] }).save(filename);
       say(done, false);
     }).catch(function () {
       say('Impossible de créer le PDF. Rechargez la page et réessayez.', true);
@@ -168,11 +182,11 @@
       return;
     }
     generate(data, 'attestation-recherche-lots-' + slug(data.nom) + '-' + slug(data.prenom) + '.pdf',
-      'Le PDF est téléchargé. Pensez à le faire signer par la directrice et le président.');
+      'Le PDF est téléchargé, avec les signatures de la directrice et du président.');
   });
 
   blankButton.addEventListener('click', function () {
     generate({ date: '', prenom: '', nom: '' }, 'attestation-recherche-lots-vierge.pdf',
-      'La version vierge est téléchargée : date et nom sont à compléter à la main, puis à signer.');
+      'La version vierge est téléchargée, avec les deux signatures : date et nom sont à compléter à la main.');
   });
 })();

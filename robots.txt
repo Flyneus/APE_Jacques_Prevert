@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
+Disallow: /images/signature-
 
 Sitemap: https://ape-jacquesprevert.fr/sitemap.xml
