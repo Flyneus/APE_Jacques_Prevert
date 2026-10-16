@@ -85,7 +85,7 @@
     doc.setFont('helvetica', 'normal');
     y += nameLines.length * 7.6 + 0.4;
     var para2 = "est missionné(e) par l'Association des Parents d'Élèves de l'école Jacques Prévert pour une recherche de lots " +
-      "en vue de la kermesse de l'école, qui aura lieu le 19 ou le 26 juin 2027, selon l'accord de la mairie.";
+      "en vue de la kermesse de l'école, qui aura lieu le samedi 19 ou le samedi 26 juin 2027, selon l'accord de la mairie.";
     lines = doc.splitTextToSize(para2, width);
     doc.text(lines, left, y, { lineHeightFactor: 1.6 });
     y += lines.length * 7.6 + 6;
