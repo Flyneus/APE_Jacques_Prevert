@@ -1,5 +1,5 @@
-// Générateur de l'attestation de recherche de lots (onglet Tombola) :
-// le PDF est créé dans le navigateur, aucune donnée n'est envoyée.
+// Générateurs de PDF de l'onglet Tombola : attestation de recherche de lots et courrier de demande de lots.
+// Les PDF sont créés dans le navigateur, aucune donnée n'est envoyée.
 (function () {
   'use strict';
 
@@ -12,6 +12,22 @@
       titre: "Le président de l'APE,", nom: 'Florian Masseube',
       coordonnees: ["Président de l'Association des Parents d'Élèves de l'école Jacques Prévert (APE)", '30 rue Henri Dunant', '29000 Quimper', 'apejacquesprevertquimper@gmail.com']
     }
+  };
+  // Courrier de demande de lots (texte modifiable ici)
+  var COURRIER = {
+    objet: 'Demande de lots pour la tombola de notre kermesse (19 ou 26 juin 2027)',
+    paragraphes: [
+      'Bonjour,',
+      "Je suis président de l'association des parents d'élèves de l'école Jacques Prévert (quartier de Kerfeunteun, à Quimper).",
+      "Nous organisons notre kermesse de fin d'année, qui aura lieu le samedi 19 ou le samedi 26 juin 2027, selon l'accord de la mairie. " +
+        'Pourriez-vous aider notre association en nous offrant des lots pour notre tombola ? Nous imprimons 2000 tickets et, ' +
+        "pour les plus gros lots, nous pouvons en contrepartie placer le logo de l'entreprise sur les tickets.",
+      "D'autre part, pour diversifier l'offre d'aide à notre association, lorsque les lots ne sont pas possibles, nous proposons " +
+        "aussi un encart payant sur nos supports de communication lors de cet événement : l'encart logo est au minimum à 50 €.",
+      'Vous pouvez répondre à Marlène Chamonard, qui coordonne la recherche de lots (m.chamonard@yahoo.fr, 06 61 65 75 80), ' +
+        'ou à apejacquesprevertquimper@gmail.com.',
+      "En vous remerciant par avance pour votre aide précieuse."
+    ]
   };
   var LIB = 'vendor/jspdf.umd.min.js';
   var LOGO = 'images/logo.png';
@@ -114,30 +130,84 @@
     return doc;
   }
 
-  if (typeof module !== 'undefined' && module.exports) {
-    module.exports = { buildAttestation: buildAttestation, slug: slug, longDate: longDate, clean: clean };
+  // Courrier de demande de lots, signé par le président. data : { date: 'AAAA-MM-JJ' }.
+  function buildDemande(jsPDF, data, assets) {
+    assets = assets || {};
+    var doc = new jsPDF({ unit: 'mm', format: 'a4', compress: true });
+    var left = 25, right = 185, width = right - left;
+    var dots = '..............................';
+
+    if (assets.logo) {
+      try { doc.addImage(assets.logo, 'PNG', left, 14, 22, 12.9); } catch (e) { /* sans logo */ }
+    }
+    doc.setFont('helvetica', 'bold').setFontSize(11).setTextColor(30, 24, 20);
+    doc.text('APE École Jacques Prévert', left, 33);
+    doc.setFont('helvetica', 'normal').setFontSize(10);
+    var head = ["Association des parents d'élèves", 'École publique maternelle et primaire Jacques Prévert',
+      '30 rue Henri Dunant - 29000 Quimper', 'apejacquesprevertquimper@gmail.com'];
+    doc.text(head, left, 38.2, { lineHeightFactor: 1.35 });
+
+    var y = 38.2 + head.length * 4.9 + 10;
+    doc.setFontSize(11.5);
+    doc.text('À Quimper, le ' + (data.date ? longDate(data.date) : dots), right, y, { align: 'right' });
+    y += 14;
+    doc.setFont('helvetica', 'bold').text('Objet :', left, y);
+    var objet = doc.splitTextToSize(COURRIER.objet, width - 18);
+    doc.setFont('helvetica', 'normal').text(objet, left + 17, y, { lineHeightFactor: 1.5 });
+    y += objet.length * 6.4 + 8;
+
+    doc.setFontSize(11.5);
+    COURRIER.paragraphes.forEach(function (para) {
+      var lines = doc.splitTextToSize(para, width);
+      doc.text(lines, left, y, { lineHeightFactor: 1.55 });
+      y += lines.length * 7.1 + 3;
+    });
+
+    // Signature du président
+    y += 4;
+    var x = 115;
+    doc.text('Bien cordialement,', x, y);
+    var sz = SIGNATURES.president.size;
+    if (assets.president) {
+      try { doc.addImage(assets.president, 'PNG', x, y + 3, sz[0], sz[1]); } catch (e) { /* sans signature */ }
+    }
+    var ny = y + 3 + sz[1] + 6;
+    doc.setFont('helvetica', 'bold').text(SIGNATAIRES.president.nom, x, ny);
+    doc.setFont('helvetica', 'normal').setFontSize(10.5);
+    doc.text("Président de l'APE École Jacques Prévert", x, ny + 5.5);
+    return doc;
   }
 
-  var form = typeof document !== 'undefined' && document.getElementById('attestForm');
-  if (!form) return;
+  if (typeof module !== 'undefined' && module.exports) {
+    module.exports = { buildAttestation: buildAttestation, buildDemande: buildDemande, slug: slug, longDate: longDate, clean: clean };
+  }
 
-  var dateInput = document.getElementById('attestDate');
-  var firstInput = document.getElementById('attestPrenom');
-  var lastInput = document.getElementById('attestNom');
-  var button = document.getElementById('attestSubmit');
-  var blankButton = document.getElementById('attestBlank');
-  var message = document.getElementById('attestMsg');
+  if (typeof document === 'undefined' || !document.getElementById('attestForm')) return;
 
-  (function setToday() {
+  var attest = {
+    form: document.getElementById('attestForm'),
+    date: document.getElementById('attestDate'),
+    first: document.getElementById('attestPrenom'),
+    last: document.getElementById('attestNom'),
+    submit: document.getElementById('attestSubmit'),
+    blank: document.getElementById('attestBlank'),
+    msg: document.getElementById('attestMsg')
+  };
+  var courrier = {
+    form: document.getElementById('courrierForm'),
+    date: document.getElementById('courrierDate'),
+    submit: document.getElementById('courrierSubmit'),
+    msg: document.getElementById('courrierMsg')
+  };
+
+  function today() {
     var n = new Date();
-    var m = String(n.getMonth() + 1).padStart(2, '0');
-    var d = String(n.getDate()).padStart(2, '0');
-    dateInput.value = n.getFullYear() + '-' + m + '-' + d;
-  })();
+    return n.getFullYear() + '-' + String(n.getMonth() + 1).padStart(2, '0') + '-' + String(n.getDate()).padStart(2, '0');
+  }
 
-  function say(text, error) {
-    message.textContent = text;
-    message.className = 'lots-msg ' + (error ? 'lots-msg-error' : 'lots-msg-ok');
+  function say(el, text, error) {
+    el.textContent = text;
+    el.className = 'lots-msg ' + (error ? 'lots-msg-error' : 'lots-msg-ok');
   }
 
   function loadLib() {
@@ -163,30 +233,47 @@
     }).catch(function () { return null; });
   }
 
-  function generate(data, filename, done) {
-    button.disabled = blankButton.disabled = true;
-    say('Création du PDF…', false);
+  // Charge la bibliothèque et les images, construit le PDF puis le télécharge.
+  function generate(builder, buttons, msgEl, data, filename, done) {
+    buttons.forEach(function (b) { b.disabled = true; });
+    say(msgEl, 'Création du PDF…', false);
     Promise.all([loadLib(), loadImage(LOGO), loadImage(SIGNATURES.directrice.src), loadImage(SIGNATURES.president.src)]).then(function (r) {
-      buildAttestation(r[0], data, { logo: r[1], directrice: r[2], president: r[3] }).save(filename);
-      say(done, false);
+      builder(r[0], data, { logo: r[1], directrice: r[2], president: r[3] }).save(filename);
+      say(msgEl, done, false);
     }).catch(function () {
-      say('Impossible de créer le PDF. Rechargez la page et réessayez.', true);
-    }).then(function () { button.disabled = blankButton.disabled = false; });
+      say(msgEl, 'Impossible de créer le PDF. Rechargez la page et réessayez.', true);
+    }).then(function () { buttons.forEach(function (b) { b.disabled = false; }); });
   }
 
-  form.addEventListener('submit', function (e) {
+  attest.date.value = today();
+  attest.form.addEventListener('submit', function (e) {
     e.preventDefault();
-    var data = { date: dateInput.value, prenom: clean(firstInput.value), nom: clean(lastInput.value) };
+    var data = { date: attest.date.value, prenom: clean(attest.first.value), nom: clean(attest.last.value) };
     if (!data.date || !data.prenom || !data.nom) {
-      say('Merci d’indiquer la date, le prénom et le nom.', true);
+      say(attest.msg, 'Merci d’indiquer la date, le prénom et le nom.', true);
       return;
     }
-    generate(data, 'attestation-recherche-lots-' + slug(data.nom) + '-' + slug(data.prenom) + '.pdf',
+    generate(buildAttestation, [attest.submit, attest.blank], attest.msg, data,
+      'attestation-recherche-lots-' + slug(data.nom) + '-' + slug(data.prenom) + '.pdf',
       'Le PDF est téléchargé, avec les signatures de la directrice et du président.');
   });
 
-  blankButton.addEventListener('click', function () {
-    generate({ date: '', prenom: '', nom: '' }, 'attestation-recherche-lots-vierge.pdf',
+  attest.blank.addEventListener('click', function () {
+    generate(buildAttestation, [attest.submit, attest.blank], attest.msg, { date: '', prenom: '', nom: '' },
+      'attestation-recherche-lots-vierge.pdf',
       'La version vierge est téléchargée, avec les deux signatures : date et nom sont à compléter à la main.');
   });
+
+  if (courrier.form) {
+    courrier.date.value = today();
+    courrier.form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      if (!courrier.date.value) {
+        say(courrier.msg, 'Merci d’indiquer la date.', true);
+        return;
+      }
+      generate(buildDemande, [courrier.submit], courrier.msg, { date: courrier.date.value },
+        'courrier-demande-de-lots.pdf', 'Le courrier est téléchargé, signé par le président.');
+    });
+  }
 })();

@@ -705,10 +705,25 @@
             </div>
           </details>
 
+          <details class="attest-card" id="courrier-lots">
+            <summary><svg class="icon-inline"><use href="#icon-document"></use></svg>Courrier de demande de lots (PDF à générer)</summary>
+            <div class="attest-body">
+              <p>Lettre à remettre ou envoyer aux commerçants pour demander un lot. Indiquez la date, le PDF se télécharge avec la signature du
+                président. Rien n'est envoyé : le document est créé sur votre appareil.</p>
+              <form id="courrierForm" class="attest-form" novalidate>
+                <label for="courrierDate">Date</label>
+                <input type="date" id="courrierDate" required>
+                <div class="attest-actions">
+                  <button type="submit" class="btn btn-primary" id="courrierSubmit">Télécharger le courrier</button>
+                </div>
+                <p class="lots-msg" id="courrierMsg" role="status" aria-live="polite"></p>
+              </form>
+            </div>
+          </details>
+
           <ul class="doc-list">
             <li><a href="documents/exemple-reglement-tombola.docx" target="_blank" rel="noopener"><svg class="icon-inline"><use href="#icon-document"></use></svg>Exemple de règlement de la tombola (Word, à personnaliser)</a></li>
             <li><a href="https://www.formulaires.service-public.gouv.fr/gf/cerfa_11823.do" target="_blank" rel="noopener"><svg class="icon-inline"><use href="#icon-document"></use></svg>Cerfa 11823 : demande d'autorisation de loterie (formulaire en ligne)</a></li>
-            <li class="doc-pending"><span><svg class="icon-inline"><use href="#icon-document"></use></svg>Courrier de demande de lots, à personnaliser <em>(à ajouter)</em></span></li>
           </ul>
         </div>
       </section>
