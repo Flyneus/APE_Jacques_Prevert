@@ -137,9 +137,9 @@
   function contactParagraphe(data) {
     var moi = [data.email, data.tel].filter(Boolean).join(', ');
     if (moi) {
-      return 'Vous pouvez directement me répondre (' + moi + '), ou bien répondre à notre secrétaire (apejacquesprevertquimper@gmail.com).';
+      return 'Vous pouvez directement me répondre (' + moi + ') ou bien écrire à notre adresse de contact : apejacquesprevertquimper@gmail.com.';
     }
-    return 'Vous pouvez répondre à notre secrétaire (apejacquesprevertquimper@gmail.com).';
+    return 'Vous pouvez nous répondre à notre adresse de contact : apejacquesprevertquimper@gmail.com.';
   }
 
   // Courrier de demande de lots, signé du bénévole.
