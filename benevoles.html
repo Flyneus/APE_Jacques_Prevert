@@ -816,11 +816,21 @@
           <details class="attest-card" id="courrier-lots">
             <summary><svg class="icon-inline"><use href="#icon-document"></use></svg>Courrier de demande de lots (PDF à générer)</summary>
             <div class="attest-body">
-              <p>Lettre à remettre ou envoyer aux commerçants pour demander un lot. Indiquez la date, le PDF se télécharge avec la signature du
-                président. Rien n'est envoyé : le document est créé sur votre appareil.</p>
+              <p>Lettre à envoyer ou à remettre aux commerçants pour demander un lot. Indiquez la date et vos coordonnées : elles figurent
+                en signature. Rien n'est envoyé, le document est créé sur votre appareil. Pensez à joindre l'attestation de recherche de lots.</p>
               <form id="courrierForm" class="attest-form" novalidate>
-                <label for="courrierDate">Date</label>
+                <label for="courrierDate">À Quimper, le</label>
                 <input type="date" id="courrierDate" required>
+                <label for="courrierPrenom">Prénom</label>
+                <input type="text" id="courrierPrenom" autocomplete="given-name" maxlength="60" required>
+                <label for="courrierNom">Nom</label>
+                <input type="text" id="courrierNom" autocomplete="family-name" maxlength="60" required>
+                <label for="courrierAdresse">Adresse <span class="attest-opt">(facultatif)</span></label>
+                <input type="text" id="courrierAdresse" autocomplete="street-address" maxlength="120">
+                <label for="courrierTel">Téléphone <span class="attest-opt">(facultatif)</span></label>
+                <input type="tel" id="courrierTel" autocomplete="tel" maxlength="30">
+                <label for="courrierEmail">E-mail <span class="attest-opt">(facultatif)</span></label>
+                <input type="email" id="courrierEmail" autocomplete="email" maxlength="80">
                 <div class="attest-actions">
                   <button type="submit" class="btn btn-primary" id="courrierSubmit">Télécharger le courrier</button>
                 </div>

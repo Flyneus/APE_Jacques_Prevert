@@ -13,19 +13,22 @@
       coordonnees: ["Président de l'Association des Parents d'Élèves de l'école Jacques Prévert (APE)", '30 rue Henri Dunant', '29000 Quimper', 'apejacquesprevertquimper@gmail.com']
     }
   };
-  // Courrier de demande de lots (texte modifiable ici)
+  // Courrier de demande de lots (texte modifiable ici). Le paragraphe de contact est construit avec les
+  // coordonnées saisies dans le formulaire (voir contactParagraphe).
   var COURRIER = {
     objet: 'Demande de lots pour la tombola de notre kermesse (19 ou 26 juin 2027)',
-    paragraphes: [
+    avant: [
       'Bonjour,',
-      "Je suis président de l'association des parents d'élèves de l'école Jacques Prévert (quartier de Kerfeunteun, à Quimper).",
-      "Nous organisons notre kermesse de fin d'année, qui aura lieu le samedi 19 ou le samedi 26 juin 2027, selon l'accord de la mairie. " +
-        'Pourriez-vous aider notre association en nous offrant des lots pour notre tombola ? Nous imprimons 2000 tickets et, ' +
-        "pour les plus gros lots, nous pouvons en contrepartie placer le logo de l'entreprise sur les tickets.",
+      "Je suis membre de l'association des parents d'élèves de l'école Jacques Prévert (quartier de Kerfeunteun, à Quimper).",
+      "Nous organisons notre kermesse de fin d'année, qui aura lieu le samedi 19 ou le samedi 26 juin 2027, selon l'accord de la mairie.",
+      "Je viens vers vous afin de savoir si vous pourriez aider notre association en nous offrant des lots pour notre tombola/loterie. " +
+        "Vous trouverez en PJ le document signé de la directrice de l'école et de notre président attestant de ma démarche. " +
+        "Nous imprimons 2000 tickets et, pour les plus gros lots, nous pouvons, en contrepartie, placer le logo de l'entreprise donatrice sur les tickets.",
       "D'autre part, pour diversifier l'offre d'aide à notre association, lorsque les lots ne sont pas possibles, nous proposons " +
         "aussi un encart payant sur nos supports de communication lors de cet événement : l'encart logo est au minimum à 50 €.",
-      'Vous pouvez répondre à Marlène Chamonard, qui coordonne la recherche de lots (m.chamonard@yahoo.fr, 06 61 65 75 80), ' +
-        'ou à apejacquesprevertquimper@gmail.com.',
+      "Tout don, même minime, est une aide pour nous lors de cet événement et chaque offre trouvera sa place pendant cette journée conviviale."
+    ],
+    apres: [
       "En vous remerciant par avance pour votre aide précieuse."
     ]
   };
@@ -43,8 +46,8 @@
     return d.toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' });
   }
 
-  function clean(s) {
-    return String(s || '').replace(/[\u0000-\u001f\u007f]/g, '').replace(/\s+/g, ' ').trim().slice(0, 60);
+  function clean(s, max) {
+    return String(s || '').replace(/[\u0000-\u001f\u007f]/g, '').replace(/\s+/g, ' ').trim().slice(0, max || 60);
   }
 
   function slug(s) {
@@ -130,7 +133,17 @@
     return doc;
   }
 
-  // Courrier de demande de lots, signé par le président. data : { date: 'AAAA-MM-JJ' }.
+  // Phrase de contact : les coordonnées du bénévole si elles sont renseignées, puis l'adresse de l'association.
+  function contactParagraphe(data) {
+    var moi = [data.email, data.tel].filter(Boolean).join(', ');
+    if (moi) {
+      return 'Vous pouvez directement me répondre (' + moi + '), ou bien répondre à notre secrétaire (apejacquesprevertquimper@gmail.com).';
+    }
+    return 'Vous pouvez répondre à notre secrétaire (apejacquesprevertquimper@gmail.com).';
+  }
+
+  // Courrier de demande de lots, signé du bénévole.
+  // data : { date: 'AAAA-MM-JJ', prenom, nom, adresse, tel, email } (adresse, tel et email facultatifs).
   function buildDemande(jsPDF, data, assets) {
     assets = assets || {};
     var doc = new jsPDF({ unit: 'mm', format: 'a4', compress: true });
@@ -147,34 +160,36 @@
       '30 rue Henri Dunant - 29000 Quimper', 'apejacquesprevertquimper@gmail.com'];
     doc.text(head, left, 38.2, { lineHeightFactor: 1.35 });
 
-    var y = 38.2 + head.length * 4.9 + 10;
-    doc.setFontSize(11.5);
+    var y = 38.2 + head.length * 4.9 + 9;
+    doc.setFontSize(11);
     doc.text('À Quimper, le ' + (data.date ? longDate(data.date) : dots), right, y, { align: 'right' });
-    y += 14;
+    y += 12;
     doc.setFont('helvetica', 'bold').text('Objet :', left, y);
     var objet = doc.splitTextToSize(COURRIER.objet, width - 18);
     doc.setFont('helvetica', 'normal').text(objet, left + 17, y, { lineHeightFactor: 1.5 });
-    y += objet.length * 6.4 + 8;
+    y += objet.length * 6.2 + 6;
 
-    doc.setFontSize(11.5);
-    COURRIER.paragraphes.forEach(function (para) {
+    var paragraphes = COURRIER.avant.concat([contactParagraphe(data)], COURRIER.apres);
+    paragraphes.forEach(function (para) {
       var lines = doc.splitTextToSize(para, width);
-      doc.text(lines, left, y, { lineHeightFactor: 1.55 });
-      y += lines.length * 7.1 + 3;
+      doc.text(lines, left, y, { lineHeightFactor: 1.45 });
+      y += lines.length * 6.4 + 2.6;
     });
 
-    // Signature du président
-    y += 4;
-    var x = 115;
+    // Signature : coordonnées du bénévole
+    y += 2;
+    var x = 110, w = right - x;
     doc.text('Bien cordialement,', x, y);
-    var sz = SIGNATURES.president.size;
-    if (assets.president) {
-      try { doc.addImage(assets.president, 'PNG', x, y + 3, sz[0], sz[1]); } catch (e) { /* sans signature */ }
-    }
-    var ny = y + 3 + sz[1] + 6;
-    doc.setFont('helvetica', 'bold').text(SIGNATAIRES.president.nom, x, ny);
+    y += 6;
+    doc.setFont('helvetica', 'bold');
+    var nom = (clean(data.prenom) + ' ' + clean(data.nom)).trim() || dots;
+    doc.text(doc.splitTextToSize(nom, w), x, y + 8);
     doc.setFont('helvetica', 'normal').setFontSize(10.5);
-    doc.text("Président de l'APE École Jacques Prévert", x, ny + 5.5);
+    var sig = [];
+    if (data.adresse) sig = sig.concat(doc.splitTextToSize(data.adresse, w));
+    if (data.tel) sig.push(data.tel);
+    if (data.email) sig = sig.concat(doc.splitTextToSize(data.email, w));
+    doc.text(sig, x, y + 14.5, { lineHeightFactor: 1.35 });
     return doc;
   }
 
@@ -196,6 +211,11 @@
   var courrier = {
     form: document.getElementById('courrierForm'),
     date: document.getElementById('courrierDate'),
+    prenom: document.getElementById('courrierPrenom'),
+    nom: document.getElementById('courrierNom'),
+    adresse: document.getElementById('courrierAdresse'),
+    tel: document.getElementById('courrierTel'),
+    email: document.getElementById('courrierEmail'),
     submit: document.getElementById('courrierSubmit'),
     msg: document.getElementById('courrierMsg')
   };
@@ -268,12 +288,25 @@
     courrier.date.value = today();
     courrier.form.addEventListener('submit', function (e) {
       e.preventDefault();
-      if (!courrier.date.value) {
-        say(courrier.msg, 'Merci d’indiquer la date.', true);
+      var data = {
+        date: courrier.date.value,
+        prenom: clean(courrier.prenom.value),
+        nom: clean(courrier.nom.value),
+        adresse: clean(courrier.adresse.value, 120),
+        tel: clean(courrier.tel.value, 30),
+        email: clean(courrier.email.value, 80)
+      };
+      if (!data.date || !data.prenom || !data.nom) {
+        say(courrier.msg, 'Merci d’indiquer la date, votre prénom et votre nom.', true);
         return;
       }
-      generate(buildDemande, [courrier.submit], courrier.msg, { date: courrier.date.value },
-        'courrier-demande-de-lots.pdf', 'Le courrier est téléchargé, signé par le président.');
+      if (data.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)) {
+        say(courrier.msg, 'L’adresse e-mail ne semble pas valide.', true);
+        return;
+      }
+      generate(buildDemande, [courrier.submit], courrier.msg, data,
+        'courrier-demande-de-lots-' + slug(data.nom) + '-' + slug(data.prenom) + '.pdf',
+        'Le courrier est téléchargé. Joignez-y l’attestation de recherche de lots signée.');
     });
   }
 })();
