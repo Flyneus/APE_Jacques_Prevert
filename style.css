@@ -1212,36 +1212,48 @@ a {
   margin-left: 0;
 }
 
-/* ---------- Bannière d'un événement en cours ---------- */
+/* ---------- Événement en cours (kits à cuisiner) ---------- */
 
-.event-banner {
+.kits {
   position: relative;
   z-index: 1;
-  display: block;
-  max-width: 920px;
-  margin: 2rem auto 0.6rem;
+  max-width: 680px;
+  margin: 2rem auto 0;
   overflow: hidden;
+  background: var(--color-card);
+  border: 1px solid var(--color-border);
   border-radius: var(--radius);
   box-shadow: var(--shadow-soft);
-  transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
 
-.event-banner:hover {
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-pop);
-}
-
-.event-banner img {
+.kits-img {
   display: block;
   width: 100%;
   height: auto;
 }
 
-.event-banner-caption {
-  position: relative;
-  z-index: 1;
-  max-width: 920px;
-  margin: 0 auto 0;
+.kits-body {
+  padding: 1.25rem 1.25rem 1.5rem;
   text-align: center;
-  font-weight: 600;
+}
+
+.kits-title {
+  margin: 0 0 0.35rem;
+  padding: 0;
+  font-size: 1.6rem;
+}
+
+.kits-title::after {
+  display: none;
+}
+
+.kits-sub {
+  margin: 0 0 0.35rem;
+  font-size: 1.05rem;
+}
+
+.kits-date {
+  margin: 0 0 1rem;
+  font-weight: 700;
+  color: var(--color-red);
 }
