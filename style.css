@@ -1215,9 +1215,11 @@ a {
 /* ---------- Bannière d'un événement en cours ---------- */
 
 .event-banner {
+  position: relative;
+  z-index: 1;
   display: block;
   max-width: 920px;
-  margin: 1.5rem auto 0.6rem;
+  margin: 2rem auto 0.6rem;
   overflow: hidden;
   border-radius: var(--radius);
   box-shadow: var(--shadow-soft);
@@ -1236,8 +1238,10 @@ a {
 }
 
 .event-banner-caption {
+  position: relative;
+  z-index: 1;
   max-width: 920px;
-  margin: 0 auto 1.75rem;
+  margin: 0 auto 0;
   text-align: center;
   font-weight: 600;
 }
