@@ -1252,6 +1252,11 @@ a {
   font-size: 1.05rem;
 }
 
+.kits-prix {
+  margin: 0 0 0.5rem;
+  font-size: 1.05rem;
+}
+
 .kits-date {
   margin: 0 0 1rem;
   font-weight: 700;
