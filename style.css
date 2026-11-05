@@ -1217,7 +1217,7 @@ a {
 .kits {
   position: relative;
   z-index: 1;
-  max-width: 680px;
+  max-width: 1000px;
   margin: 2rem auto 0;
   overflow: hidden;
   background: var(--color-card);
@@ -1261,4 +1261,26 @@ a {
   margin: 0 0 1rem;
   font-weight: 700;
   color: var(--color-red);
+}
+
+/* Large écran : l'image à gauche, le texte à droite, sur toute la largeur des photos */
+@media (min-width: 720px) {
+  .kits {
+    display: grid;
+    grid-template-columns: 1.15fr 1fr;
+  }
+
+  .kits-img {
+    height: 100%;
+    object-fit: cover;
+    object-position: 40% 60%;
+  }
+
+  .kits-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 2.25rem;
+  }
 }
