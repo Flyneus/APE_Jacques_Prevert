@@ -1211,3 +1211,33 @@ a {
 .faq-page .faq-list {
   margin-left: 0;
 }
+
+/* ---------- Bannière d'un événement en cours ---------- */
+
+.event-banner {
+  display: block;
+  max-width: 920px;
+  margin: 1.5rem auto 0.6rem;
+  overflow: hidden;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-soft);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.event-banner:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-pop);
+}
+
+.event-banner img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.event-banner-caption {
+  max-width: 920px;
+  margin: 0 auto 1.75rem;
+  text-align: center;
+  font-weight: 600;
+}
