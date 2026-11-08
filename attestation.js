@@ -204,14 +204,14 @@
     return buildLettre(jsPDF, data, assets, COURRIER.objet, COURRIER.avant, COURRIER.apres);
   }
 
-  // Lettre de remerciement : data.destinataire (commerçant) et data.lot (don reçu) sont facultatifs.
+  // Lettre de remerciement : data.destinataire et data.lot (don reçu) sont facultatifs.
   function buildRemerciement(jsPDF, data, assets) {
     var don = data.lot ? 'votre don (' + data.lot + ')' : 'votre don';
     var avant = [
       data.destinataire ? 'Madame, Monsieur,' : 'Bonjour,',
       "Au nom de l'association des parents d'élèves de l'école Jacques Prévert (quartier de Kerfeunteun, à Quimper), je tiens à vous remercier chaleureusement pour votre générosité.",
       capitaliser(don) + " contribuera au succès de la tombola de notre kermesse de fin d'année, qui aura lieu le " + KERMESSE_DATE + ", selon l'accord de la mairie.",
-      "Grâce au soutien de commerçants comme vous, les bénéfices de cette journée financent les projets de l'école. Vous êtes les bienvenus pour partager avec nous ce moment convivial."
+      "Grâce à votre soutien, les bénéfices de cette journée financent les projets de l'école. Vous êtes les bienvenus pour partager avec nous ce moment convivial."
     ];
     return buildLettre(jsPDF, data, assets, 'Remerciements pour votre don de lots à la tombola de notre kermesse', avant,
       ['Avec tous nos remerciements.']);
@@ -374,7 +374,7 @@
         return;
       }
       generate(buildRemerciement, [merci.submit], merci.msg, data,
-        'courrier-remerciement-' + slug(data.destinataire || 'commercant') + '.pdf',
+        'courrier-remerciement-' + slug(data.destinataire || 'destinataire') + '.pdf',
         'Le courrier de remerciement est téléchargé.');
     });
   }
