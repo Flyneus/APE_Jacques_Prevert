@@ -32,6 +32,7 @@
       "En vous remerciant par avance pour votre aide précieuse."
     ]
   };
+  var KERMESSE_DATE = 'samedi 19 ou le samedi 26 juin 2027';
   var LIB = 'vendor/jspdf.umd.min.js';
   var LOGO = 'images/logo.png';
   // Signatures scannées (PNG transparents) et taille d'affichage en mm [largeur, hauteur].
@@ -142,9 +143,9 @@
     return 'Vous pouvez nous répondre à notre adresse de contact : apejacquesprevertquimper@gmail.com.';
   }
 
-  // Courrier de demande de lots, signé du bénévole.
-  // data : { date: 'AAAA-MM-JJ', prenom, nom, adresse, tel, email } (adresse, tel et email facultatifs).
-  function buildDemande(jsPDF, data, assets) {
+  // Lettre de l'APE signée du bénévole : en-tête, date, destinataire éventuel, objet, paragraphes, signature.
+  // data : { date: 'AAAA-MM-JJ', prenom, nom, adresse, tel, email, destinataire } (tout sauf date, prénom et nom est facultatif).
+  function buildLettre(jsPDF, data, assets, objetTexte, avant, apres) {
     assets = assets || {};
     var doc = new jsPDF({ unit: 'mm', format: 'a4', compress: true });
     var left = 25, right = 185, width = right - left;
@@ -164,12 +165,18 @@
     doc.setFontSize(11);
     doc.text('À Quimper, le ' + (data.date ? longDate(data.date) : dots), right, y, { align: 'right' });
     y += 12;
+    if (data.destinataire) {
+      doc.setFont('helvetica', 'bold');
+      var dest = doc.splitTextToSize('À l\'attention de : ' + data.destinataire, width);
+      doc.text(dest, left, y, { lineHeightFactor: 1.4 });
+      y += dest.length * 5.8 + 5;
+    }
     doc.setFont('helvetica', 'bold').text('Objet :', left, y);
-    var objet = doc.splitTextToSize(COURRIER.objet, width - 18);
+    var objet = doc.splitTextToSize(objetTexte, width - 18);
     doc.setFont('helvetica', 'normal').text(objet, left + 17, y, { lineHeightFactor: 1.5 });
     y += objet.length * 6.2 + 6;
 
-    var paragraphes = COURRIER.avant.concat([contactParagraphe(data)], COURRIER.apres);
+    var paragraphes = avant.concat([contactParagraphe(data)], apres);
     paragraphes.forEach(function (para) {
       var lines = doc.splitTextToSize(para, width);
       doc.text(lines, left, y, { lineHeightFactor: 1.45 });
@@ -193,8 +200,29 @@
     return doc;
   }
 
+  function buildDemande(jsPDF, data, assets) {
+    return buildLettre(jsPDF, data, assets, COURRIER.objet, COURRIER.avant, COURRIER.apres);
+  }
+
+  // Lettre de remerciement : data.destinataire (commerçant) et data.lot (don reçu) sont facultatifs.
+  function buildRemerciement(jsPDF, data, assets) {
+    var don = data.lot ? 'votre don (' + data.lot + ')' : 'votre don';
+    var avant = [
+      data.destinataire ? 'Madame, Monsieur,' : 'Bonjour,',
+      "Au nom de l'association des parents d'élèves de l'école Jacques Prévert (quartier de Kerfeunteun, à Quimper), je tiens à vous remercier chaleureusement pour votre générosité.",
+      capitaliser(don) + " contribuera au succès de la tombola de notre kermesse de fin d'année, qui aura lieu le " + KERMESSE_DATE + ", selon l'accord de la mairie.",
+      "Grâce au soutien de commerçants comme vous, les bénéfices de cette journée financent les projets de l'école. Vous êtes les bienvenus pour partager avec nous ce moment convivial."
+    ];
+    return buildLettre(jsPDF, data, assets, 'Remerciements pour votre don de lots à la tombola de notre kermesse', avant,
+      ['Avec tous nos remerciements.']);
+  }
+
+  function capitaliser(t) {
+    return t.charAt(0).toUpperCase() + t.slice(1);
+  }
+
   if (typeof module !== 'undefined' && module.exports) {
-    module.exports = { buildAttestation: buildAttestation, buildDemande: buildDemande, slug: slug, longDate: longDate, clean: clean };
+    module.exports = { buildAttestation: buildAttestation, buildDemande: buildDemande, buildRemerciement: buildRemerciement, slug: slug, longDate: longDate, clean: clean };
   }
 
   if (typeof document === 'undefined' || !document.getElementById('attestForm')) return;
@@ -218,6 +246,20 @@
     email: document.getElementById('courrierEmail'),
     submit: document.getElementById('courrierSubmit'),
     msg: document.getElementById('courrierMsg')
+  };
+
+  var merci = {
+    form: document.getElementById('remerciementForm'),
+    date: document.getElementById('remerciementDate'),
+    commercant: document.getElementById('remerciementCommercant'),
+    lot: document.getElementById('remerciementLot'),
+    prenom: document.getElementById('remerciementPrenom'),
+    nom: document.getElementById('remerciementNom'),
+    adresse: document.getElementById('remerciementAdresse'),
+    tel: document.getElementById('remerciementTel'),
+    email: document.getElementById('remerciementEmail'),
+    submit: document.getElementById('remerciementSubmit'),
+    msg: document.getElementById('remerciementMsg')
   };
 
   function today() {
@@ -307,6 +349,33 @@
       generate(buildDemande, [courrier.submit], courrier.msg, data,
         'courrier-demande-de-lots-' + slug(data.nom) + '-' + slug(data.prenom) + '.pdf',
         'Le courrier est téléchargé. Joignez-y l’attestation de recherche de lots signée.');
+    });
+  }
+  if (merci.form) {
+    merci.date.value = today();
+    merci.form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var data = {
+        date: merci.date.value,
+        destinataire: clean(merci.commercant.value, 80),
+        lot: clean(merci.lot.value, 100),
+        prenom: clean(merci.prenom.value),
+        nom: clean(merci.nom.value),
+        adresse: clean(merci.adresse.value, 120),
+        tel: clean(merci.tel.value, 30),
+        email: clean(merci.email.value, 80)
+      };
+      if (!data.date || !data.prenom || !data.nom) {
+        say(merci.msg, 'Merci d’indiquer la date, votre prénom et votre nom.', true);
+        return;
+      }
+      if (data.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)) {
+        say(merci.msg, 'L’adresse e-mail ne semble pas valide.', true);
+        return;
+      }
+      generate(buildRemerciement, [merci.submit], merci.msg, data,
+        'courrier-remerciement-' + slug(data.destinataire || 'commercant') + '.pdf',
+        'Le courrier de remerciement est téléchargé.');
     });
   }
 })();

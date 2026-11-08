@@ -795,6 +795,8 @@
         <div class="section-inner">
           <h2>3. Documents pratiques</h2>
 
+          <h3 class="doc-group-title">Courriers à générer</h3>
+
           <details class="attest-card" id="attestation">
             <summary><svg class="icon-inline"><use href="#icon-document"></use></svg>Attestation de recherche de lots (PDF à générer)</summary>
             <div class="attest-body">
@@ -843,6 +845,37 @@
             </div>
           </details>
 
+          <details class="attest-card" id="remerciement-lots">
+            <summary><svg class="icon-inline"><use href="#icon-document"></use></svg>Courrier de remerciement aux commerçants (PDF à générer)</summary>
+            <div class="attest-body">
+              <p>Lettre pour remercier un commerçant qui a donné un lot. Indiquez la date, le commerçant et vos coordonnées : elles figurent en
+                signature. Rien n'est envoyé, le document est créé sur votre appareil.</p>
+              <form id="remerciementForm" class="attest-form" novalidate>
+                <label for="remerciementDate">À Quimper, le</label>
+                <input type="date" id="remerciementDate" required>
+                <label for="remerciementCommercant">Nom du commerçant <span class="attest-opt">(facultatif)</span></label>
+                <input type="text" id="remerciementCommercant" autocomplete="off" maxlength="80">
+                <label for="remerciementLot">Lot offert <span class="attest-opt">(facultatif, ex. 2 entrées)</span></label>
+                <input type="text" id="remerciementLot" autocomplete="off" maxlength="100">
+                <label for="remerciementPrenom">Prénom</label>
+                <input type="text" id="remerciementPrenom" autocomplete="given-name" maxlength="60" required>
+                <label for="remerciementNom">Nom</label>
+                <input type="text" id="remerciementNom" autocomplete="family-name" maxlength="60" required>
+                <label for="remerciementAdresse">Adresse <span class="attest-opt">(facultatif)</span></label>
+                <input type="text" id="remerciementAdresse" autocomplete="street-address" maxlength="120">
+                <label for="remerciementTel">Téléphone <span class="attest-opt">(facultatif)</span></label>
+                <input type="tel" id="remerciementTel" autocomplete="tel" maxlength="30">
+                <label for="remerciementEmail">E-mail <span class="attest-opt">(facultatif)</span></label>
+                <input type="email" id="remerciementEmail" autocomplete="email" maxlength="80">
+                <div class="attest-actions">
+                  <button type="submit" class="btn btn-primary" id="remerciementSubmit">Télécharger le courrier</button>
+                </div>
+                <p class="lots-msg" id="remerciementMsg" role="status" aria-live="polite"></p>
+              </form>
+            </div>
+          </details>
+
+          <h3 class="doc-group-title">Documents administratifs</h3>
           <ul class="doc-list">
             <li><a href="documents/exemple-reglement-tombola.docx" target="_blank" rel="noopener"><svg class="icon-inline"><use href="#icon-document"></use></svg>Exemple de règlement de la tombola (Word, à personnaliser)</a></li>
             <li><a href="https://www.formulaires.service-public.gouv.fr/gf/cerfa_11823.do" target="_blank" rel="noopener"><svg class="icon-inline"><use href="#icon-document"></use></svg>Cerfa 11823 : demande d'autorisation de loterie (formulaire en ligne)</a></li>
