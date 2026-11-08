@@ -12,7 +12,7 @@
   var data = [];
   var pending = [];
   var PREVIEW = 10; // nombre de commerçants affichés avant « Tout afficher »
-  var state = { person: '', place: '', query: '', expanded: false };
+  var state = { person: '', place: '', query: '', expanded: false, notes: false };
   var loaded = false;
 
   // ---------- Utilitaires ----------
@@ -106,6 +106,7 @@
   var els = {
     search: document.getElementById('lotsSearch'),
     persons: document.getElementById('lotsPersons'),
+    notesBox: document.getElementById('lotsNotes'),
     place: document.getElementById('lotsPlace'),
     status: document.getElementById('lotsStatus'),
     table: document.getElementById('lotsTable'),
@@ -206,6 +207,16 @@
         b.textContent = g.label + ' (' + g.count + ')';
         els.persons.appendChild(b);
       });
+    els.notesBox.textContent = '';
+    var nbNotes = data.filter(function (d) { return d.note; }).length;
+    if (nbNotes) {
+      var nb = document.createElement('button');
+      nb.type = 'button';
+      nb.className = 'lots-chip';
+      nb.setAttribute('aria-pressed', state.notes ? 'true' : 'false');
+      nb.textContent = 'Avec une note (' + nbNotes + ')';
+      els.notesBox.appendChild(nb);
+    }
     els.personList.textContent = '';
     order.forEach(function (k) {
       if (k === '__none') return;
@@ -237,6 +248,7 @@
     data.forEach(function (d) {
       if (state.person && personKey(d.person) !== state.person) return;
       if (state.place && d.place !== state.place) return;
+      if (state.notes && !d.note) return;
       var s = score(d.key, q);
       if (s !== Infinity) rows.push({ d: d, s: s });
     });
@@ -245,6 +257,7 @@
       data.forEach(function (d) {
         if (state.person && personKey(d.person) !== state.person) return;
         if (state.place && d.place !== state.place) return;
+        if (state.notes && !d.note) return;
         var s = partialScore(d.key, q);
         if (s !== Infinity) rows.push({ d: d, s: s });
       });
@@ -252,9 +265,10 @@
     }
     rows.sort(function (a, b) { return a.s - b.s || a.d.name.localeCompare(b.d.name, 'fr'); });
     els.body.textContent = '';
-    var hidden = state.expanded ? 0 : Math.max(0, rows.length - PREVIEW);
+    var hidden = (state.expanded || state.notes) ? 0 : Math.max(0, rows.length - PREVIEW);
     rows.slice(0, rows.length - hidden).forEach(function (r) {
       var tr = document.createElement('tr');
+      if (r.d.note) tr.className = 'has-note';
       [['Commerçant', r.d.name], ['Lieu', r.d.place || '-'], ['Personne en charge', r.d.person || '-'], ['Notes', r.d.note || '-']].forEach(function (c) {
         var td = document.createElement('td');
         td.dataset.label = c[0];
@@ -264,7 +278,7 @@
       });
       els.body.appendChild(tr);
     });
-    els.more.hidden = rows.length <= PREVIEW;
+    els.more.hidden = rows.length <= PREVIEW || state.notes;
     els.more.setAttribute('aria-expanded', state.expanded ? 'true' : 'false');
     els.more.firstChild.textContent = state.expanded ? 'Réduire la liste' : 'Afficher les ' + hidden + ' autres commerçants';
     els.empty.hidden = rows.length > 0;
@@ -272,9 +286,12 @@
     var n = rows.length;
     setStatus(approx
       ? 'Aucune correspondance exacte : ' + n + ' résultat' + (n > 1 ? 's approchants' : ' approchant')
-      : n + ' commerçant' + (n > 1 ? 's' : '') + (state.query || state.person || state.place ? ' correspondant' + (n > 1 ? 's' : '') : ' dans la liste'));
+      : n + ' commerçant' + (n > 1 ? 's' : '') + (state.query || state.person || state.place || state.notes ? ' correspondant' + (n > 1 ? 's' : '') : ' dans la liste'));
     Array.prototype.forEach.call(els.persons.children, function (b) {
       b.setAttribute('aria-pressed', b.dataset.person === state.person ? 'true' : 'false');
+    });
+    Array.prototype.forEach.call(els.notesBox.children, function (b) {
+      b.setAttribute('aria-pressed', state.notes ? 'true' : 'false');
     });
   }
 
@@ -353,6 +370,11 @@
   els.more.addEventListener('click', function () { state.expanded = !state.expanded; if (loaded) render(); });
   els.search.addEventListener('input', function () { state.query = els.search.value; if (loaded) render(); });
   els.place.addEventListener('change', function () { state.place = els.place.value; if (loaded) render(); });
+  els.notesBox.addEventListener('click', function (e) {
+    if (!e.target.closest('.lots-chip')) return;
+    state.notes = !state.notes;
+    render();
+  });
   els.persons.addEventListener('click', function (e) {
     var b = e.target.closest('.lots-chip');
     if (!b) return;
