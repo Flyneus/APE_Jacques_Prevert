@@ -4,7 +4,7 @@
   'use strict';
 
   var SHEET_ID = '1xiFy-2lTsnRQfnrv7EjvTDdrHe16Daj_wCWrsT32Sgk';
-  var SHEET_NAME = 'Liste site internet';
+  var SHEET_NAME = 'Réponses au formulaire 1';
   var FORM_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSckOL9bT3QjDCqbEawJQga2Ok8pxwW4MewS29qDLHThvn5Vzg/viewform';
   var FORM_ACTION = FORM_URL.replace('/viewform', '/formResponse');
   var ENTRY = { name: 'entry.1671062358', place: 'entry.2107192009', person: 'entry.655551247' };
@@ -158,9 +158,10 @@
       })
       .then(function (text) {
         var rows = parseCSV(text).slice(1);
-        data = rows.filter(function (r) { return (r[0] || '').trim(); }).map(function (r) {
-          var name = r[0].trim();
-          return { name: name, place: (r[1] || '').trim(), person: (r[2] || '').trim(), note: (r[3] || '').trim(), key: norm(name) };
+        // Colonnes : A horodateur, B nom, C lieu, D personne en charge, E notes de Marlène
+        data = rows.filter(function (r) { return (r[1] || '').trim(); }).map(function (r) {
+          var name = r[1].trim();
+          return { name: name, place: (r[2] || '').trim(), person: (r[3] || '').trim(), note: (r[4] || '').trim(), key: norm(name) };
         });
         var now = Date.now();
         pending = pending.filter(function (p) { return now - p.at < 15 * 60 * 1000; });
