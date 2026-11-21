@@ -693,21 +693,26 @@
         <div class="section-inner">
           <h2>Tombola</h2>
           <nav class="tombola-nav" aria-label="Parties de l'onglet Tombola">
-            <a href="#tombola-fonctionnement">1. Fonctionnement et procédures</a>
-            <a href="#tombola-lots">2. Recherche de lots</a>
-            <a href="#tombola-documents">3. Documents pratiques</a>
+            <a href="#tombola-fonctionnement">1. Recherche de lots</a>
+            <a href="#tombola-documents">2. Documents pratiques</a>
           </nav>
-          <h3 class="doc-group-title">1. Fonctionnement et procédures</h3>
+          <h3 class="doc-group-title">1. Recherche de lots : fonctionnement et procédures</h3>
           <p class="tombola-contact"><strong>Référente tombola : Marlène</strong><br>
-            <a href="mailto:m.chamonard@yahoo.fr">m.chamonard@yahoo.fr</a> - <a href="tel:+33661657580">06 61 65 75 80</a>
-            (<a href="https://wa.me/33661657580" target="_blank" rel="noopener">WhatsApp</a> ou SMS)</p>
+            Passez directement par elle pour proposer un commerçant, une idée ou un contact, ou pour savoir qui a déjà été démarché.
+            Elle note vos retours.</p>
+          <div class="tombola-contact-actions">
+            <a class="btn-chip" href="https://wa.me/33661657580" target="_blank" rel="noopener">WhatsApp</a>
+            <a class="btn-chip" href="sms:+33661657580">SMS</a>
+            <a class="btn-chip" href="mailto:m.chamonard@yahoo.fr">E-mail</a>
+            <a class="btn-chip" href="tel:+33661657580">06 61 65 75 80</a>
+          </div>
 
           <details class="tombola-howto" id="tombola-etapes">
             <summary>Rechercher des lots : les étapes</summary>
             <div class="tombola-howto-body">
             <ol class="procedure-steps">
               <li><strong>Marlène coordonne</strong> la recherche de lots et tient la liste des commerçants. Contactez-la par WhatsApp, SMS
-                ou e-mail (coordonnées en haut de cette partie et dans la <a href="#tombola-lots">partie 2</a>).</li>
+                ou e-mail (boutons ci-dessus).</li>
               <li>Une nouvelle idée, un nouveau contact : envoyez-la d'abord à Marlène, qui vérifie qu'il n'a pas déjà été démarché.</li>
               <li>Se présenter avec l'attestation de la direction de l'école (voir <a href="#tombola-documents">documents pratiques</a>)
                 et demander un lot : entrées, bons cadeaux, objets.</li>
@@ -731,20 +736,9 @@
         </div>
       </section>
 
-      <section class="section" id="tombola-lots">
+      <section class="section" id="tombola-lots" hidden>
         <div class="section-inner">
-          <h2>2. Recherche de lots</h2>
-          <p>Pour la recherche de lots, passez directement par <strong>Marlène</strong>, qui coordonne et suit la liste des commerçants.
-            Écrivez-lui par WhatsApp, SMS ou e-mail pour proposer un commerçant, une idée ou un contact, ou pour savoir qui a déjà été démarché.
-            Elle note vos retours.</p>
-          <div class="tombola-contact-actions">
-            <a class="btn-chip" href="https://wa.me/33661657580" target="_blank" rel="noopener">WhatsApp</a>
-            <a class="btn-chip" href="sms:+33661657580">SMS</a>
-            <a class="btn-chip" href="mailto:m.chamonard@yahoo.fr">E-mail</a>
-            <a class="btn-chip" href="tel:+33661657580">06 61 65 75 80</a>
-          </div>
-
-          <!-- Liste des commerçants et formulaire d'ajout : masqués. Pour les réafficher, supprimer l'attribut hidden ci-dessous. -->
+          <!-- Liste des commerçants et formulaire d'ajout : masqués. Pour les réafficher : supprimer l'attribut hidden de <section id="tombola-lots"> et de <div id="lotsListe">, et remettre un lien dans la navigation Tombola. -->
           <div id="lotsListe" hidden>
             <div class="tombola-layout">
               <div class="tombola-main tombola-card">
@@ -808,7 +802,7 @@
 
       <section class="section section-alt" id="tombola-documents">
         <div class="section-inner">
-          <h2>3. Documents pratiques</h2>
+          <h2>2. Documents pratiques</h2>
 
           <h3 class="doc-group-title">Courriers à générer</h3>
 
