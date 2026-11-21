@@ -393,7 +393,8 @@
   // Les données et le formulaire ne sont demandés à Google qu'à la première ouverture de l'onglet.
   var started = false;
   function start() {
-    if (started || panel.hidden) return;
+    var liste = document.getElementById('lotsListe');
+    if (started || panel.hidden || (liste && liste.hidden)) return;
     started = true;
     setupForm();
     load();
